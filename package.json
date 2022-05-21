@@ -40,7 +40,7 @@
     "build": "npm run build:css && react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:css": "postcss src/styles/tailwind.scss -o src/styles/index.scss ",
+    "build:css": "postcss src/styles/tailwind.scss -o src/styles/index.scss --minify",
     "watch:css": "postcss src/styles/tailwind.scss -o src/styles/index.scss "
   },
   "eslintConfig": {
@@ -97,7 +97,7 @@
     "compression-webpack-plugin": "^9.2.0",
     "copy-webpack-plugin": "^10.2.0",
     "cross-env": "^7.0.3",
-    "cssnano":"^5.1.7",
+    "cssnano":"^5.1.9",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.3.1",
     "customize-cra": "^1.0.0",
