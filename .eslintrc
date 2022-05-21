@@ -1,0 +1,49 @@
+{
+    "ignorePatterns": [
+        "public",
+        "dist",
+        "tests",
+        "test",
+        "coverage",
+        "*.md",
+        "*.png",
+        "*.svg",
+        "*.json",
+        "*.map",
+        "*.sh"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+        "jsx": true,
+        "legacyDecorators": true
+        },
+        "sourceType": "module"
+    },
+    "settings": {
+        "react": {
+          "version": "detect"
+        },
+        "import/resolver": {
+            "alias": [
+                ["~/*", ".src/*"]
+            ]
+        }
+    },
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "react/jsx-no-bind": "off",
+        "react/no-did-update-set-state": "error",
+        "react/no-unknown-property": "error",
+        "react/no-unused-prop-types": "error",
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "error"
+    }
+}

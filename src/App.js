@@ -1,10 +1,8 @@
 import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
-import "./App.css";
 
 import "antd/dist/antd.css";
-import "./index.css";
 import { Spin, Space } from "antd";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
