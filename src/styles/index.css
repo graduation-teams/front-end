@@ -615,8 +615,8 @@ select {
 .text-\[25px\] {
   font-size: 25px;
 }
-.text-\[30px\] {
-  font-size: 30px;
+.text-\[100px\] {
+  font-size: 100px;
 }
 .text-black {
   --tw-text-opacity: 1;
