@@ -1,7 +1,9 @@
 #!/bin/sh
 
 echo "Switching to branch master"
-git checkout master
+git checkout main
+echo "install node_modules"
+npm install --legacy-peer-deps
 echo "Building app"
 npm run build
 echo "Deploying files to server"
