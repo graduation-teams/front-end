@@ -11,3 +11,5 @@ npm install
 echo "Building app"
 npm run build
 echo "Deployment complete"
+echo "Discard all changes"
+git restore .
