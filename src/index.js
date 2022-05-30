@@ -1,7 +1,15 @@
+import 'core-js/stable';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
+import 'core-js/es/map';
+import 'core-js/es/set';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { Provider, ReactReduxContext } from 'react-redux';
+import { ConfigProvider } from 'antd';
+import vi_VN from 'antd/lib/locale/vi_VN';
+// import configureAppStore from '~/app/store';
+import 'moment/locale/vi';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 
@@ -10,13 +18,16 @@ import '~/styles/index.css';
 import '~/styles/app.css';
 
 const container = document.getElementById('root');
+// const store = configureAppStore();
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    {/* <Provider store={store} context={ReactReduxContext}> */}
+      <ConfigProvider locale={vi_VN}>
+        <App />
+      </ConfigProvider>
+    {/* </Provider> */}
   </React.StrictMode>
 );
 
