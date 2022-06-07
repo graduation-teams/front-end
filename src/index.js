@@ -13,9 +13,8 @@ import 'moment/locale/vi';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 
-import '~/styles/base/reset.css';
-import '~/styles/index.css';
-import '~/styles/app.css';
+import './styles/base/reset.css';
+import './styles/app.css';
 
 const container = document.getElementById('root');
 // const store = configureAppStore();
