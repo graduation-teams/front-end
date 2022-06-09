@@ -52,7 +52,7 @@ function App() {
               minHeight: 280,
             }}
           >
-            Content
+            Contents
           </Content>
         </Layout>
       </Layout>

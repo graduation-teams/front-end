@@ -3,6 +3,7 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import 'core-js/es/map';
 import 'core-js/es/set';
+import 'raf/polyfill';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider, ReactReduxContext } from 'react-redux';
@@ -14,8 +15,8 @@ import App from './app';
 import reportWebVitals from './reportWebVitals';
 
 import './styles/base/reset.css';
-import './styles/app.css';
-
+import './styles/base/app.less';
+import './styles/index.css';
 const container = document.getElementById('root');
 // const store = configureAppStore();
 const root = createRoot(container);

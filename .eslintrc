@@ -26,7 +26,7 @@
         },
         "import/resolver": {
             "alias": [
-                ["~/*", ".src/*"]
+                ["@components", "./src/components"]
             ]
         }
     },
