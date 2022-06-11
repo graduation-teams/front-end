@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Switching to branch master..."
-git checkout main
+git checkout dev
 echo "Discard all changes"
 git restore .
 echo "Fetching branch..."
