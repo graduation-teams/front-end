@@ -23,14 +23,14 @@ module.exports = {
     //Alias configuration
     alias: {
       '@': pathJoin('.'),
-      '@apis': pathJoin('src/apis'),
+      '@api': pathJoin('src/api'),
       '@src': pathJoin('./src'),
       '@styles': pathJoin('./src/styles'),
       '@assets': pathJoin('./src/assets'),
       '@components': pathJoin('./src/components'),
       '@hooks': pathJoin('./src/hooks'),
       '@pages': pathJoin('./src/pages'),
-      '@utils': pathJoin('./src/utilities'),
+      '@utils': pathJoin('./src/utils'),
       '@layouts': pathJoin('./src/layouts'),
       '@app': pathJoin('./src/app'),
       '@configs': pathJoin('./src/configs'),
@@ -260,7 +260,7 @@ module.exports = {
     historyApiFallback: true,
     compress: true,
     allowedHosts: 'auto',
-    port: 3002,
+    port: 3003,
     liveReload: true,
     client: {
       overlay: {
