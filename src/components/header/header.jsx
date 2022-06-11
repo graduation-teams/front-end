@@ -3,7 +3,7 @@ import React from 'react';
 function Header(props) {
   return (
     <>
-      <div className="text-[100px] text-center text-mainColor hover:text-black hover:underline cursor-pointer">
+      <div className="">
         <p>This is header</p>
       </div>
     </>

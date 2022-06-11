@@ -1,27 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router'; // react-router v5
+import { ConnectedRouter } from 'connected-react-router';
+import arrayRouters from '@pages/routes.js';
+import { Layout, Menu, Spin } from 'antd';
 
-import { Spin, Space } from "antd";
-import Header from "./components/header/header";
-import Footer from "./components/footer/footer";
+const { Header, Sider, Content } = Layout;
+const ROUTER_MAP = arrayRouters;
 
-function App() {
-	return (
-		<div className="App">
-			<Header />
+function App({ history, context }) {
+  const [arrayRouters, setArrayRouters] = useState([]);
 
-			<div className="text-center">
-				<Space size="middle">
-					<Spin size="small" />
-					<Spin />
-					<Spin size="large" />
-					<Spin />
-					<Spin size="small" />
-				</Space>
-			</div>
+  useEffect(() => {
+    console.log('ROUTER_MAP', ROUTER_MAP);
+    setArrayRouters(ROUTER_MAP.reverse());
+  }, [ROUTER_MAP]);
 
-			<Footer />
-		</div>
-	);
+  return (
+    <React.Fragment>
+      <ConnectedRouter history={history} context={context}>
+        <Switch>
+          {arrayRouters.length > 0 &&
+            arrayRouters.map(({ component: Component, ...rest }, index) => {
+              return (
+                <Route
+                  key={index}
+                  {...rest}
+                  render={props => (
+                    <React.Suspense
+                      fallback={
+                        <Spin
+                          style={{
+                            position: 'absolute',
+                            zIndex: '999',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                          }}
+                        />
+                      }
+                    >
+                      <Component {...props} />
+                    </React.Suspense>
+                  )}
+                />
+              );
+            })}
+        </Switch>
+        <h1>Hello</h1>
+      </ConnectedRouter>
+    </React.Fragment>
+  );
 }
 
 export default App;
