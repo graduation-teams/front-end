@@ -27,13 +27,13 @@ const root = createRoot(container);
 
 function AppWithCallbackAfterRender() {
 
-  return (<React.StrictMode>
+  return (<React.Fragment>
     <ConfigProvider locale={vi_VN}>
       <Provider store={store} context={ReactReduxContext}>
           <App history={history} context={ReactReduxContext}/>
       </Provider>
     </ConfigProvider>
-  </React.StrictMode>)
+  </React.Fragment>)
 };
 
 root.render(<AppWithCallbackAfterRender/>);
