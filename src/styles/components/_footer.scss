@@ -1,0 +1,90 @@
+.footer {
+    .footer__header {
+        background-color: $main-color;
+        width: 100%;
+
+        .footer-support {
+            @include flex(flex-start, center);
+            padding: 20px 0;
+
+            svg {
+                fill: #fff !important;
+                font-size: 50px !important;
+                margin-right: 10px;
+            }
+
+            .title {
+                color: #fff;
+            }
+
+            .desc {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.footer__mid {
+    margin-top: 50px;
+
+    .footer__mid--columns {
+        width: 100%;
+    }
+
+    .text {
+        font-size: 20px;
+        color: #333;
+    }
+
+    .input-signup {
+        display: flex;
+        flex-wrap: nowrap;
+
+        .text-signup {
+            width: 100%;
+            height: 40px;
+            border: 1px solid rgb(219, 215, 215);
+            padding-left: 10px;
+        }
+
+        .btn-signup {
+            width: 100px;
+            background: $main-color;
+            color: #fff;
+            border: 1px solid $main-color;
+        }
+    }
+
+    .icon-social-media {
+        margin-left: 20px;
+
+        @include mobile {
+            margin-left: 0;
+        }
+    }
+}
+
+.footer__bot {
+    margin: 50px 0;
+
+    .text {
+        font-size: 18px;
+    }
+
+    hr {
+        width: 90%;
+    }
+
+    .item {
+        line-height: 40px;
+
+        a {
+            color: #333;
+            font-size: 16px;
+        }
+    }
+}
+
+.ant-layout-footer {
+    background: #fff;
+}
