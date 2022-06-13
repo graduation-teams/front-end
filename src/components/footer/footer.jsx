@@ -15,7 +15,7 @@ const FooterComponent = () => {
                             <Col sm={24} md={8} xl={8}>
                                 <div className="footer-support">
                                     <Icon component={IconLogo1} />
-                                    <div>
+                                    <div className="footer-sp">
                                         <h1 className="title">CALL US 24/7</h1>
                                         <p className="desc">+1 (310) 888 8808, +1 (310) 777 8808</p>
                                     </div>
@@ -24,7 +24,7 @@ const FooterComponent = () => {
                             <Col sm={24} md={8} xl={8}>
                                 <div className="footer-support">
                                     <Icon component={IconLogo1} />
-                                    <div>
+                                    <div className="footer-sp">
                                         <h1 className="title">WRITE TO US</h1>
                                         <p className="desc">electon.@gm.com , electron@gm.com</p>
                                     </div>
@@ -33,7 +33,7 @@ const FooterComponent = () => {
                             <Col sm={24} md={8} xl={8}>
                                 <div className="footer-support">
                                     <Icon component={IconLogo1} />
-                                    <div>
+                                    <div className="footer-sp">
                                         <h1 className="title">CONTACT INFO</h1>
                                         <p className="desc">USA, New York, Second Street 289</p>
                                     </div>
@@ -151,7 +151,7 @@ const FooterComponent = () => {
             </section>
 
             <div className="container-1200">
-                <p>Copyright © 2021 XStore Theme. Created by 8theme - Premium WooCommerce Themes.</p>
+                <p className="copyright">Copyright © 2021 XStore Theme. Created by 8theme - Premium WooCommerce Themes.</p>
             </div>
         </Layout.Footer>
     );

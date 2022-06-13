@@ -17,21 +17,21 @@ const LoginForm = () => {
         <div>
             <div className="header__login">
                 <Icon component={IconLogo1} />
-                TÀI KHOẢN
+                LOGIN
             </div>
             <Row>
                 <Col span={24} xs={24} sm={24} md={24} lg={24} xl={24}>
                     <div className="container-1200">
                         <Form className="form-login" name="basic" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
-                            <h1>Đăng nhập</h1>
+                            <h1>Login</h1>
                             <hr />
                             <Form.Item
-                                label="Tài khoản"
+                                label="Username"
                                 name="username"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Nhập tài khoản của bạn !',
+                                        message: 'Enter your username',
                                     },
                                 ]}
                             >
@@ -39,12 +39,12 @@ const LoginForm = () => {
                             </Form.Item>
 
                             <Form.Item
-                                label="Mật khẩu"
+                                label="Password"
                                 name="password"
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'Nhập mật khẩu của bạn !',
+                                        message: 'Enter your password',
                                     },
                                 ]}
                             >
@@ -53,17 +53,17 @@ const LoginForm = () => {
 
                             <div className="above__submit">
                                 <Form.Item name="remember" valuePropName="checked">
-                                    <Checkbox>Nhớ mật khẩu</Checkbox>
+                                    <Checkbox>Remember password</Checkbox>
                                 </Form.Item>
 
                                 <Form.Item>
-                                    <a href="#">Quên mật khẩu mật khẩu</a>
+                                    <a href="#">Forget password ?</a>
                                 </Form.Item>
                             </div>
 
                             <Form.Item>
                                 <Button type="primary" htmlType="submit" className="login__submit">
-                                    Đăng nhập
+                                    Sign In
                                 </Button>
                             </Form.Item>
                         </Form>
