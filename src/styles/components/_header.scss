@@ -1,0 +1,132 @@
+.header {
+    background-color: #fff;
+    padding: 0;
+    min-height: 143px;
+
+    &_action {
+        width: 100%;
+        border-bottom: 1px solid $secondary-color;
+    }
+
+    &_nav {
+        min-height: 56px;
+        border-bottom: 1px solid $secondary-color;
+    }
+
+    &_nav_row {
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &_search_box {
+        display: flex;
+        width: 550px;
+    }
+
+    &_dropdown:hover,
+    &_dropdown:active {
+        border-color: $secondary-color;
+        color: #000000A6;
+    }
+
+    &_dropdown,
+    &_input_search input {
+        height: 40px;
+    }
+
+    &_link {
+        font-size: 30px;
+    }
+
+    &_link span {
+        color: $main-color;
+        font-weight: 700;
+    }
+
+    &_input_search input {
+        outline: none;
+    }
+
+    &_input_search input:hover,
+    &_input_search input:focus {
+        border-color: $secondary-color  !important;
+    }
+
+    &_search {
+        flex: 1;
+        color: $main-color;
+    }
+
+    &_list {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    &_icon {
+        font-size: 25px;
+        padding-right: 5px;
+    }
+
+    &_cate_dropdown {
+        & button {
+            height: 58px;
+            width: 95%;
+            background-color: $main-color;
+            color: #fff;
+            font-size: 17px;
+
+            &>div {
+                width: 100%;
+                justify-content: space-between;
+                padding: 0 20px;
+
+                & p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &_nav {
+        &_list {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 56px;
+            font-size: 16px;
+        }
+
+        &_item {
+            line-height: 56px;
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+                content: "";
+                background-color: $main-color;
+                height: 2px;
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                bottom: 0;
+            }
+
+            &:hover:after {
+                animation: 500ms ease-in-out .5s normal none 1 running fadeInDown;
+            }
+
+            &:hover .header_nav_link {
+                color: #000000A6;
+            }
+        }
+
+        &_link {
+            color: #000000;
+        }
+    }
+}
