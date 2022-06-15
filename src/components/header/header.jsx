@@ -89,108 +89,108 @@ function Header(props) {
     };
 
     return (
-        <Layout.Header className="header">
-            {/* <div className="header"> */}
-            <section className="header_action">
-                <div className="container-1200">
-                    <Row align={'middle'}>
-                        <Col sm={24} md={6} xl={6}>
-                            <a href="#" className="header_link">
-                                <Icon component={IconLogo2} />
-                                <span>TechStore</span>
-                            </a>
-                        </Col>
-                        <Col sm={24} md={12} xl={12}>
-                            <div className="header_search_box">
-                                <Dropdown className="header_dropdown" overlay={menu} trigger={['click']}>
-                                    <Button>
-                                        <Space>
-                                            All categories
-                                            <DownOutlined />
-                                        </Space>
-                                    </Button>
-                                </Dropdown>
-                                <AutoComplete
-                                    className="header_search"
-                                    dropdownMatchSelectWidth={252}
-                                    style={{
-                                        width: 300,
-                                    }}
-                                    options={options}
-                                    onSelect={onSelect}
-                                    onSearch={handleSearch}
-                                >
-                                    <Input.Search className="header_input_search" size="large" placeholder="Type here..." enterButton />
-                                </AutoComplete>
-                            </div>
-                        </Col>
-                        <Col sm={24} md={6} xl={6}>
-                            <ul className="header_list">
-                                <li className="header_item">
-                                    <a href="" className="header_item_link">
-                                        <p className="header_item_link-text">LOG IN / SIGN UP</p>
-                                    </a>
-                                </li>{' '}
-                                |
-                                <li className="header_item">
-                                    <a href="" className="header_item_link">
-                                        <Badge count={5}>
-                                            <HeartOutlined className="header_icon" />
-                                        </Badge>
-                                    </a>
-                                </li>{' '}
-                                |
-                                <li className="header_item">
-                                    <a href="" className="header_item_link">
-                                        <Badge count={5}>
-                                            <ShoppingCartOutlined className="header_icon" />
-                                        </Badge>
-                                    </a>
-                                </li>
-                            </ul>
-                        </Col>
-                    </Row>
-                </div>
-            </section>
-
-            <section className="header_nav">
-                <div className="container-1200">
-                    <Row>
-                        <div className="header_nav_row">
+        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '143px', padding: 0 }}>
+            <section className="header">
+                <div className="header_action">
+                    <div className="container-1200">
+                        <Row align={'middle'}>
                             <Col sm={24} md={6} xl={6}>
-                                <div className="header_cate_dropdown">
+                                <a href="#" className="header_link">
+                                    <Icon component={IconLogo2} />
+                                    <span>TechStore</span>
+                                </a>
+                            </Col>
+                            <Col sm={24} md={12} xl={12}>
+                                <div className="header_search_box">
                                     <Dropdown className="header_dropdown" overlay={menu} trigger={['click']}>
                                         <Button>
                                             <Space>
-                                                <p>
-                                                    <MenuOutlined /> All departments
-                                                </p>
+                                                All categories
                                                 <DownOutlined />
                                             </Space>
                                         </Button>
                                     </Dropdown>
+                                    <AutoComplete
+                                        className="header_search"
+                                        dropdownMatchSelectWidth={252}
+                                        style={{
+                                            width: 300,
+                                        }}
+                                        options={options}
+                                        onSelect={onSelect}
+                                        onSearch={handleSearch}
+                                    >
+                                        <Input.Search className="header_input_search" size="large" placeholder="Type here..." enterButton />
+                                    </AutoComplete>
                                 </div>
                             </Col>
-                            <Col sm={24} md={6} xl={14}>
-                                <div>
-                                    <Menu mode="horizontal">
-                                        {items.map(function (item) {
-                                            return (
-                                                <Menu.Item key={item.key}>
-                                                    {item.icon}
-                                                    <Text strong>{item.label}</Text>
-                                                </Menu.Item>
-                                            );
-                                        })}
-                                    </Menu>
-                                </div>
+                            <Col sm={24} md={6} xl={6}>
+                                <ul className="header_list">
+                                    <li className="header_item">
+                                        <a href="" className="header_item_link">
+                                            <p className="header_item_link-text">LOG IN / SIGN UP</p>
+                                        </a>
+                                    </li>{' '}
+                                    |
+                                    <li className="header_item">
+                                        <a href="" className="header_item_link">
+                                            <Badge count={5}>
+                                                <HeartOutlined className="header_icon" />
+                                            </Badge>
+                                        </a>
+                                    </li>{' '}
+                                    |
+                                    <li className="header_item">
+                                        <a href="" className="header_item_link">
+                                            <Badge count={5}>
+                                                <ShoppingCartOutlined className="header_icon" />
+                                            </Badge>
+                                        </a>
+                                    </li>
+                                </ul>
                             </Col>
-                            <Col sm={24} md={6} xl={4} className=""></Col>
-                        </div>
-                    </Row>
+                        </Row>
+                    </div>
+                </div>
+
+                <div className="header_nav">
+                    <div className="container-1200">
+                        <Row>
+                            <div className="header_nav_row">
+                                <Col sm={24} md={6} xl={6}>
+                                    <div className="header_cate_dropdown">
+                                        <Dropdown className="header_dropdown" overlay={menu} trigger={['click']}>
+                                            <Button>
+                                                <Space>
+                                                    <p>
+                                                        <MenuOutlined /> All departments
+                                                    </p>
+                                                    <DownOutlined />
+                                                </Space>
+                                            </Button>
+                                        </Dropdown>
+                                    </div>
+                                </Col>
+                                <Col sm={24} md={6} xl={14}>
+                                    <div>
+                                        <Menu mode="horizontal">
+                                            {items.map(function (item) {
+                                                return (
+                                                    <Menu.Item key={item.key}>
+                                                        {item.icon}
+                                                        <Text strong>{item.label}</Text>
+                                                    </Menu.Item>
+                                                );
+                                            })}
+                                        </Menu>
+                                    </div>
+                                </Col>
+                                <Col sm={24} md={6} xl={4} className=""></Col>
+                            </div>
+                        </Row>
+                    </div>
                 </div>
             </section>
-            {/* </div> */}
         </Layout.Header>
     );
 }

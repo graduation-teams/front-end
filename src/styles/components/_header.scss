@@ -1,7 +1,6 @@
 .header {
-    background-color: #fff;
     padding: 0;
-    min-height: 143px;
+    height: 200px;
 
     &_action {
         width: 100%;
@@ -14,7 +13,7 @@
     }
 
     &_nav_row {
-        height: 56px;
+        // height: 56px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,7 +73,7 @@
 
     &_cate_dropdown {
         & button {
-            height: 58px;
+            // height: 56px;
             width: 95%;
             background-color: $main-color;
             color: #fff;
@@ -93,36 +92,10 @@
     }
 
     &_nav {
-        &_list {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            height: 56px;
-            font-size: 16px;
-        }
-
         &_item {
             line-height: 56px;
             position: relative;
             cursor: pointer;
-
-            &::after {
-                content: "";
-                background-color: $main-color;
-                height: 2px;
-                position: absolute;
-                z-index: 1;
-                left: 0;
-                bottom: 0;
-            }
-
-            &:hover:after {
-                animation: 500ms ease-in-out .5s normal none 1 running fadeInDown;
-            }
-
-            &:hover .header_nav_link {
-                color: #000000A6;
-            }
         }
 
         &_link {
