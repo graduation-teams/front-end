@@ -89,7 +89,7 @@ function Header(props) {
     };
 
     return (
-        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '143px', padding: 0 }}>
+        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '150px', padding: 0 }}>
             <section className="header">
                 <div className="header_action">
                     <div className="container-1200">
