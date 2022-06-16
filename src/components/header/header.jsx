@@ -5,6 +5,7 @@ import { Layout, Row, Col, BackTop, Button, Dropdown, Menu, Space, message, Tool
 import { Link, useLocation } from 'react-router-dom';
 
 import { ReactComponent as IconLogo2 } from '@assets/images/ts.svg';
+// import HeaderMobi from './headerMobi';
 
 const { Text } = Typography;
 
@@ -47,6 +48,37 @@ const menu = (
         })}
     </Menu>
 );
+
+const menuSecond = [
+    {
+        link: '#',
+        name: 'Home',
+    },
+    {
+        link: '#',
+        name: 'Elements',
+    },
+    {
+        link: '#',
+        name: 'Shop',
+    },
+    {
+        link: '#',
+        name: 'News',
+    },
+    {
+        link: '#',
+        name: 'Delivery',
+    },
+    {
+        link: '#',
+        name: 'Contact us',
+    },
+    {
+        link: '#',
+        name: 'Our Offers',
+    },
+];
 
 const getRandomInt = (max, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -156,37 +188,26 @@ function Header(props) {
                 <div className="header_nav">
                     <div className="container-1200">
                         <Row>
-                            <div className="header_nav_row">
-                                <Col sm={24} md={6} xl={6}>
-                                    <div className="header_cate_dropdown">
-                                        <Dropdown className="header_dropdown" overlay={menu} trigger={['click']}>
-                                            <Button>
-                                                <Space>
-                                                    <p>
-                                                        <MenuOutlined /> All departments
-                                                    </p>
-                                                    <DownOutlined />
-                                                </Space>
-                                            </Button>
-                                        </Dropdown>
-                                    </div>
-                                </Col>
-                                <Col sm={24} md={6} xl={14}>
-                                    <div>
-                                        <Menu mode="horizontal">
-                                            {items.map(function (item) {
-                                                return (
-                                                    <Menu.Item key={item.key}>
-                                                        {item.icon}
-                                                        <Text strong>{item.label}</Text>
-                                                    </Menu.Item>
-                                                );
-                                            })}
-                                        </Menu>
-                                    </div>
-                                </Col>
-                                <Col sm={24} md={6} xl={4} className=""></Col>
-                            </div>
+                            <Col sm={24} md={6} xl={6}>
+                                <Dropdown overlay={menu} trigger={['click']}>
+                                    <a className="header_nav--btn" onClick={e => e.preventDefault()}>
+                                        <Space>
+                                            <span>All departments</span>
+                                            <DownOutlined />
+                                        </Space>
+                                    </a>
+                                </Dropdown>
+                            </Col>
+                            <Col sm={24} md={6} xl={14}>
+                                <ul className="header_nav--list">
+                                    {menuSecond.map((e, i) => (
+                                        <li key={i} className="header_nav--item">
+                                            <a href={e.link}>{e.name}</a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </Col>
+                            <Col sm={24} md={6} xl={4}></Col>
                         </Row>
                     </div>
                 </div>
