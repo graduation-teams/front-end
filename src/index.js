@@ -16,6 +16,7 @@ import { history } from '@utils/index';
 import App from './app';
 import './styles/base/reset.css';
 import './styles/base/app.less';
+import 'antd/dist/antd.min.css';
 import './styles/index.scss';
 // import 'react-toastify/dist/ReactToastify.css';
 import reportWebVitals from './reportWebVitals';
