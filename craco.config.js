@@ -44,7 +44,8 @@ module.exports = {
         extensions: ['.js', '.jsx', '.less', '.tsx', '.json', '.css', '.scss', '.sass'],
         modules: [pathJoin('./src'), 'node_modules'],
       },
-      devtool: 'source-map',
+      ...whenDev(() => [{devtool: 'eval-source-map'}], []),
+      ...whenProd(() => [{devtool: 'source-map'}], []),
       module: {
         rules: [
           {
@@ -69,7 +70,6 @@ module.exports = {
                     parser: "postcss-js",
                   },
                   execute: true,
-                  sourceMap: true,
                   implementation: require.resolve("postcss")
                 }
               },
@@ -81,6 +81,21 @@ module.exports = {
                   },
                 },
               }
+            ],
+          },
+          {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            use: [
+              {
+                loader: 'babel-loader',
+              },
+              {
+                loader: '@svgr/webpack',
+                options: {
+                  babel: false,
+                  icon: true,
+                },
+              },
             ],
           },
           {
@@ -174,7 +189,7 @@ module.exports = {
           },
         },
       },
-    }, { env, paths }) => { return webpackConfig; },
+    }, { env, paths }) => { return {...webpackConfig,ignoreWarnings: [/Failed to parse source map/]} },
     plugins: [
       //Webpack build progress bar
       new WebpackBar({
@@ -240,7 +255,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { '@primary-color': '#1890ff' },
+            modifyVars: { '@primary-color': '#b71c1c' },
             javascriptEnabled: true,
             paths: [path.resolve(__dirname, 'node_modules')],
             plugins: [new CleanCSSPlugin({ advanced: true })],

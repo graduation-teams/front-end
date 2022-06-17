@@ -7,7 +7,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/runtime-corejs2": "^7.18.3",
     "@reduxjs/toolkit": "^1.8.2",
-    "antd": "^4.21.0",
+    "antd": "^4.21.2",
     "antd-img-crop": "^4.2.3",
     "axios": "^0.27.2",
     "connected-react-router": "^6.9.2",
@@ -36,8 +36,8 @@
   },
   "scripts": {
     "dev": "npm start",
-    "start": "cross-env NODE_ENV=development craco start --config=./craco.config.js --mode=development --profile",
-    "build": "cross-env NODE_ENV=production craco build --config=./craco.config.js --mode=production --profile",
+    "start": "cross-env NODE_ENV=development craco start --config=./craco.config.js --mode=development",
+    "build": "cross-env NODE_ENV=production craco build --config=./craco.config.js --mode=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -76,6 +76,7 @@
     "@babel/preset-flow": "^7.17.2",
     "@babel/preset-react": "^7.17.2",
     "@craco/craco": "^6.4.3",
+    "@svgr/webpack": "^6.2.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
