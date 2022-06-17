@@ -5,7 +5,8 @@ import { Layout, Row, Col, BackTop, Button, Dropdown, Menu, Space, message, Tool
 import { Link, useLocation } from 'react-router-dom';
 
 import { ReactComponent as IconLogo2 } from '@assets/images/ts.svg';
-// import HeaderMobi from './headerMobi';
+import { ReactComponent as IconUser } from '@assets/images/user-icon.svg';
+import HeaderMobi from './headerMobi';
 
 const { Text } = Typography;
 
@@ -49,7 +50,7 @@ const menu = (
     </Menu>
 );
 
-const menuSecond = [
+export const menuSecond = [
     {
         link: '#',
         name: 'Home',
@@ -122,17 +123,20 @@ function Header(props) {
 
     return (
         <Layout.Header style={{ backgroundColor: '#fff', minHeight: '150px', padding: 0 }}>
+            <div className="header__mobi">
+                <HeaderMobi />
+            </div>
             <section className="header">
                 <div className="header_action">
                     <div className="container-1200">
                         <Row align={'middle'}>
-                            <Col sm={24} md={6} xl={6}>
+                            <Col sm={24} md={24} xl={6}>
                                 <a href="#" className="header_link">
                                     <Icon component={IconLogo2} />
                                     <span>TechStore</span>
                                 </a>
                             </Col>
-                            <Col sm={24} md={12} xl={12}>
+                            <Col sm={24} md={24} xl={12}>
                                 <div className="header_search_box">
                                     <Dropdown className="header_dropdown" overlay={menu} trigger={['click']}>
                                         <Button>
@@ -156,23 +160,31 @@ function Header(props) {
                                     </AutoComplete>
                                 </div>
                             </Col>
-                            <Col sm={24} md={6} xl={6}>
+                            <Col sm={24} md={24} xl={6}>
                                 <ul className="header_list">
                                     <li className="header_item">
                                         <a href="" className="header_item_link">
+                                            <span className="icon">
+                                                <Icon component={IconUser} />
+                                            </span>
                                             <p className="header_item_link-text">LOG IN / SIGN UP</p>
                                         </a>
-                                    </li>{' '}
-                                    |
-                                    <li className="header_item">
+                                    </li>
+                                    <li className="header_item header_item_mobi">
                                         <a href="" className="header_item_link">
                                             <Badge count={5}>
                                                 <HeartOutlined className="header_icon" />
                                             </Badge>
                                         </a>
-                                    </li>{' '}
-                                    |
-                                    <li className="header_item">
+                                    </li>
+                                    <li className="header_item header_item_mobi">
+                                        <a href="" className="header_item_link">
+                                            <Badge count={5}>
+                                                <HeartOutlined className="header_icon" />
+                                            </Badge>
+                                        </a>
+                                    </li>
+                                    <li className="header_item header_item_mobi">
                                         <a href="" className="header_item_link">
                                             <Badge count={5}>
                                                 <ShoppingCartOutlined className="header_icon" />

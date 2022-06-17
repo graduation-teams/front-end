@@ -7,7 +7,7 @@ import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
 
 const FooterComponent = () => {
     return (
-        <Layout.Footer style={{ padding: 0, minHeight: '200px' }}>
+        <Layout.Footer style={{ padding: 0, minHeight: '200px', backgroundColor: '#fff' }}>
             <section className="footer">
                 <div className="footer__header">
                     <div className="container-1200">
