@@ -240,7 +240,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { '@primary-color': '#1890ff' },
+            modifyVars: { '@primary-color': '#b71c1c' },
             javascriptEnabled: true,
             paths: [path.resolve(__dirname, 'node_modules')],
             plugins: [new CleanCSSPlugin({ advanced: true })],
