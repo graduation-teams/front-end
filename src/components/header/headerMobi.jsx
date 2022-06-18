@@ -47,7 +47,7 @@ function HeaderMobi(props) {
                     <div className="mobi-header__body">
                         <a href="#" className="logo">
                             <Icon component={logo} />
-                            <span>TeachStore</span>
+                            <span>TechStore</span>
                         </a>
                         <div className="search-mobi">
                             <Space direction="vertical">
@@ -78,7 +78,7 @@ function HeaderMobi(props) {
             <div className="mobi--logo">
                 <a href="#" className="logo">
                     <Icon component={logo} />
-                    <span>TeachStore</span>
+                    <span>TechStore</span>
                 </a>
             </div>
         </div>
