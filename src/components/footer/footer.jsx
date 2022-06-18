@@ -52,7 +52,7 @@ const FooterComponent = () => {
                         </Col>
                         <Col sm={24} md={10} xl={10} className="footer__mid--columns">
                             <div className="input-signup">
-                                <input type="text" className="text-signup" placeholder="Nhập email của bạn tại đây" />
+                                <input type="text" className="text-signup" placeholder="Enter your email !" />
                                 <button className="btn-signup">SIGN UP</button>
                             </div>
                         </Col>

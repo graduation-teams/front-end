@@ -1,61 +1,66 @@
 import axios from 'axios';
-import {getLocalStorage, removeLocalStorage} from '@utils/helpers';
-import {getBaseHost} from '@configs/baseURL';
+import { getLocalStorage, removeLocalStorage } from '@utils/helpers';
+const queryString = require('query-string');
 
 const axiosInstance = axios.create({
-    baseURL: getBaseHost(),
+    baseURL: process.env.REACT_APP_BASE_URL_API,
     maxContentLength: 10000,
     maxBodyLength: 10000,
     headers: {
-      Authorization: {
-        toString: () => {
-          return `Bearer ${getLocalStorage("token")??''}`;
-        },
-      },
+        'content-type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
     },
-    
+    paramsSerializer: params => queryString.stringify(params),
 });
 
 // Add a request interceptor
-axios.interceptors.request.use(
-    function (config) {
-      // Do something before request is sent
-      if (config.headers.Authorization.toString().length < 50) {
-        delete config.headers.Authorization;
-      }
-      return config;
-    },
-    function (error) {
-      // Do something with request error
-      return Promise.reject(error);
+axiosInstance.interceptors.request.use(async config => {
+    const customHeaders = {};
+
+    // Add token to headers if it exists
+    const accessToken = getLocalStorage('access_token');
+    if (accessToken) {
+        const tokenType = getLocalStorage('token_type');
+        customHeaders.Authorization = `${tokenType} ${accessToken}`;
     }
-  );
-  
-  // Add a response interceptor
-  axios.interceptors.response.use(
+
+    return {
+        ...config,
+        headers: {
+            ...customHeaders,
+            ...config.headers,
+        },
+    };
+});
+
+// Add a response interceptor
+axiosInstance.interceptors.response.use(
     function (response) {
-      // Any status code that lie within the range of 2xx cause this function to trigger
-      // Do something with response data
-      return response;
+        // Any status code that lie within the range of 2xx cause this function to trigger
+        // Do something with response data
+        const { data } = response;
+        return data;
     },
+
     function (error) {
-      if (!error.response) {
+        if (!error.response) {
+            return Promise.reject(error);
+        }
+        const {
+            response: { status },
+        } = error;
+        if (status === 401) {
+            removeLocalStorage('access_token');
+            removeLocalStorage('token_type');
+            removeLocalStorage('user');
+            if (typeof window !== 'undefined') {
+                window.location.replace('/login');
+            }
+        }
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
         return Promise.reject(error);
-      }
-      const {
-          response: { status },
-      } = error;
-      if (status === 401) {
-          removeLocalStorage('token')
-          removeLocalStorage('user')
-          if(typeof window !== 'undefined'){
-            window.location.replace('/login');
-          }
-      }
-      // Any status codes that falls outside the range of 2xx cause this function to trigger
-      // Do something with response error
-      return Promise.reject(error);
     }
-  );
+);
 
 export default axiosInstance;
