@@ -26,19 +26,6 @@ function RegisterForm(props) {
                             <Form className="form-login" name="basic" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
                                 <h1>REGISTER</h1>
                                 <hr />
-                                <Form.Item
-                                    label="Email"
-                                    name="email"
-                                    rules={[
-                                        {
-                                            type: 'email',
-                                            required: true,
-                                            message: 'Invalid email',
-                                        },
-                                    ]}
-                                >
-                                    <Input />
-                                </Form.Item>
 
                                 <Form.Item
                                     label="Username"
@@ -47,6 +34,20 @@ function RegisterForm(props) {
                                         {
                                             required: true,
                                             message: 'Enter your username',
+                                        },
+                                    ]}
+                                >
+                                    <Input />
+                                </Form.Item>
+
+                                <Form.Item
+                                    label="Email"
+                                    name="email"
+                                    rules={[
+                                        {
+                                            type: 'email',
+                                            required: true,
+                                            message: 'Invalid email',
                                         },
                                     ]}
                                 >
