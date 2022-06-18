@@ -28,7 +28,7 @@ function RegisterForm(props) {
                                 <hr />
 
                                 <Form.Item
-                                    label="Username"
+                                    label="User name"
                                     name="username"
                                     rules={[
                                         {
@@ -68,7 +68,7 @@ function RegisterForm(props) {
                                 </Form.Item>
 
                                 <Form.Item
-                                    label="Password Confirm"
+                                    label="Password confirm"
                                     name="repassword"
                                     rules={[
                                         {
