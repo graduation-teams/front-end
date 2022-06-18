@@ -75,7 +75,7 @@
     }
 
     &_link span {
-        color: $main-color;
+        color: #333;
         font-weight: 700;
     }
 
@@ -293,9 +293,19 @@
         @include mobile {
             transform: translateX(-7%);
         }
+
+        .logo {
+            span {
+                color: #333;
+            }
+        }
     }
 }
 
 .ant-drawer-header-title {
     justify-content: flex-end !important;
+}
+
+.ant-layout-header {
+    min-height: 131px !important;
 }

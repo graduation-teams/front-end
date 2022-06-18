@@ -4,7 +4,7 @@ import Icon from '@ant-design/icons';
 
 import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
 
-const LoginForm = () => {
+function ForgotForm(props) {
     const onFinish = values => {
         console.log('Success:', values);
     };
@@ -17,54 +17,32 @@ const LoginForm = () => {
         <>
             <div className="header__login">
                 <Icon component={IconLogo1} />
-                <span>LOGIN</span>
+                <span>Forgot Password</span>
             </div>
             <Row className="over_element">
                 <Col span={24} xs={24} sm={24} md={24} lg={24} xl={24}>
                     <div className="container-1200">
                         <div className="section-form-login">
                             <Form className="form-login" name="basic" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
-                                <h1>Login</h1>
-                                <hr />
+                                <p>Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.</p>
+
                                 <Form.Item
-                                    label="User name"
-                                    name="username"
+                                    label="Please enter your email here"
+                                    name="email"
                                     rules={[
                                         {
+                                            type: 'email',
                                             required: true,
-                                            message: 'Enter your username',
+                                            message: 'Invalid email',
                                         },
                                     ]}
                                 >
                                     <Input />
                                 </Form.Item>
 
-                                <Form.Item
-                                    label="Password"
-                                    name="password"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Enter your password',
-                                        },
-                                    ]}
-                                >
-                                    <Input.Password />
-                                </Form.Item>
-
-                                <div className="above__submit">
-                                    <Form.Item name="remember" valuePropName="checked">
-                                        <Checkbox>Remember password</Checkbox>
-                                    </Form.Item>
-
-                                    <Form.Item>
-                                        <a href="#">Forget password ?</a>
-                                    </Form.Item>
-                                </div>
-
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" className="login__submit">
-                                        Sign In
+                                        Reset Password
                                     </Button>
                                 </Form.Item>
                             </Form>
@@ -74,6 +52,6 @@ const LoginForm = () => {
             </Row>
         </>
     );
-};
+}
 
-export default LoginForm;
+export default ForgotForm;
