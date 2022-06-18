@@ -27,7 +27,7 @@ const LoginForm = () => {
                                 <h1>Login</h1>
                                 <hr />
                                 <Form.Item
-                                    label="Username"
+                                    label="User name"
                                     name="username"
                                     rules={[
                                         {
