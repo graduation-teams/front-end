@@ -6,8 +6,8 @@ function Home(){
 
     const fetch = async () => {
         const response = await API.post('/auth/register/email',{
-            full_name: 'Lê Hải Đăng',
-            email: 'biinhoang141212@gmail.com',
+            full_name: 'Huỳnh Kim Hồng',
+            email: 'kimhong212@gmail.com',
             password: 'MinhTu1401@',
         })
         const data = response
