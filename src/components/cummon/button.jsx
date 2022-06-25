@@ -13,12 +13,4 @@ function Btn(props) {
     );
 }
 
-export function BtnHover(props) {
-    return (
-        <Btn className={`btn-hover ${props.className}`} onClick={props.onClick ? () => props.onClick() : null}>
-            {props.children}
-        </Btn>
-    );
-}
-
 export default Btn;
