@@ -1,9 +1,12 @@
 import React from 'react';
 
-import Icon from '@ant-design/icons';
 import { Layout, Row, Col, BackTop } from 'antd';
+import Icon from '@ant-design/icons';
 
 import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import IconFooter1 from '@assets/images/icon-support.png';
+import IconFooter2 from '@assets/images/icon-message.png';
+import IconFooter3 from '@assets/images/icon-contact.png';
 
 const FooterComponent = () => {
     return (
@@ -14,7 +17,7 @@ const FooterComponent = () => {
                         <Row>
                             <Col sm={24} md={8} xl={8}>
                                 <div className="footer-support">
-                                    <Icon component={IconLogo1} />
+                                    <img src={IconFooter1} alt="" />
                                     <div className="footer-sp">
                                         <h1 className="title">CALL US 24/7</h1>
                                         <p className="desc">+1 (310) 888 8808, +1 (310) 777 8808</p>
@@ -23,7 +26,7 @@ const FooterComponent = () => {
                             </Col>
                             <Col sm={24} md={8} xl={8}>
                                 <div className="footer-support">
-                                    <Icon component={IconLogo1} />
+                                    <img src={IconFooter2} alt="" />
                                     <div className="footer-sp">
                                         <h1 className="title">WRITE TO US</h1>
                                         <p className="desc">electon.@gm.com , electron@gm.com</p>
@@ -32,7 +35,7 @@ const FooterComponent = () => {
                             </Col>
                             <Col sm={24} md={8} xl={8}>
                                 <div className="footer-support">
-                                    <Icon component={IconLogo1} />
+                                    <img src={IconFooter3} alt="" />
                                     <div className="footer-sp">
                                         <h1 className="title">CONTACT INFO</h1>
                                         <p className="desc">USA, New York, Second Street 289</p>
