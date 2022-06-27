@@ -12,9 +12,9 @@
         .footer-support {
             @include flex(flex-start, center);
             flex-wrap: wrap;
-            padding: 20px 0;
+            // padding: 20px 0;
+            padding: 2rem 0.5rem;
             width: 100%;
-
             @include tablet {
                 @include flex(center, center);
                 text-align: center;
@@ -129,5 +129,21 @@
 @include tablet {
     .copyright {
         text-align: center;
+    }
+}
+
+.footer-support-margin-center {
+    margin-left: 50%;
+    transform: translateX(-30%);
+}
+.footer-support-margin-right {
+    margin-left: 50%;
+    transform: translateX(-15%);
+}
+@include tablet {
+    .footer-support-margin-center,
+    .footer-support-margin-right {
+        margin-left: 0;
+        transform: translateX(0);
     }
 }

@@ -25,16 +25,16 @@ const FooterComponent = () => {
                                 </div>
                             </Col>
                             <Col sm={24} md={8} xl={8}>
-                                <div className="footer-support">
+                                <div className="footer-support footer-support-margin-center">
                                     <img src={IconFooter2} alt="" />
                                     <div className="footer-sp">
                                         <h1 className="title">WRITE TO US</h1>
-                                        <p className="desc">electon.@gm.com , electron@gm.com</p>
+                                        <p className="desc">eteachstore.support@gmail.com</p>
                                     </div>
                                 </div>
                             </Col>
                             <Col sm={24} md={8} xl={8}>
-                                <div className="footer-support">
+                                <div className="footer-support footer-support-margin-right">
                                     <img src={IconFooter3} alt="" />
                                     <div className="footer-sp">
                                         <h1 className="title">CONTACT INFO</h1>
