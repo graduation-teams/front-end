@@ -1,0 +1,102 @@
+.product-detail {
+    margin: 2rem 0;
+
+    .detail-item {
+        .detail-item__images {
+            padding: 0 2.5rem;
+            margin-bottom: 3rem;
+
+            .item__big__image {
+                width: 100px;
+                height: auto;
+            }
+        }
+    }
+
+    .detail-item__content {
+        padding-left: 2rem;
+        &--title {
+            font-size: 24px;
+        }
+        &--price {
+            color: $main-color;
+            font-size: 20px;
+            strike {
+                color: #888;
+                margin-right: 2rem;
+            }
+        }
+        &--desc {
+            font-size: 16px;
+            color: #555;
+        }
+        &--quatity {
+            span {
+                border: 1px solid #999;
+                padding: 1rem 1.2rem;
+                display: inline-block;
+                cursor: pointer;
+            }
+            input {
+                padding: 1rem 1.2rem;
+                position: relative;
+                top: -2.5px;
+                border: 1px solid #999;
+                width: 50px;
+            }
+            .btn-black {
+                background-color: #333;
+                margin-left: 2rem;
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+        }
+        &--different {
+            p {
+                color: #555;
+                span {
+                    color: #333;
+                    font-weight: 600;
+                }
+                img {
+                    max-width: 120px;
+                    max-height: 35px;
+                }
+            }
+        }
+    }
+}
+
+.product-desc {
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-list,
+    .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-list {
+        left: 50%;
+        transform: translateX(-50%) !important;
+    }
+    .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap {
+        overflow: none !important;
+    }
+
+    .content-1 {
+        margin-bottom: 30px;
+        .content-header {
+            margin-left: 50%;
+            transform: translateX(-50%);
+            p {
+                text-align: center;
+                max-width: 600px;
+            }
+        }
+        .content-body {
+            .content-right {
+                h3 {
+                    margin-top: 30px;
+                    color: #222222;
+                    font-size: 24px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}
