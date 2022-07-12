@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input, Row, Col } from 'antd';
 import Icon from '@ant-design/icons';
-
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
 import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
 
 function ForgotForm(props) {
@@ -54,4 +55,6 @@ function ForgotForm(props) {
     );
 }
 
-export default ForgotForm;
+export default withErrorBoundary(ForgotForm,{
+    FallbackComponent: ErrorComponent
+});

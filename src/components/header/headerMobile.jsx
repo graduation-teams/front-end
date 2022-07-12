@@ -7,14 +7,16 @@ import { menuSecond } from './header';
 
 import Icon from '@ant-design/icons';
 import { ReactComponent as logo } from '@assets/images/ts.svg';
-import { ReactComponent as IconHeaderMobi } from '@assets/images/ts.svg';
+import { ReactComponent as IconHeaderMobile } from '@assets/images/ts.svg';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
 
 import { Input } from 'antd';
 const { Search } = Input;
 
 const onSearch = value => console.log(value);
 
-function HeaderMobi(props) {
+function HeaderMobile(props) {
     const [visible, setVisible] = useState(false);
     const [placement, setPlacement] = useState('left');
 
@@ -40,7 +42,7 @@ function HeaderMobi(props) {
                         </Radio.Group>
                     </div>
                     <Button onClick={showDrawer}>
-                        <Icon component={IconHeaderMobi} />
+                        <Icon component={IconHeaderMobile} />
                     </Button>
                 </Space>
                 <Drawer placement={placement} width={300} onClose={onClose} visible={visible}>
@@ -85,4 +87,6 @@ function HeaderMobi(props) {
     );
 }
 
-export default HeaderMobi;
+export default withErrorBoundary(HeaderMobile,{
+    FallbackComponent: ErrorComponent
+});

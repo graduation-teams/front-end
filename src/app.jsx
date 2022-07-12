@@ -11,7 +11,9 @@ function App({ history, context }) {
   const [arrayRouters, setArrayRouters] = useState([]);
 
   useEffect(() => {
-    console.log('ROUTER_MAP', ROUTER_MAP);
+    if(process.env.NODE_ENV === 'development'){
+      console.log('ROUTER_MAP', ROUTER_MAP);
+    }
     setArrayRouters(ROUTER_MAP.reverse());
   }, [ROUTER_MAP]);
 
