@@ -98,7 +98,7 @@
         justify-content: space-evenly;
         align-items: center;
         margin-bottom: 0;
-        padding-top: 1.2rem;
+        // padding-top: 1.2rem;
 
         @include tablet {
             .header_item_mobi {
@@ -165,11 +165,15 @@
             }
         }
     }
+    .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+        background-color: $main-color;
+        border: 1px solid $main-color;
+    }
 }
 
 .header_nav {
-    border-top: 1.2px solid #e9edc9;
-    border-bottom: 1.2px solid #e9edc9;
+    border-top: 1.2px solid #e1e1e1;
+    border-bottom: 1.2px solid #e1e1e1;
 
     .container-1200 {
         height: 55px;

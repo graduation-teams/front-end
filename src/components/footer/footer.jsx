@@ -4,9 +4,13 @@ import { Layout, Row, Col, BackTop } from 'antd';
 import Icon from '@ant-design/icons';
 
 import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import { ReactComponent as Ytb } from '@assets/images/YouTube.svg';
+import { ReactComponent as Fb } from '@assets/images/Facebook.svg';
+import { ReactComponent as Gg } from '@assets/images/Google.svg';
 import IconFooter1 from '@assets/images/icon-support.png';
 import IconFooter2 from '@assets/images/icon-message.png';
 import IconFooter3 from '@assets/images/icon-contact.png';
+// import Ytb from '@assets/images/YouTube.svg';
 
 const FooterComponent = () => {
     return (
@@ -61,12 +65,9 @@ const FooterComponent = () => {
                         </Col>
                         <Col sm={24} md={7} xl={7} className="footer__mid--columns">
                             <div className="icon-social-media">
-                                <Icon component={IconLogo1} />
-                                <Icon component={IconLogo1} />
-                                <Icon component={IconLogo1} />
-                                <Icon component={IconLogo1} />
-                                <Icon component={IconLogo1} />
-                                <Icon component={IconLogo1} />
+                                <Icon component={Ytb} />
+                                <Icon component={Fb} />
+                                <Icon component={Gg} />
                             </div>
                         </Col>
                     </Row>

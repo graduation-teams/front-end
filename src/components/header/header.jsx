@@ -180,13 +180,6 @@ function Header(props) {
                                     <li className="header_item header_item_mobi">
                                         <a href="" className="header_item_link">
                                             <Badge count={5}>
-                                                <HeartOutlined className="header_icon" />
-                                            </Badge>
-                                        </a>
-                                    </li>
-                                    <li className="header_item header_item_mobi">
-                                        <a href="" className="header_item_link">
-                                            <Badge count={5}>
                                                 <ShoppingCartOutlined className="header_icon" />
                                             </Badge>
                                         </a>
