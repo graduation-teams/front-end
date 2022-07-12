@@ -2,7 +2,8 @@ import React from 'react';
 
 import Icon from '@ant-design/icons';
 import { Layout, Row, Col, BackTop } from 'antd';
-
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
 import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
 
 const FooterComponent = () => {
@@ -157,4 +158,6 @@ const FooterComponent = () => {
     );
 };
 
-export default FooterComponent;
+export default withErrorBoundary(FooterComponent,{
+    FallbackComponent: ErrorComponent
+});

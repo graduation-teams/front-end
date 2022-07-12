@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 export default {
-    path: '/forgot-password',
+    path: '/active',
     exact: true,
     component: lazy(() => import('./index')),
 };

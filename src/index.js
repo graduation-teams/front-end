@@ -11,14 +11,14 @@ import { ConfigProvider } from 'antd';
 import vi_VN from 'antd/lib/locale/vi_VN';
 import configureAppStore from './app/store';
 import 'moment/locale/vi';
-// import { toast } from 'react-toastify';
 import { history } from '@utils/index';
 import App from './app';
 import './styles/base/reset.css';
 import './styles/base/app.less';
 import 'antd/dist/antd.min.css';
 import './styles/index.scss';
-// import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
@@ -31,6 +31,7 @@ function AppWithCallbackAfterRender() {
   return (<React.Fragment>
     <ConfigProvider locale={vi_VN}>
       <Provider store={store} context={ReactReduxContext}>
+          <ToastContainer/>
           <App history={history} context={ReactReduxContext}/>
       </Provider>
     </ConfigProvider>

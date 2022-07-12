@@ -1,14 +1,3 @@
-import React from 'react';
-export const useViewport = () => {
-    if(typeof window !== 'undefined'){
-        const [width, setWidth] = React.useState(window.innerWidth);
-        React.useEffect(() => {
-            const handleWindowResize = () => setWidth(window.innerWidth);
-            window.addEventListener("resize", handleWindowResize);
-            return () => window.removeEventListener("resize", handleWindowResize)
-        },[])
-        return { width }
-    }else{
-        return { width:null }
-    }
-}
+export {default as useDebounce} from './useDebounce';
+export {default as useViewport} from './useViewport';
+export {default as useQuery} from './useQuery';

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DownOutlined, UserOutlined, HeartOutlined, ShoppingCartOutlined, MenuOutlined, PhoneOutlined, GiftOutlined } from '@ant-design/icons';
 import Icon from '@ant-design/icons';
 import { Layout, Row, Col, BackTop, Button, Dropdown, Menu, Space, message, Tooltip, AutoComplete, Input, Badge, Typography } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { ReactComponent as IconLogo2 } from '@assets/images/ts.svg';
 import { ReactComponent as IconUser } from '@assets/images/user-icon.svg';
-import HeaderMobi from './headerMobi';
+import HeaderMobile from './headerMobile';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
 
 const { Text } = Typography;
 
@@ -22,32 +24,24 @@ const handleMenuClick = e => {
 
 const items = [
     {
-        label: 'item 1',
+        label: <Text strong>item 1</Text>,
         key: '1',
         icon: <UserOutlined />,
     },
     {
-        label: 'item 2',
+        label: <Text strong>item 2</Text>,
         key: '2',
         icon: <UserOutlined />,
     },
     {
-        label: 'item 3',
+        label: <Text strong>item 3</Text>,
         key: '3',
         icon: <UserOutlined />,
     },
 ];
 
 const menu = (
-    <Menu>
-        {items.map(function (item) {
-            return (
-                <Menu.Item key={item.key}>
-                    <Text strong>{item.label}</Text>
-                </Menu.Item>
-            );
-        })}
-    </Menu>
+    <Menu items={items} />
 );
 
 export const menuSecond = [
@@ -111,7 +105,21 @@ const searchResult = query =>
         });
 
 function Header(props) {
+    const dispatch = useDispatch();
+    const svLogin = useSelector(state => state?.auth?.login);
+    const svUser = useSelector(state => state?.user?.info);
+    
     const [options, setOptions] = useState([]);
+    const [isLogged, setIsLogged] = useState(false);
+    const [infoUser, setInfoUser] = useState({});
+
+    
+
+    useEffect(() => {
+        if(svUser?.success){
+            setIsLogged(true);
+        }
+    },[svUser]);
 
     const handleSearch = value => {
         setOptions(value ? searchResult(value) : []);
@@ -124,7 +132,7 @@ function Header(props) {
     return (
         <Layout.Header style={{ backgroundColor: '#fff', minHeight: '150px', padding: 0 }}>
             <div className="header__mobi">
-                <HeaderMobi />
+                <HeaderMobile />
             </div>
             <section className="header">
                 <div className="header_action">
@@ -162,7 +170,23 @@ function Header(props) {
                             </Col>
                             <Col sm={24} md={24} xl={6}>
                                 <ul className="header_list">
-                                    <li className="header_item">
+                                    
+                                    <li className="header_item header_item_mobi">
+                                        <a href="" className="header_item_link">
+                                            <Badge count={5}>
+                                                <HeartOutlined className="header_icon" />
+                                            </Badge>
+                                        </a>
+                                    </li>
+                                    <li className="header_item header_item_mobi">
+                                        <a href="" className="header_item_link">
+                                            <Badge count={10000}>
+                                                <ShoppingCartOutlined className="header_icon" />
+                                            </Badge>
+                                        </a>
+                                    </li>
+                                    {isLogged ? (
+                                        <li className="header_item">
                                         <a href="" className="header_item_link">
                                             <span className="icon">
                                                 <Icon component={IconUser} />
@@ -170,27 +194,17 @@ function Header(props) {
                                             <p className="header_item_link-text">LOG IN / SIGN UP</p>
                                         </a>
                                     </li>
-                                    <li className="header_item header_item_mobi">
+                                    ):(
+                                        <li className="header_item">
                                         <a href="" className="header_item_link">
-                                            <Badge count={5}>
-                                                <HeartOutlined className="header_icon" />
-                                            </Badge>
+                                            <span className="icon">
+                                                <Icon component={IconUser} />
+                                            </span>
+                                            <p className="header_item_link-text">LOG OUT</p>
                                         </a>
                                     </li>
-                                    <li className="header_item header_item_mobi">
-                                        <a href="" className="header_item_link">
-                                            <Badge count={5}>
-                                                <HeartOutlined className="header_icon" />
-                                            </Badge>
-                                        </a>
-                                    </li>
-                                    <li className="header_item header_item_mobi">
-                                        <a href="" className="header_item_link">
-                                            <Badge count={5}>
-                                                <ShoppingCartOutlined className="header_icon" />
-                                            </Badge>
-                                        </a>
-                                    </li>
+                                    )}
+                                    
                                 </ul>
                             </Col>
                         </Row>
@@ -228,4 +242,6 @@ function Header(props) {
     );
 }
 
-export default Header;
+export default withErrorBoundary(Header,{
+    FallbackComponent:ErrorComponent
+});
