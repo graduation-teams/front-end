@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import {useQuery} from '@hooks'
-import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { useDispatch } from 'react-redux';
 import { Result, Button } from 'antd';
 import { push } from 'connected-react-router';
 import request from '@api/configureAPI';
 import { setInfoUserAction } from '@features/user/userActions';
-import {setLocalStorage, removeLocalStorage, getLocalStorage} from '@utils/helpers';
+import {setLocalStorage } from '@utils/helpers';
 import { toast } from 'react-toastify';
+import Layouts from '@layouts';
 
 function ActivePage() {
     const query = useQuery();
@@ -38,9 +40,9 @@ function ActivePage() {
         
     }, []);
 
-    return(
-        <React.Fragment>
-            <Result
+    const Elements = React.useMemo(() => {
+        let arrayElements = [{ element: ()=>{
+            return (<Result
                 status={activated ? 'success' : 'warning'}
                 title={activated ? 'Your account is activated!' : 'Your account is not activated!'}
                 extra={
@@ -48,7 +50,17 @@ function ActivePage() {
                         Back to home page
                     </Button>
                 }
-            />
+            />)
+        } }];
+        return arrayElements;
+    }, [activated]);
+
+    return(
+        <React.Fragment>
+            <Helmet>
+                <title>Active Account - TechStore</title>
+            </Helmet>
+            <Layouts childrenComponent={Elements} />
         </React.Fragment>
     )
 }

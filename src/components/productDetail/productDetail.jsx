@@ -1,7 +1,9 @@
 import { Row, Col } from 'antd';
 import React from 'react';
-import Btn from '../cummon/button';
+import {Btn} from '@components/common';
 import ItemSlideShow from './itemSlideShow';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
 
 function ProductDetail(props) {
     return (
@@ -60,4 +62,6 @@ function ProductDetail(props) {
     );
 }
 
-export default ProductDetail;
+export default withErrorBoundary(ProductDetail, {
+    FallbackComponent: ErrorComponent,
+});

@@ -6,6 +6,9 @@ import Icon1 from '@assets/images/award.png';
 import Icon2 from '@assets/images/home-icon-2.png';
 import Icon3 from '@assets/images/home-icon-3.png';
 import Icon4 from '@assets/images/home-icon-4.png';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
+
 
 function Service(props) {
     return (
@@ -40,4 +43,6 @@ function Service(props) {
     );
 }
 
-export default Service;
+export default withErrorBoundary(Service, {
+    FallbackComponent: ErrorComponent,
+});

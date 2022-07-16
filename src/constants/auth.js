@@ -31,4 +31,10 @@ export const authenticationConstants = {
     AUTH_LOGOUT_FAILED: 'auth/logout:failed',
     AUTH_LOGOUT_RESET: 'auth/logout:reset',
     AUTH_LOGOUT_CLEAN: 'auth/logout:clean',
+
+    /**============= RESET PASSWORD ============== */
+    AUTH_FORGOT_PASSWORD: 'auth/forgot-password',
+    AUTH_FORGOT_PASSWORD_START: 'auth/forgot-password:start',
+    AUTH_FORGOT_PASSWORD_SUCCESS: 'auth/forgot-password:success',
+    AUTH_FORGOT_PASSWORD_FAILED: 'auth/forgot-password:failed',
 }
