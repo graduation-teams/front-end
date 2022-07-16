@@ -1,5 +1,8 @@
 import { Col, Row } from 'antd';
 import React from 'react';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
+
 
 function productsFive(props) {
     return (
@@ -49,4 +52,6 @@ function productsFive(props) {
     );
 }
 
-export default productsFive;
+export default withErrorBoundary(productsFive,{
+    FallbackComponent: ErrorComponent
+});

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router'; // react-router v5
 import { ConnectedRouter } from 'connected-react-router';
 import arrayRouters from '@pages/routes.js';
-import { Layout, Menu, Spin } from 'antd';
+import { Spin } from 'antd';
 
-const { Header, Sider, Content } = Layout;
 const ROUTER_MAP = arrayRouters;
 
 function App({ history, context }) {
