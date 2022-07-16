@@ -32,3 +32,25 @@ export const logoutAction = dataPayload => {
         payload: dataPayload,
     };
 };
+
+export const forgotPasswordAction = dataPayload => {
+    if (typeof dataPayload === 'undefined')
+        return {
+            type: AC.AUTH_FORGOT_PASSWORD,
+        };
+    return {
+        type: AC.AUTH_FORGOT_PASSWORD,
+        payload: dataPayload,
+    };
+};
+
+export const resetPasswordAction = dataPayload => {
+    if (typeof dataPayload === 'undefined')
+        return {
+            type: AC.AUTH_RESET_PASSWORD,
+        };
+    return {
+        type: AC.AUTH_RESET_PASSWORD,
+        payload: dataPayload,
+    };
+};

@@ -15,3 +15,11 @@ export const setLocalStorage = (itemName, data) => {
     if (!itemName) return;
     return localStorage.removeItem(itemName);
   };
+
+  export const SliceString =(str, length)=>{
+    if(length > 1 && length !== undefined) {
+        return str.slice(0, length) + '...';
+    }else if(str.length===0) {
+        return '';
+    }
+}

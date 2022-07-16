@@ -1,5 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
 
 function ProductsTwo(props) {
     return (
@@ -30,4 +32,6 @@ function ProductsTwo(props) {
     );
 }
 
-export default ProductsTwo;
+export default withErrorBoundary(ProductsTwo, {
+    FallbackComponent: ErrorComponent,
+});

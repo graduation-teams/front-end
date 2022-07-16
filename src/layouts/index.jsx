@@ -6,7 +6,7 @@ import FooterComponent from '../components/footer/footer';
 import HeaderComponent from '../components/header/header';
 import PropTypes from 'prop-types';
 
-function Layouts({ childrenComponent = [], ...props }) {
+function Layouts({ childrenComponent , ...props }) {
     const [components, setComponents] = useState([]);
 
     useEffect(() => {
@@ -45,5 +45,9 @@ const mapStateToProps = state => ({
 Layouts.prototype = {
     childrenComponent: PropTypes.array,
 }
+
+Layouts.defaultProps = {
+    childrenComponent: []
+};
 
 export default connect(mapStateToProps)(Layouts);

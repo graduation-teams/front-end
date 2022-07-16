@@ -17,6 +17,8 @@ import './styles/base/reset.css';
 import './styles/base/app.less';
 import 'antd/dist/antd.min.css';
 import './styles/index.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import reportWebVitals from './reportWebVitals';

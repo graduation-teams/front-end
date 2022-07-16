@@ -1,6 +1,9 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import Btn from '../cummon/button';
+import Btn from '../common/button';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent } from '@components/common';
+
 
 function ProductsFour(props) {
     return (
@@ -43,4 +46,6 @@ function ProductsFour(props) {
     );
 }
 
-export default ProductsFour;
+export default withErrorBoundary(ProductsFour, {
+    FallbackComponent: ErrorComponent,
+});
