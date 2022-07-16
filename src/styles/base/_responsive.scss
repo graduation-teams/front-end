@@ -1,0 +1,28 @@
+@media screen and (max-width: 468px) {
+    
+    .slideshow__home {
+        /**
+        * Responsive for arrows slider banner on page home in mobile
+        */
+        .slick-slider{
+            .slideshow__home__prev{
+                left: 20px !important;
+            }
+            .slideshow__home__next{
+                right: 20px !important;
+            }
+            .slideshow__home__img{
+                &.slideshow__home__bgImage1{
+                    background-position: center right !important;
+                }
+                &.slideshow__home__bgImage2{
+                    background-position: center right !important;
+                }
+                &.slideshow__home__bgImage3{
+                    background-position: center right !important;
+                }
+            }
+            
+        }
+    }
+}

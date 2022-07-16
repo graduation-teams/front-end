@@ -24,3 +24,5 @@ yarn-error.log*
 
 ./deploy.sh
 ./deploy-dev.sh
+
+build.zip
