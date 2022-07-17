@@ -45,11 +45,11 @@ function UserMenu({ user }){
                 <DashboardOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 Dashboard
               </Link>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/manager-users`} className="sub-menu__user--item">
+              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/manage-users`} className="sub-menu__user--item">
                 <UsergroupAddOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 All Users
               </Link>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/manager-products`} className="sub-menu__user--item">
+              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/manage-products`} className="sub-menu__user--item">
               <SkinOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 All Products
               </Link>

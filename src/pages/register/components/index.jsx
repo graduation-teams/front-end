@@ -6,7 +6,7 @@ import { registerAction } from '@features/auth/authActions';
 import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
-
+import '../styles/index.scss';
 
 const initValues = (f, v) => {
     return f.setFieldsValue({

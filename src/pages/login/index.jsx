@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import Layouts from '@layouts';
 import { useDispatch } from 'react-redux';
 import { getLocalStorage } from '@utils/helpers';
-import LoginForm from '../../components/login';
+import LoginForm from './components';
 import { toast } from 'react-toastify';
 
 function LoginPage() {

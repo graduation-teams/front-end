@@ -4,9 +4,9 @@ import Layouts from '@layouts';
 import { useDispatch } from 'react-redux';
 import { useViewport } from '@hooks';
 import { getLocalStorage } from '@utils/helpers';
-import ProductDetail from '../../components/productDetail/productDetail';
-import ProductDescription from '../../components/productDetail/productDescription';
-import RelatedProducts from '../../components/productDetail/relatedProducts';
+import ProductDetail from './components/productDetail';
+import ProductDescription from './components/productDescription';
+import RelatedProducts from './components/relatedProducts';
 
 function ProductDetailPage() {
     const viewPort = useViewport();

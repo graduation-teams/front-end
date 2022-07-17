@@ -4,7 +4,7 @@ import { push } from 'connected-react-router';
 import Layouts from '@layouts';
 import { useDispatch } from 'react-redux';
 import { getLocalStorage } from '@utils/helpers';
-import ResetPasswordForm from '../../components/resetPassword';
+import ResetPasswordForm from './components';
 import { toast } from 'react-toastify';
 import {useQuery} from '@hooks';
 
