@@ -4,7 +4,7 @@ import Layouts from '@layouts';
 import { useDispatch } from 'react-redux';
 import { useViewport } from '@hooks';
 import { getLocalStorage } from '@utils/helpers';
-import ForgotForm from '../../components/forgot';
+import ForgotForm from './components';
 
 function ForgotPage() {
     const dispatch = useDispatch();

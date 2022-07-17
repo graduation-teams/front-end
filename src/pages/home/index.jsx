@@ -2,14 +2,14 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import Layouts from '@layouts';
 import { useViewport } from '@hooks';
-import SlideShow from '@components/home/slideShow';
-import Service from '@components/home/service';
-import ProductsOne from '@components/home/productsOne';
-import ProductsTwo from '@components/home/productsTwo';
-import ProductsThree from '@components/home/productsThree';
-import ProductsFour from '@components/home/productsFour';
-import ProductsFive from '@components/home/productsFive';
-import BranchProducts from '@components/home/branchProducts';
+import SlideShow from './components/slideShow';
+import Service from './components/service';
+import ProductsOne from './components/productsOne';
+import ProductsTwo from './components/productsTwo';
+import ProductsThree from './components/productsThree';
+import ProductsFour from './components/productsFour';
+import ProductsFive from './components/productsFive';
+import BranchProducts from './components/branchProducts';
 
 function HomePage() {
     const viewPort = useViewport();

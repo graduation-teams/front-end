@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import Layouts from '@layouts';
 import { useDispatch } from 'react-redux';
 import { getLocalStorage } from '@utils/helpers';
-import RegisterForm from '@components/register';
+import RegisterForm from './components';
 import { toast } from 'react-toastify';
 
 function RegisterPage() {

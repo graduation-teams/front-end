@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
-import { MenuFoldOutlined, MenuUnfoldOutlined, DashboardOutlined, UsergroupAddOutlined, LaptopOutlined, GlobalOutlined } from '@ant-design/icons';
-import { Layout, Menu, Typography, Row, Col } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined, DashboardOutlined, UsergroupAddOutlined, LaptopOutlined, GlobalOutlined, FileOutlined } from '@ant-design/icons';
+import { Layout, Menu, Typography, Row, Col, Breadcrumb } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 const { Text } = Typography;
+const { Header, Content, Footer, Sider } = Layout;
 
+function getItem(label, key, icon, children) {
+    return {
+        key,
+        icon,
+        children,
+        label,
+    };
+}
 
-const ITEMS = [
-    {
-        key: '1',
-        icon: <GlobalOutlined />,
-        label: <Link to="/"><Text style={{color:'#fff'}}>Overviews</Text></Link>,
-    },
-    {
-        key: 'dashboard',
-        icon: <DashboardOutlined />,
-        label: 'Dashboard',
-    },
-    {
-        key: '3',
-        icon: <UsergroupAddOutlined />,
-        label: 'Manage users',
-    },
-    {
-        key: '4',
-        icon: <LaptopOutlined />,
-        label: 'Manage products',
-    },
+const items = [
+    getItem(
+        <Link to="/">
+        <Text style={{ color: '#fff' }}>Overviews</Text>
+    </Link>,
+    'overviews',
+    <GlobalOutlined />
+    ),
+    getItem(<Link to="/">
+    <Text style={{ color: '#fff' }}>Dashboard</Text>
+</Link>, 'dashboard', <DashboardOutlined />),
+    getItem('Manage users', 'manage-users', <UsergroupAddOutlined />, [getItem('Tom', '3'), getItem('Bill', '4'), getItem('Alex', '5')]),
+    getItem('Manage products', 'manage-products', <LaptopOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
+    getItem('Files', '9', <FileOutlined />),
 ];
 
 function AdminLayouts({ childrenComponent, ...props }) {
@@ -43,46 +45,56 @@ function AdminLayouts({ childrenComponent, ...props }) {
 
     return (
         <React.Fragment>
-            <Layout style={typeof window === 'undefined' ? { display: 'none' } : { backgroundColor: '#ffffff' }}>
-                <Layout.Sider trigger={null} collapsible collapsed={collapsed}>
+            <Layout
+                style={{
+                    minHeight: '100vh',
+                }}
+            >
+                <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
                     <div className="logo" />
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']} items={ITEMS} />
-                </Layout.Sider>
+                    <Menu theme="dark" defaultSelectedKeys={['dashboard']} mode="inline" items={items} />
+                </Sider>
                 <Layout className="site-layout">
-                    <Layout.Header
-                        className="site-layout-background"
-                    >
-                        <Row gutter={16} align="middle" justify="space-around" className="header-row-top" wrap={false}>
-                            <Col xs={24} sm={24} md={24} xl={4}>
-                            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: () => setCollapsed(!collapsed),
-                            })}
-                            </Col>
-                            <Col xs={24} sm={24} md={24} xl={20} >
-                            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: () => setCollapsed(!collapsed),
-                            })}
-                            </Col>
-                        </Row>
-                        
-                    </Layout.Header>
-                    <Layout.Content
+                    <Header
                         className="site-layout-background"
                         style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            height: '800px',
+                            padding: 0,
+                        }}
+                    />
+                    <Content
+                        style={{
+                            margin: '0 16px',
                         }}
                     >
-                        {components && components.length > 0
-                        ? components.map(({ element: Element }, index) => {
-                              return <Element key={index} />;
-                          })
-                        : null}
-                    </Layout.Content>
-                    <Layout.Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Layout.Footer>
+                        <Breadcrumb
+                            style={{
+                                margin: '16px 0',
+                            }}
+                        >
+                            <Breadcrumb.Item>User</Breadcrumb.Item>
+                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <div
+                            className="site-layout-background"
+                            style={{
+                                padding: 24,
+                                minHeight: 360,
+                            }}
+                        >
+                            {components && components.length > 0
+                                ? components.map(({ element: Element }, index) => {
+                                      return <Element key={index} />;
+                                  })
+                                : null}
+                        </div>
+                    </Content>
+                    <Footer
+                        style={{
+                            textAlign: 'center',
+                        }}
+                    >
+                        Ant Design ©2018 Created by Ant UED
+                    </Footer>
                 </Layout>
             </Layout>
         </React.Fragment>
@@ -104,7 +116,7 @@ AdminLayouts.prototype = {
 };
 
 AdminLayouts.defaultProps = {
-    childrenComponent: []
+    childrenComponent: [],
 };
 
 export default connect(mapStateToProps)(AdminLayouts);
