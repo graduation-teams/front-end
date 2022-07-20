@@ -1,5 +1,4 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Col, Row, Button, Checkbox, Divider, Tabs } from 'antd';
 
 const { TabPane } = Tabs;

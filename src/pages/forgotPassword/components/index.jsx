@@ -5,7 +5,7 @@ import { forgotPasswordAction } from '@features/auth/authActions';
 import Icon from '@ant-design/icons';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
-import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
 
 
 const initValues = (f, v) => {

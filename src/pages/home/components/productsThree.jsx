@@ -1,6 +1,6 @@
 import React  from 'react';
 import Icon from '@ant-design/icons';
-import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent, SlideTechStore } from '@components/common';
 

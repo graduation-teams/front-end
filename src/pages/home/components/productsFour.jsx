@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import Btn from '../common/button';
+import Btn from '@components/common/button';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 

@@ -8,7 +8,7 @@ import request from '@api/configureAPI';
 import { setInfoUserAction } from '@features/user/userActions';
 import {setLocalStorage } from '@utils/helpers';
 import { toast } from 'react-toastify';
-import Layouts from '@layouts';
+import Layouts from '@layouts/client';
 
 function ActivePage() {
     const query = useQuery();

@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input, Row, Col, Typography } from 'antd';
 import { loginAction } from '@features/auth/authActions';
 import Icon from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 import { Link } from 'react-router-dom';

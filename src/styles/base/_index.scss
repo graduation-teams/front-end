@@ -2,9 +2,5 @@
 @import 'variables';
 @import 'size';
 @import 'animations';
-@import 'responsive';
 @import 'mixin';
 @import 'button';
-html{
-    scroll-behavior: smooth !important;
-}
