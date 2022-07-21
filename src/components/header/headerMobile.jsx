@@ -51,7 +51,7 @@ function HeaderMobile(props) {
                             <Icon component={logo} />
                             <span>TechStore</span>
                         </a>
-                        <div className="search-mobi">
+                        {/* <div className="search-mobi">
                             <Space direction="vertical">
                                 <Search
                                     placeholder="Type here ..."
@@ -63,7 +63,7 @@ function HeaderMobile(props) {
                                     }}
                                 />
                             </Space>
-                        </div>
+                        </div> */}
                         <div className="list__menu-mobi">
                             <ul>
                                 {menuSecond.map((e, i) => (
@@ -77,12 +77,12 @@ function HeaderMobile(props) {
                 </Drawer>
             </div>
 
-            <div className="mobi--logo">
+            {/* <div className="mobi--logo">
                 <a href="#" className="logo">
                     <Icon component={logo} />
                     <span>TechStore</span>
                 </a>
-            </div>
+            </div> */}
         </div>
     );
 }
