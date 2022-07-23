@@ -165,9 +165,9 @@ function Header(props) {
 
     return (
         <Layout.Header style={{ backgroundColor: '#fff', minHeight: '64px', height: 'auto', padding: 0 }} ref={headerRef}>
-            {/* <div className="header__mobi">
+            <div className="header__mobi">
                 <HeaderMobile />
-            </div> */}
+            </div>
             <section className="header-tech-store">
                 <Row gutter={16} align="middle" justify="space-around" className="header-row-top" wrap={false}>
                     <Col span={24}>
@@ -218,10 +218,16 @@ function Header(props) {
                                             {infoUser?.id ? (
                                                 <div className="custom-user-info" onClick={handleClickUser}>
                                                     <Space align="center" size="small">
-                                                        <Avatar style={{ backgroundColor: '#0D1D2E', verticalAlign: 'middle' }} size={{ xs: 40, sm: 40, md: 40, lg: 40, xl: 40, xxl: 40 }} gap={3} icon={<UserOutlined />} src={infoUser?.avatar_url}/>
+                                                        <Avatar
+                                                            style={{ backgroundColor: '#0D1D2E', verticalAlign: 'middle' }}
+                                                            size={{ xs: 40, sm: 40, md: 40, lg: 40, xl: 40, xxl: 40 }}
+                                                            gap={3}
+                                                            icon={<UserOutlined />}
+                                                            src={infoUser?.avatar_url}
+                                                        />
                                                         <Button type="text" size="large">
                                                             <Text strong style={{ color: '#0D1D2E', fontFamily: "'Mulish', sans-serif", fontWeight: '700', fontStyle: 'normal', width: '100px' }} ellipsis={true}>
-                                                                {infoUser?.full_name??''}
+                                                                {infoUser?.full_name ?? ''}
                                                             </Text>
                                                         </Button>
                                                     </Space>
@@ -288,7 +294,7 @@ function Header(props) {
                                             overlayStyle={{
                                                 boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px !important',
                                             }}
-                                            visible={true}
+                                            // visible={true}
                                             overlay={menu}
                                             trigger={['click']}
                                         >

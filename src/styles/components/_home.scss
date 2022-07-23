@@ -1,10 +1,10 @@
 .slideshow__home {
     margin-top: 1rem;
-    
-    .slick-slider{
-        .slideshow__home__prev{
+
+    .slick-slider {
+        .slideshow__home__prev {
             visibility: hidden;
-            &::before{
+            &::before {
                 content: url('../../assets/icons/icon-arrow-prev.svg');
                 background: none !important;
                 border: none !important;
@@ -20,20 +20,19 @@
                 height: 42px !important;
             }
             left: 20px;
-            top: 50%; 
-            transform: translateY(-50%); 
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 1;
             width: 50px;
             height: 50px;
-            background-color: #E1E1E1 !important;
+            background-color: #e1e1e1 !important;
             visibility: visible;
             opacity: 1;
             border-radius: 2px;
-            transition: all .2s ease-in-out;
-            
+            transition: all 0.2s ease-in-out;
         }
-        .slideshow__home__next{
-            &::before{
+        .slideshow__home__next {
+            &::before {
                 content: url('../../assets/icons/icon-arrow-next.svg');
                 background: none !important;
                 border: none !important;
@@ -48,18 +47,17 @@
                 width: 42px !important;
                 height: 42px !important;
             }
-            right: 20px; 
-            top: 50%; 
-            transform: translateY(-50%) !important; 
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%) !important;
             z-index: 1;
             width: 50px;
             height: 50px;
-            background-color: #E1E1E1 !important;
+            background-color: #e1e1e1 !important;
             visibility: visible;
             opacity: 1;
             border-radius: 2px;
-            transition: all .2s ease-in-out;
-            
+            transition: all 0.2s ease-in-out;
         }
     }
     .slideshow__home__img {
@@ -141,7 +139,7 @@
 
     .slick-dots li button:before {
         content: '' !important;
-        background-color: #0D1D2E;
+        background-color: #0d1d2e;
         width: 10px;
         height: 10px;
         border-radius: 50%;

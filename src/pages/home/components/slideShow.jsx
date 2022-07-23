@@ -47,33 +47,19 @@ const ItemSlider = [
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
-    return (
-      <div
-        className={className + " slideshow__home__next"}
-        style={{ ...style, display: "block"}}
-        onClick={onClick}
-      >
+    return <div className={className + ' slideshow__home__next'} style={{ ...style, display: 'block' }} onClick={onClick}></div>;
+}
 
-      </div>
-    );
-  }
-  
-  function SamplePrevArrow(props) {
+function SamplePrevArrow(props) {
     const { className, style, onClick } = props;
-    return (
-      <div
-        className={className + " slideshow__home__prev"}
-        style={{ ...style, display: "block"}}
-        onClick={onClick}
-      ></div>
-    );
-  }
+    return <div className={className + ' slideshow__home__prev'} style={{ ...style, display: 'block' }} onClick={onClick}></div>;
+}
 const settings = {
     dots: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     infinite: true,
-    autoplay: true,
+    // autoplay: true,
     speed: 2000,
     autoplaySpeed: 4000,
     loop: true,
@@ -81,13 +67,13 @@ const settings = {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
-          {
+        {
             breakpoint: 480,
             settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
     ],
 };
 
