@@ -1,13 +1,10 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Button, Drawer, Radio, Space } from 'antd';
 import { useState } from 'react';
-
 import { menuSecond } from './header';
-
 import Icon from '@ant-design/icons';
-import { ReactComponent as logo } from '@assets/images/ts.svg';
-import { ReactComponent as IconHeaderMobile } from '@assets/images/ts.svg';
+import { ReactComponent as logo } from '@assets/icons/ts.svg';
+import { ReactComponent as IconHeaderMobile } from '@assets/icons/ts.svg';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 
@@ -51,7 +48,7 @@ function HeaderMobile(props) {
                             <Icon component={logo} />
                             <span>TechStore</span>
                         </a>
-                        <div className="search-mobi">
+                        {/* <div className="search-mobi">
                             <Space direction="vertical">
                                 <Search
                                     placeholder="Type here ..."
@@ -63,7 +60,7 @@ function HeaderMobile(props) {
                                     }}
                                 />
                             </Space>
-                        </div>
+                        </div> */}
                         <div className="list__menu-mobi">
                             <ul>
                                 {menuSecond.map((e, i) => (
@@ -77,12 +74,12 @@ function HeaderMobile(props) {
                 </Drawer>
             </div>
 
-            <div className="mobi--logo">
+            {/* <div className="mobi--logo">
                 <a href="#" className="logo">
                     <Icon component={logo} />
                     <span>TechStore</span>
                 </a>
-            </div>
+            </div> */}
         </div>
     );
 }

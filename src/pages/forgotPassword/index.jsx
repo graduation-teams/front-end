@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
-import Layouts from '@layouts';
+import Layouts from '@layouts/client';
 import { useDispatch } from 'react-redux';
 import { useViewport } from '@hooks';
 import { getLocalStorage } from '@utils/helpers';
-import ForgotForm from '../../components/forgot';
+import ForgotForm from './components';
 
 function ForgotPage() {
     const dispatch = useDispatch();
