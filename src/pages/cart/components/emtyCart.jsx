@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as Ytb } from '@assets/images/YouTube.svg';
-import Btn from '../../../components/common/button';
+import { ReactComponent as Ytb } from '@assets/icons/YouTube.svg';
+import Btn from '@components/common/button';
 import Icon, { ShoppingCartOutlined } from '@ant-design/icons';
 function EmtyCart(props) {
     return (

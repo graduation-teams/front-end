@@ -1,19 +1,6 @@
-// import React from 'react';
-
-// function ShoppingCart(props) {
-//     return (
-//         <div className="shoppping-cart">
-//             <h1>ádjhdasdh</h1>
-//         </div>
-//     );
-// }
-
-// export default ShoppingCart;
-
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Col, InputNumber, Row, Space, Table, Tag } from 'antd';
-import Btn from '../../../components/common/button';
+import Btn from '@components/common/button';
 
 const onChange = value => {
     console.log('changed', value);

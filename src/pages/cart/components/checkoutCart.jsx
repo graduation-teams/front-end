@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-import Btn from '../../../components/common/button';
+import Btn from '@components/common/button';
 import TextArea from 'antd/lib/input/TextArea';
 
 function CheckoutCart(props) {
