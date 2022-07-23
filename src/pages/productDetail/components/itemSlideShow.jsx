@@ -1,6 +1,6 @@
-import React from 'react';
-import { withErrorBoundary } from 'react-error-boundary';
-import { ErrorComponent, SlideTechStore } from '@components/common';
+import React  from 'react';
+import {withErrorBoundary} from 'react-error-boundary'
+import { ErrorComponent, SlideTechStore  } from '@components/common';
 
 const settings = {
     customPaging: function (i) {
@@ -13,78 +13,44 @@ const settings = {
     dots: true,
     dotsClass: 'slick-dots slick-thumb',
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     speed: 2000,
     autoplaySpeed: 4000,
     loop: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    responsive: [
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                infinite: true,
-                dots: true,
-            },
-        },
-        {
-            breakpoint: 600,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                initialSlide: 2,
-            },
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            },
-        },
-    ],
 };
 
 const ItemSlider = [
     {
-        element: () => {
-            return (
-                <div className="item__small__image ">
-                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
-                </div>
-            );
-        },
+        element : ()=>{
+            return (<div className="item__small__image">
+            <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
+        </div>)
+        }
     },
     {
-        element: () => {
-            return (
-                <div className="item__small__image">
-                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
-                </div>
-            );
-        },
+        element : ()=>{
+            return (<div className="item__small__image">
+            <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
+        </div>)
+        }
     },
     {
-        element: () => {
-            return (
-                <div className="item__small__image">
-                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
-                </div>
-            );
-        },
+        element : ()=>{
+            return (<div className="item__small__image">
+            <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
+        </div>)
+        }
     },
     {
-        element: () => {
-            return (
-                <div className="item__small__image">
-                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
-                </div>
-            );
-        },
-    },
-];
+        element : ()=>{
+            return (<div className="item__small__image">
+            <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg" />
+        </div>)
+        }
+    }
+]
 function ItemSlideShow() {
     return (
         <div>

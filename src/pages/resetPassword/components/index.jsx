@@ -3,7 +3,7 @@ import { Button, Form, Input, Row, Col } from 'antd';
 import { resetPasswordAction } from '@features/auth/authActions';
 import Icon from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { useQuery } from '@hooks';

@@ -23,6 +23,12 @@ $weight-200: 200;
     margin: 0 auto;
 }
 
+.container-1280 {
+    max-width: calc(1320px - 20px * 2);
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
 .container-1110 {
     max-width: calc(1150px - 20px * 2);
     padding: 0 20px;

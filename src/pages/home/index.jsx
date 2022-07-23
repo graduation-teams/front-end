@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Layouts from '@layouts';
+import Layouts from '@layouts/client';
 import { useViewport } from '@hooks';
 import SlideShow from './components/slideShow';
 import Service from './components/service';

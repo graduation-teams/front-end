@@ -10,7 +10,6 @@ const { Title } = Typography;
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 
-
 function UserMenu({ user }){
   const dispatch = useDispatch();
 
@@ -45,11 +44,11 @@ function UserMenu({ user }){
                 <DashboardOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 Dashboard
               </Link>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/manage-users`} className="sub-menu__user--item">
+              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/customers`} className="sub-menu__user--item">
                 <UsergroupAddOutlined style={{ marginRight: '6px' }} target="_blank"/>
-                All Users
+                All Customers
               </Link>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/manage-products`} className="sub-menu__user--item">
+              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/products`} className="sub-menu__user--item">
               <SkinOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 All Products
               </Link>

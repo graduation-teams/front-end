@@ -1,13 +1,10 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Button, Drawer, Radio, Space } from 'antd';
 import { useState } from 'react';
-
 import { menuSecond } from './header';
-
 import Icon from '@ant-design/icons';
-import { ReactComponent as logo } from '@assets/images/ts.svg';
-import { ReactComponent as IconHeaderMobile } from '@assets/images/ts.svg';
+import { ReactComponent as logo } from '@assets/icons/ts.svg';
+import { ReactComponent as IconHeaderMobile } from '@assets/icons/ts.svg';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 

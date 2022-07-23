@@ -4,7 +4,7 @@ import { Layout, Row, Col, Button, Dropdown, Menu, Space, message, Tooltip, Auto
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import HeaderMobile from './headerMobile';
-import UserMenu from './userMenu';
+import UserMenu from '@components/userMenu/userMenu';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { useViewport } from '@hooks';

@@ -8,12 +8,15 @@ import { push } from 'connected-react-router';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import UserModels from '@models/userModels';
+import { useHistory } from "react-router-dom";
 
-function DashboardPage() {
+function AdminPage() {
     const dispatch = useDispatch();
-    const { managerId, tabCurrent } = useParams();
+    const { managerId, tabCurrent, subTabCurrent } = useParams();
     const svManager = useSelector(state => state?.user?.info);
     const [isManager, setIsManager] = useState('');
+    const [selectedTab, setSelectedTab] = useState(tabCurrent);
+    const history = useHistory();
 
     useEffect(() => {
         (async () => {
@@ -24,32 +27,61 @@ function DashboardPage() {
         })();
     }, []);
 
+    useEffect(() => {
+        if(selectedTab){
+            console.log('selectedTab', selectedTab);
+        }
+    }, [selectedTab]);
+
     const Elements = useMemo(() => {
         let arrayElements = [];
-        switch (tabCurrent) {
+        switch (selectedTab) {
             case 'dashboard':
                 arrayElements = [{ element: lazy(() => import('./dashboard')), props: {} }];
                 break;
-            case 'manage-users':
-                arrayElements = [{ element: lazy(() => import('./manageUsers')), props: {} }];
+            case 'products':
+                arrayElements = [{ element: lazy(() => import('./products')), props: {} }];
                 break;
-            case 'manage-products':
-                arrayElements = [{ element: lazy(() => import('./manageProducts')), props: {} }];
+            case 'categories':
+                arrayElements = [{ element: lazy(() => import('./categories')), props: {} }];
+                break;
+            case 'customers':
+                arrayElements = [{ element: lazy(() => import('./customers')), props: {} }];
+                break;
+            case 'staff':
+                arrayElements = [{ element: lazy(() => import('./ourStaff')), props: {} }];
+                break;
+            case 'promotions':
+                arrayElements = [{ element: lazy(() => import('./promotions')), props: {} }];
+                break;
+            case 'orders':
+                arrayElements = [{ element: lazy(() => import('./orders')), props: {} }];
+                break;
+            case 'settings':
+                arrayElements = [{ element: lazy(() => import('./settings')), props: {} }];
                 break;
             default:
+                arrayElements = [{ element: lazy(() => import('./dashboard')), props: {} }];
                 break;
         }
         return arrayElements;
-    }, [tabCurrent]);
+    }, [selectedTab]);
+
+
+    function handleChangeTab(tabSelect){
+        console.log('tabSelect', tabSelect)
+        setSelectedTab(tabSelect?.tabCurrent);
+        // history.replace(`/admin-profile/manager-id/4/tab-current/${tabSelect?.tabCurrent}`);
+    }
 
     return (
         <React.Fragment>
             <Helmet>
                 <title>Dashboard - TechStore</title>
             </Helmet>
-            <AdminLayouts childrenComponent={Elements} />
+            <AdminLayouts childrenComponent={Elements} changeTab={handleChangeTab}/>
         </React.Fragment>
     );
 }
 
-export default DashboardPage;
+export default AdminPage;

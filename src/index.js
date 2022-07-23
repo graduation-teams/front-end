@@ -15,7 +15,7 @@ import { history } from '@utils/index';
 import App from './app';
 import './styles/base/reset.css';
 import './styles/base/app.less';
-import 'antd/dist/antd.min.css';
+// import 'antd/dist/antd.min.css';
 import './styles/index.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -24,7 +24,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
-const container = document.getElementById('root');
+const container = document.getElementById('root-app');
 const store = configureAppStore();
 const root = createRoot(container);
 
@@ -42,8 +42,5 @@ function AppWithCallbackAfterRender() {
 
 root.render(<AppWithCallbackAfterRender/>);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 serviceWorker.unregister();

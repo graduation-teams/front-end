@@ -2,7 +2,7 @@ import { Col, Row } from 'antd';
 import React from 'react';
 import  { Btn, BtnHover, Rating } from '@components/common';
 import Icon from '@ant-design/icons';
-import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
+import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 

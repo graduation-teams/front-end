@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
-import { MenuFoldOutlined, MenuUnfoldOutlined, DashboardOutlined, UsergroupAddOutlined, LaptopOutlined, GlobalOutlined, FileOutlined } from '@ant-design/icons';
-import { Layout, Menu, Typography, Row, Col, Breadcrumb } from 'antd';
+import { TeamOutlined , AppstoreOutlined, ShoppingOutlined, UnorderedListOutlined, BarcodeOutlined, GiftOutlined, SettingOutlined, UserSwitchOutlined  } from '@ant-design/icons';
+import { Layout, Menu, Typography, Row, Col, Breadcrumb, Space, Avatar, Button, Dropdown } from 'antd';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import {ReactComponent as IconLogo} from '@assets/icons/ts.svg'
+import Icon from '@ant-design/icons';
 const { Text } = Typography;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -18,24 +20,52 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-    getItem(
-        <Link to="/">
-        <Text style={{ color: '#fff' }}>Overviews</Text>
-    </Link>,
-    'overviews',
-    <GlobalOutlined />
-    ),
-    getItem(<Link to="/">
-    <Text style={{ color: '#fff' }}>Dashboard</Text>
-</Link>, 'dashboard', <DashboardOutlined />),
-    getItem('Manage users', 'manage-users', <UsergroupAddOutlined />, [getItem('Tom', '3'), getItem('Bill', '4'), getItem('Alex', '5')]),
-    getItem('Manage products', 'manage-products', <LaptopOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />),
+    getItem(<Text >Dashboard</Text>, 'dashboard', <AppstoreOutlined />),
+    getItem(<Text>Products</Text>, 'products', <ShoppingOutlined />),
+    getItem(<Text>Categories</Text>, 'categories', <UnorderedListOutlined />),
+    getItem(<Text >Customers</Text>, 'customers', <TeamOutlined />),
+    getItem(<Text >Orders</Text>, 'orders', <BarcodeOutlined />),
+    getItem(<Text >Promotions</Text>, 'promotions', <GiftOutlined />),
+    getItem(<Text >Our staff</Text>, 'our-staff', <UserSwitchOutlined />),
+    getItem(<Text >Settings</Text>, 'settings', <SettingOutlined />),
 ];
 
+const menu = (
+    <Menu
+      items={[
+        {
+          key: '1',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+              1st menu item
+            </a>
+          ),
+        },
+        {
+          key: '2',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+              2nd menu item
+            </a>
+          ),
+        },
+        {
+          key: '3',
+          label: (
+            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
+              3rd menu item
+            </a>
+          ),
+        },
+      ]}
+    />
+  );
+  
 function AdminLayouts({ childrenComponent, ...props }) {
     const [components, setComponents] = useState([]);
+    const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(false);
+    const [keyTab, setKeyTab] = useState('dashboard');
 
     useEffect(() => {
         if (childrenComponent.length > 0) {
@@ -43,56 +73,60 @@ function AdminLayouts({ childrenComponent, ...props }) {
         }
     }, [childrenComponent]);
 
+    function handleSelectedItemMenu({ item, key, keyPath, selectedKeys, domEvent }) {
+        props?.changeTab({
+            tabCurrent: key,
+        });
+    }
+
     return (
         <React.Fragment>
-            <Layout
-                style={{
-                    minHeight: '100vh',
-                }}
-            >
-                <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
-                    <div className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={['dashboard']} mode="inline" items={items} />
+            <Layout style={{  minHeight: '100vh', }} className='layout-admin_custom'>
+                <Sider  collapsed={collapsed} onCollapse={value => setCollapsed(value)} className='layout-admin_custom--slider' width={256}>
+                    <div className='layout-admin_custom--slider__logo'>
+                        <Icon component={IconLogo} className="icon-logo"/>
+                        <h4 className='text-logo'>TechStore</h4>
+                    </div>
+                    <Menu theme="light" mode="inline" items={items} onSelect={handleSelectedItemMenu} />
                 </Sider>
-                <Layout className="site-layout">
-                    <Header
-                        className="site-layout-background"
-                        style={{
-                            padding: 0,
-                        }}
-                    />
-                    <Content
-                        style={{
-                            margin: '0 16px',
-                        }}
-                    >
-                        <Breadcrumb
-                            style={{
-                                margin: '16px 0',
-                            }}
-                        >
-                            <Breadcrumb.Item>User</Breadcrumb.Item>
-                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                        </Breadcrumb>
-                        <div
-                            className="site-layout-background"
-                            style={{
-                                padding: 24,
-                                minHeight: 360,
-                            }}
-                        >
-                            {components && components.length > 0
-                                ? components.map(({ element: Element }, index) => {
-                                      return <Element key={index} />;
-                                  })
-                                : null}
+                <Layout>
+                    <Header className='layout-admin_custom--header' style={{ position: 'fixed',zIndex: 999,width:'calc(100% - 256px)',}}>
+                        <div className='custom-header-admin'>
+                            <Row gutter={16} align="middle" justify="space-around" className="" wrap={false}>
+                                <Col span={24}>
+                                    <div className="container-1280">
+                                        <Row align="middle" justify="space-around" gutter={16}>
+                                            <Col span={12} offset={12}>
+                                                <div className="header-admin-right">
+                                                <Dropdown
+                                                    overlay={menu}
+                                                    placement="bottomRight"
+                                                    arrow={{
+                                                        pointAtCenter: true,
+                                                    }}
+                                                    trigger={['click']}
+                                                    >
+                                                     <Avatar src="https://res.cloudinary.com/graduation-techstore/image/upload/v1657878118/profile/z3457071278314_9ac0426ccedd84a60099ded4950ad32a_vrt9y6.jpg" size="large" className='header-admin-right__item'/>
+                                                </Dropdown>
+                                                   
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Header>
+                    <Content style={{backgroundColor: "rgba(249,250,251,1)", paddingTop:"87px"}} className="layout-admin_custom--content">
+                        <div className="container-1280">
+                        {components && components.length > 0
+                            ? components.map(({ element: Element }, index) => {
+                                  return <Element key={index} />;
+                              })
+                            : null}
                         </div>
                     </Content>
-                    <Footer
-                        style={{
-                            textAlign: 'center',
-                        }}
-                    >
+                    <Footer style={{ textAlign: 'center', }} >
                         Ant Design ©2018 Created by Ant UED
                     </Footer>
                 </Layout>

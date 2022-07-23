@@ -1,19 +1,19 @@
 import React from 'react';
-
 import { Layout, Row, Col, BackTop } from 'antd';
 import {withErrorBoundary} from 'react-error-boundary'
 import { ErrorComponent } from '@components/common';
 import Icon from '@ant-design/icons';
-import { ReactComponent as IconLogo1 } from '@assets/images/footer-1.svg';
-import { ReactComponent as Ytb } from '@assets/images/YouTube.svg';
-import { ReactComponent as Fb } from '@assets/images/Facebook.svg';
-import { ReactComponent as Gg } from '@assets/images/Google.svg';
+import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
+import { ReactComponent as Ytb } from '@assets/icons/YouTube.svg';
+import { ReactComponent as Fb } from '@assets/icons/Facebook.svg';
+import { ReactComponent as Gg } from '@assets/icons/Google.svg';
 import IconFooter1 from '@assets/images/icon-support.png';
 import IconFooter2 from '@assets/images/icon-message.png';
 import IconFooter3 from '@assets/images/icon-contact.png';
 // import Ytb from '@assets/images/YouTube.svg';
 
-const FooterComponent = () => {
+
+function FooterComponent (){
     return (
         <Layout.Footer style={{ padding: 0, minHeight: '200px', backgroundColor: '#fff' }}>
             <section className="footer">

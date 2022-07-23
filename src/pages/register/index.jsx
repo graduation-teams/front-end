@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { push } from 'connected-react-router';
 import { Helmet } from 'react-helmet';
-import Layouts from '@layouts';
+import Layouts from '@layouts/client';
 import { useDispatch } from 'react-redux';
 import { getLocalStorage } from '@utils/helpers';
 import RegisterForm from './components';
