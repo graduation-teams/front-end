@@ -1,9 +1,13 @@
-import { Row, Col } from 'antd';
+import { Row, Col, InputNumber } from 'antd';
 import React from 'react';
-import {Btn} from '@components/common';
+import { Btn } from '@components/common';
 import ItemSlideShow from './itemSlideShow';
-import {withErrorBoundary} from 'react-error-boundary'
+import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
+
+const onChange = value => {
+    console.log('changed', value);
+};
 
 function ProductDetail(props) {
     return (
@@ -11,12 +15,12 @@ function ProductDetail(props) {
             <section className="detail-item">
                 <div className="container-1200">
                     <Row>
-                        <Col sm={24} md={12} xl={12}>
+                        <Col sm={24} md={10} xl={10}>
                             <div className="detail-item__images">
                                 <ItemSlideShow />
                             </div>
                         </Col>
-                        <Col sm={24} md={12} xl={12}>
+                        <Col sm={24} md={14} xl={14}>
                             <div className="detail-item__content">
                                 <h1 className="detail-item__content--title">Native Union SMART 4 Charger 1</h1>
                                 <p className="detail-item__content--price">
@@ -33,10 +37,7 @@ function ProductDetail(props) {
                                     Noise level (washing) 51 dB
                                 </p>
                                 <div className="detail-item__content--quatity">
-                                    <span> - </span>
-                                    <input type="number" />
-                                    <span> + </span>
-
+                                    <InputNumber min={1} max={10} defaultValue={3} onChange={onChange} />
                                     <Btn className="btn-black">Add to card</Btn>
                                 </div>
                                 <div className="detail-item__content--different">
