@@ -1,83 +1,84 @@
-import React, { useState } from 'react';
-import { DownOutlined, UserOutlined, HeartOutlined, ShoppingCartOutlined, MenuOutlined, PhoneOutlined, GiftOutlined } from '@ant-design/icons';
-import Icon from '@ant-design/icons';
-import { Layout, Row, Col, BackTop, Button, Dropdown, Menu, Space, message, Tooltip, AutoComplete, Input, Badge, Typography } from 'antd';
+import React, { useState, useEffect, useRef } from 'react';
+import { DownOutlined, UserOutlined, HeartOutlined, ShoppingCartOutlined, MenuOutlined } from '@ant-design/icons';
+import { Layout, Row, Col, Button, Dropdown, Menu, Space, message, Tooltip, AutoComplete, Input, Badge, Typography, Divider, Select, Avatar } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-
-import { ReactComponent as IconLogo2 } from '@assets/images/ts.svg';
-import { ReactComponent as IconUser } from '@assets/images/user-icon.svg';
-import HeaderMobi from './headerMobi';
-
+import { useSelector, useDispatch } from 'react-redux';
+import HeaderMobile from './headerMobile';
+import UserMenu from '@components/userMenu/userMenu';
+import { withErrorBoundary } from 'react-error-boundary';
+import { ErrorComponent } from '@components/common';
+import { useViewport } from '@hooks';
 const { Text } = Typography;
-
-const handleButtonClick = e => {
-    message.info('Click on left button.');
-    console.log('click left button', e);
-};
-
-const handleMenuClick = e => {
-    message.info('Click on menu item.');
-    console.log('click', e);
-};
+const { Option } = Select;
 
 const items = [
     {
-        label: 'item 1',
+        label: <Text strong>item 1</Text>,
         key: '1',
         icon: <UserOutlined />,
     },
     {
-        label: 'item 2',
+        label: <Text strong>item 2</Text>,
         key: '2',
         icon: <UserOutlined />,
     },
     {
-        label: 'item 3',
+        label: <Text strong>item 3</Text>,
         key: '3',
         icon: <UserOutlined />,
     },
 ];
 
-const menu = (
-    <Menu>
-        {items.map(function (item) {
-            return (
-                <Menu.Item key={item.key}>
-                    <Text strong>{item.label}</Text>
-                </Menu.Item>
-            );
-        })}
-    </Menu>
-);
+const menu = <Menu items={items} />;
 
 export const menuSecond = [
     {
-        link: '#',
-        name: 'Home',
+        key: 'page-home',
+        label: (
+            <Link to="/" className="header-tech-store__category_right-menu-item">
+                <Text strong>Home</Text>
+            </Link>
+        ),
     },
     {
-        link: '#',
-        name: 'Elements',
+        key: 'page-shop',
+        label: (
+            <Link to="/shop" className="header-tech-store__category_right-menu-item">
+                <Text strong>Shop</Text>
+            </Link>
+        ),
     },
     {
-        link: '#',
-        name: 'Shop',
+        key: 'page-blog',
+        label: (
+            <Link to="/blog" className="header-tech-store__category_right-menu-item">
+                <Text strong>Blog</Text>
+            </Link>
+        ),
     },
     {
-        link: '#',
-        name: 'News',
+        key: 'page-about',
+        label: (
+            <Link to="/about-us" className="header-tech-store__category_right-menu-item">
+                <Text strong>About Us</Text>
+            </Link>
+        ),
     },
     {
-        link: '#',
-        name: 'Delivery',
+        key: 'page-contact',
+        label: (
+            <Link to="/contact" className="header-tech-store__category_right-menu-item">
+                <Text strong>Contact Us</Text>
+            </Link>
+        ),
     },
     {
-        link: '#',
-        name: 'Contact us',
-    },
-    {
-        link: '#',
-        name: 'Our Offers',
+        key: 'page-information-line',
+        label: (
+            <Link to="/information-line" className="header-tech-store__category_right-menu-item">
+                <Text strong>Information Line</Text>
+            </Link>
+        ),
     },
 ];
 
@@ -111,7 +112,43 @@ const searchResult = query =>
         });
 
 function Header(props) {
+    const viewPort = useViewport();
+    const dispatch = useDispatch();
+    const svLogin = useSelector(state => state?.auth?.login);
+    const svUser = useSelector(state => state?.user?.info);
     const [options, setOptions] = useState([]);
+    const [isLogged, setIsLogged] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [infoUser, setInfoUser] = useState({});
+    const [visibleSubMenuUser, setVisibleSubMenuUser] = useState(false);
+    const headerRef = useRef(null);
+
+    useEffect(() => {
+        if (svUser?.id) {
+            setIsLogged(true);
+            setInfoUser(svUser);
+        }
+    }, [svUser, svLogin]);
+
+    // useEffect(() => {
+    //     const shrinkHeader = () => {
+    //       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    //         headerRef.current.classList.add('shrink');
+    //       } else {
+    //         headerRef.current.classList.remove('shrink');
+    //       }
+    //     }
+    //     window.addEventListener('scroll', shrinkHeader)
+    //     return () => {
+    //       window.removeEventListener('scroll', shrinkHeader)
+    //     };
+    //   }, []);
+
+    useEffect(() => {
+        if (viewPort?.width <= 480) {
+            setIsMobile(true);
+        }
+    }, [viewPort]);
 
     const handleSearch = value => {
         setOptions(value ? searchResult(value) : []);
@@ -121,111 +158,172 @@ function Header(props) {
         console.log('onSelect', value);
     };
 
-    return (
-        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '150px', padding: 0 }}>
-            <div className="header__mobi">
-                <HeaderMobi />
-            </div>
-            <section className="header">
-                <div className="header_action">
-                    <div className="container-1200">
-                        <Row align={'middle'}>
-                            <Col sm={24} md={24} xl={6}>
-                                <a href="#" className="header_link">
-                                    <Icon component={IconLogo2} />
-                                    <span>TechStore</span>
-                                </a>
-                            </Col>
-                            <Col sm={24} md={24} xl={12}>
-                                <div className="header_search_box">
-                                    <Dropdown className="header_dropdown" overlay={menu} trigger={['click']}>
-                                        <Button>
-                                            <Space>
-                                                All categories
-                                                <DownOutlined />
-                                            </Space>
-                                        </Button>
-                                    </Dropdown>
-                                    <AutoComplete
-                                        className="header_search"
-                                        dropdownMatchSelectWidth={252}
-                                        style={{
-                                            width: 300,
-                                        }}
-                                        options={options}
-                                        onSelect={onSelect}
-                                        onSearch={handleSearch}
-                                    >
-                                        <Input.Search className="header_input_search" size="large" placeholder="Type here..." enterButton />
-                                    </AutoComplete>
-                                </div>
-                            </Col>
-                            <Col sm={24} md={24} xl={6}>
-                                <ul className="header_list">
-                                    <li className="header_item">
-                                        <a href="" className="header_item_link">
-                                            <span className="icon">
-                                                <Icon component={IconUser} />
-                                            </span>
-                                            <p className="header_item_link-text">LOG IN / SIGN UP</p>
-                                        </a>
-                                    </li>
-                                    <li className="header_item header_item_mobi">
-                                        <a href="" className="header_item_link">
-                                            <Badge count={5}>
-                                                <HeartOutlined className="header_icon" />
-                                            </Badge>
-                                        </a>
-                                    </li>
-                                    <li className="header_item header_item_mobi">
-                                        <a href="" className="header_item_link">
-                                            <Badge count={5}>
-                                                <HeartOutlined className="header_icon" />
-                                            </Badge>
-                                        </a>
-                                    </li>
-                                    <li className="header_item header_item_mobi">
-                                        <a href="" className="header_item_link">
-                                            <Badge count={5}>
-                                                <ShoppingCartOutlined className="header_icon" />
-                                            </Badge>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </Col>
-                        </Row>
-                    </div>
-                </div>
+    function handleClickUser(e) {
+        e.preventDefault();
+        setVisibleSubMenuUser(!visibleSubMenuUser);
+    }
 
-                <div className="header_nav">
-                    <div className="container-1200">
-                        <Row>
-                            <Col sm={24} md={6} xl={6}>
-                                <Dropdown overlay={menu} trigger={['click']}>
-                                    <a className="header_nav--btn" onClick={e => e.preventDefault()}>
-                                        <Space>
-                                            <span>All departments</span>
-                                            <DownOutlined />
+    return (
+        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '64px', height: 'auto', padding: 0 }} ref={headerRef}>
+            <div className="header__mobi">
+                <HeaderMobile />
+            </div>
+            <section className="header-tech-store">
+                <Row gutter={16} align="middle" justify="space-around" className="header-row-top" wrap={false}>
+                    <Col span={24}>
+                        <div className="container-1200">
+                            <Row align="middle" justify="space-around" gutter={16}>
+                                <Col xs={24} sm={24} md={24} xl={5}>
+                                    <div className="header-tech-store__logo">
+                                        <Space align="baseline" size="middle" className="override-ant-space">
+                                            <Link to={'/'}>
+                                                <Text className="logo-text">TechStore</Text>
+                                            </Link>
                                         </Space>
-                                    </a>
-                                </Dropdown>
-                            </Col>
-                            <Col sm={24} md={6} xl={14}>
-                                <ul className="header_nav--list">
-                                    {menuSecond.map((e, i) => (
-                                        <li key={i} className="header_nav--item">
-                                            <a href={e.link}>{e.name}</a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Col>
-                            <Col sm={24} md={6} xl={4}></Col>
-                        </Row>
-                    </div>
-                </div>
+                                    </div>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} xl={12}>
+                                    <div className="header-tech-store__search_category">
+                                        <Input.Group
+                                            compact
+                                            style={{
+                                                width: 'inherit',
+                                            }}
+                                        >
+                                            <Select
+                                                defaultValue="All categories"
+                                                size="large"
+                                                style={{
+                                                    width: '30%',
+                                                    maxHeight: '40px',
+                                                }}
+                                            >
+                                                <Select.Option value="Sign Up">Sign Up</Select.Option>
+                                                <Select.Option value="Sign In">Sign In</Select.Option>
+                                            </Select>
+                                            <AutoComplete
+                                                style={{
+                                                    width: '70%',
+                                                    maxHeight: '40px',
+                                                    outline: 'none',
+                                                }}
+                                                children={<Input.Search className="header-tech-store__search_category-input-search" size="large" placeholder="Type here..." enterButton />}
+                                            />
+                                        </Input.Group>
+                                    </div>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} xl={7}>
+                                    <div className="header_right">
+                                        <Space align="center" size="small" split={<Divider type="vertical" />}>
+                                            {infoUser?.id ? (
+                                                <div className="custom-user-info" onClick={handleClickUser}>
+                                                    <Space align="center" size="small">
+                                                        <Avatar
+                                                            style={{ backgroundColor: '#0D1D2E', verticalAlign: 'middle' }}
+                                                            size={{ xs: 40, sm: 40, md: 40, lg: 40, xl: 40, xxl: 40 }}
+                                                            gap={3}
+                                                            icon={<UserOutlined />}
+                                                            src={infoUser?.avatar_url}
+                                                        />
+                                                        <Button type="text" size="large">
+                                                            <Text strong style={{ color: '#0D1D2E', fontFamily: "'Mulish', sans-serif", fontWeight: '700', fontStyle: 'normal', width: '100px' }} ellipsis={true}>
+                                                                {infoUser?.full_name ?? ''}
+                                                            </Text>
+                                                        </Button>
+                                                    </Space>
+                                                    {visibleSubMenuUser ? <UserMenu user={infoUser} /> : null}
+                                                </div>
+                                            ) : (
+                                                <Link to={'/login'}>
+                                                    <Text strong className="button-login">
+                                                        LOG IN/ SIGN UP
+                                                    </Text>
+                                                </Link>
+                                            )}
+
+                                            <Link
+                                                to={`/whish-list?userId=${svUser?.id ? svUser?.id : 'new'}`}
+                                                style={{
+                                                    height: 'auto',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                }}
+                                            >
+                                                <Badge count={1} size="small">
+                                                    <HeartOutlined
+                                                        style={{
+                                                            fontSize: '24px',
+                                                        }}
+                                                        className="header_icon"
+                                                    />
+                                                </Badge>
+                                            </Link>
+                                            <Link
+                                                to={`/cart?userId=${svUser?.id ? svUser?.id : 'new'}`}
+                                                style={{
+                                                    height: 'auto',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                }}
+                                            >
+                                                <Badge count={0} size="small">
+                                                    <ShoppingCartOutlined
+                                                        style={{
+                                                            fontSize: '24px',
+                                                        }}
+                                                        className="header_icon"
+                                                    />
+                                                </Badge>
+                                            </Link>
+                                        </Space>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+                <Row gutter={16} align="middle" justify="space-around" className="header-row-top" wrap={false}>
+                    <Col span={24}>
+                        <div className="container-1200">
+                            <Row align="middle" justify="space-around" gutter={16}>
+                                <Col xs={24} sm={24} md={6} xl={5}>
+                                    <div className="header-tech-store__category_left">
+                                        <Dropdown
+                                            overlayStyle={{
+                                                boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px !important',
+                                            }}
+                                            // visible={true}
+                                            overlay={menu}
+                                            trigger={['click']}
+                                        >
+                                            <button className="header-tech-store__category_left-button">
+                                                <Space align="center" size="large" style={{ color: '#fff', fontSize: '1.7rem' }} className="header-tech-store__category_left-space">
+                                                    <MenuOutlined />
+                                                    <Text className="header-tech-store__category_left-text-category" style={{ color: '#fff' }} strong>
+                                                        All departments
+                                                    </Text>
+                                                    <DownOutlined style={{ color: '#fff', fontSize: '1.7rem' }} />
+                                                </Space>
+                                            </button>
+                                        </Dropdown>
+                                    </div>
+                                </Col>
+                                <Col xs={24} sm={24} md={6} xl={19}>
+                                    <div className="header-tech-store__category_right">
+                                        <Menu className="header-tech-store__category_right-menu" items={menuSecond} mode="horizontal" activeKey="page-home" />
+                                    </div>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
             </section>
         </Layout.Header>
     );
 }
 
-export default Header;
+export default withErrorBoundary(Header, {
+    FallbackComponent: ErrorComponent,
+});

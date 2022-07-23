@@ -1,0 +1,224 @@
+.layout-admin_custom{
+    
+    .layout-admin_custom--slider{
+      background: #fff;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+      border: 0 solid #d5d6d7;
+      .layout-admin_custom--slider__logo {
+        min-height: 50px;
+        height: fit-content;
+        margin: 16px;
+        // background: rgba(212, 37, 37, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        .icon-logo{
+          font-size: 2.5em;
+        }
+        .text-logo{
+          font-size: 2.1em;
+          margin-left: 10px !important;
+          font-family: $mulish;
+          font-style: normal;
+          font-weight: $weight-800;
+          color: #333;
+          margin: 0;
+        }
+      }
+    }
+    .layout-admin_custom--header{
+      background: #fff;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+      padding-top: 16px;
+      padding-bottom: 16px;
+      height: auto !important;
+      .custom-header-admin{
+        width: 100%;
+        display: block;
+        .header-admin-right{
+          display: flex;
+          height: 100%;
+          align-items: center;
+          justify-content: flex-end;
+          .header-admin-right__item{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .layout-admin_custom--content{
+      .container-1280{
+        .section__statistic{
+          .title--static{
+            margin-top:16px;
+            margin-bottom:16px;
+            font-size: 1.8rem;
+            font-family: $mulish;
+            font-style: normal;
+            font-weight: $weight-700;
+          }
+          .section__statistic--row{
+            
+            .ant-statistic-content{
+              .ant-statistic-content-value{
+                .ant-statistic-content-value-int{
+                  font-size: 2.9rem;
+                  font-family: $mulish;
+                  font-style: normal;
+                  font-weight: $weight-800;
+                  color: #fff;
+                }
+              }
+              .ant-statistic-content-suffix{
+                font-size: 2.9rem;
+                font-family: $mulish;
+                font-style: normal;
+                font-weight: $weight-800;
+                color: #fff;
+              }
+            }
+            .card-1,.card-2,.card-3{
+              border-radius: 0.5rem;
+              // padding: 24px;
+              color: #fff;
+              text-align: center;
+              line-height:24px;
+              .title-statistic{
+                .title-statistic__icon{
+                  font-size: 2.2em;
+                  .title-statistic__icon--custom{
+                    color: #fff;
+  
+                  }
+                }
+                .title-statistic__text{
+                  font-size: 1.8rem;
+                  font-family: $mulish;
+                  font-style: normal;
+                  font-weight: $weight-400;
+                  color: #fff;
+                }
+              }
+            }
+            .card-4,.card-5,.card-6,.card-7{
+              border-radius: 0.5rem;
+              // padding: 24px;
+              color: #fff;
+              line-height:24px;
+              border: 1px solid #d5d6d7;
+              .ant-card-body{
+                padding:16px;
+                .ant-statistic{
+
+                  .ant-statistic-title{
+                    display: inline-block;
+                    margin-left: 65px;
+                    margin-bottom: 0;
+                    .title-statistic__text{
+                      font-size: 1.4rem;
+                      font-family: $mulish;
+                      font-style: normal;
+                      font-weight: $weight-500;
+                      color: #4c4f52;
+              
+                    }
+                  }
+
+                  .ant-statistic-content{
+                    .ant-statistic-content-prefix{
+                      border-radius: 50%;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      width: 48px;
+                      height: 48px;
+                      margin-right: 15px;
+                    }
+                    .ant-statistic-content-value-int{
+                      font-size: 2.2rem;
+                      font-family: $mulish;
+                      font-style: normal;
+                      font-weight: $weight-800;
+                      color: #4c4f52;
+                    }
+                  }
+                  
+                }
+              }
+              
+            }
+
+  
+            .card-1{
+              background-color:#03818C;
+              box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+              border: 0 solid #d5d6d7;
+            }
+            .card-2{
+              background-color:#234E99;
+              box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+              border: 0 solid #d5d6d7;
+            }
+            .card-3{
+              background-color:#DB0602;
+              box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+              border: 0 solid #d5d6d7;
+            }
+            
+            .card-4{
+              .ant-card-body{
+                .ant-statistic{
+                  .ant-statistic-content{
+                    .ant-statistic-content-prefix{
+                      background-color: #fcd9bd;
+                    }
+                  }
+                }
+              }
+            }
+
+            .card-5{
+              .ant-card-body{
+                .ant-statistic{
+                  .ant-statistic-content{
+                    .ant-statistic-content-prefix{
+                      background-color: #c3ddfd;
+                    }
+                  }
+                }
+              }
+            }
+
+            .card-6{
+              .ant-card-body{
+                .ant-statistic{
+                  .ant-statistic-content{
+                    .ant-statistic-content-prefix{
+                      background-color: #afecef;
+
+                    }
+                  }
+                }
+              }
+            }
+
+            .card-7{
+              .ant-card-body{
+                .ant-statistic{
+                  .ant-statistic-content{
+                    .ant-statistic-content-prefix{
+                      background-color: #bcf0da;
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+          
+        }
+      }
+    }
+}

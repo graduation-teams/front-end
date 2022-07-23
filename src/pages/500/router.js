@@ -1,6 +1,6 @@
 import { lazy } from "react";
 export default {
     path:'/server-died',
-    exact:false,
+    exact:true,
     component: lazy(() => import('./index'))
 }

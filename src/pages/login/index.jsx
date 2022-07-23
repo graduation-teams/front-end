@@ -1,14 +1,23 @@
 import React, { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
-import Layouts from '@layouts';
+import { push } from 'connected-react-router';
+import Layouts from '@layouts/client';
 import { useDispatch } from 'react-redux';
-import { useViewport } from '@hooks';
 import { getLocalStorage } from '@utils/helpers';
-import LoginForm from '../../components/login';
+import LoginForm from './components';
+import { toast } from 'react-toastify';
 
 function LoginPage() {
     const dispatch = useDispatch();
-    const viewPort = useViewport();
+
+    useEffect(() => {
+        (async ()=>{
+            if(JSON.parse(getLocalStorage('user'))?.id && getLocalStorage('access_token')){
+               await dispatch(push('/'));
+               toast.warning('You are logged in!',{limit:1});
+             }
+        })()
+    }, []);
 
     const Elements = useMemo(() => {
         let arrayElements = [{ element: LoginForm }];

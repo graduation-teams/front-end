@@ -1,0 +1,100 @@
+.header_right{
+    .custom-user-info {
+        position: relative;
+        display: block !important;
+        width: 100%;
+        &:hover {
+            cursor: pointer;
+        }
+    
+        .sub-menu {
+            visibility: visible;
+            width: 100%!important;
+            min-width: 160px;
+            max-width: 200px;
+            position: absolute;
+            z-index: 200;
+            background-color: #fff;
+    
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            left: 18%;
+            // transform: translateX(-7%);
+            top: 105%;
+    
+            border-radius: 6px;
+    
+            &::after {
+                content: '';
+                position: absolute;
+                top: -10px;
+                left: 10px;
+                width: 0;
+                height: 0;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 10px solid #fff;
+            }
+    
+            .sub-menu__user {
+                overflow: auto;
+                min-height: 100px;
+                height: auto;
+    
+                &::-webkit-scrollbar {
+                    width: 10px;
+                }
+    
+                &::-webkit-scrollbar-track {
+                    background-color: #e3e2e2;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                }
+    
+                &::-webkit-scrollbar-thumb {
+                    background: #c4c4c4;
+                    border-radius: 8px;
+                }
+    
+                .sub-menu__user--box {
+                    padding: 10px;
+                    border-bottom: 0.3px solid #b6b3b3;
+    
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+    
+                    h3 {
+                        font-family: $mulish;
+                        font-style: normal;
+                        font-weight: $weight-800;
+                        font-size: 12px;
+                        line-height: 14px;
+                    }
+    
+                    .sub-menu__user--item {
+                        font-family: $mulish;
+                        font-style: normal;
+                        font-weight: $weight-500;
+                        font-size: 12px;
+                        line-height: 15px;
+                        width: auto;
+                        display: block;
+                        line-height: 31px;
+                        color: #000;
+                        padding: 0 10px;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        margin: 0 !important;
+    
+                        &:hover {
+                            transition: 0.3s;
+                            font-weight: $weight-600;
+                            background-color: #edf2f7;
+                            padding-left: 15px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
