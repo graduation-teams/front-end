@@ -1,3 +1,5 @@
+import escapeRegExp from 'lodash/escapeRegExp';
+
 /** Set item in localStorage  */
 export const setLocalStorage = (itemName, data) => {
     if (!itemName || !data) return;
@@ -23,3 +25,23 @@ export const setLocalStorage = (itemName, data) => {
         return '';
     }
 }
+
+export const removeAccents=(str) =>{
+  if (!str) return '';
+  return `${str}`
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D');
+}
+
+export const hasKeyword = (items, keyword) => {
+  const re = new RegExp(escapeRegExp(removeAccents(keyword)), 'i');
+  for (let i = 0; i < items.length; i += 1) {
+    const result = re.test(removeAccents(items[i]));
+    if (result) {
+      return true;
+    }
+  }
+  return false;
+};

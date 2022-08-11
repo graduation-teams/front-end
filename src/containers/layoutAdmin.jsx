@@ -1,34 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
-import { TeamOutlined , AppstoreOutlined, ShoppingOutlined, UnorderedListOutlined, BarcodeOutlined, GiftOutlined, SettingOutlined, UserSwitchOutlined  } from '@ant-design/icons';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { Layout, Menu, Typography, Row, Col, Breadcrumb, Space, Avatar, Button, Dropdown } from 'antd';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Outlet, useNavigate, Routes, Route, useRoutes } from 'react-router-dom';
 import {ReactComponent as IconLogo} from '@assets/icons/ts.svg'
 import Icon from '@ant-design/icons';
+import routes from '@routes/sidebar';
+
 const { Text } = Typography;
 const { Header, Content, Footer, Sider } = Layout;
 
-function getItem(label, key, icon, children) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    };
-}
-
-const items = [
-    getItem(<Text >Dashboard</Text>, 'dashboard', <AppstoreOutlined />),
-    getItem(<Text>Products</Text>, 'products', <ShoppingOutlined />),
-    getItem(<Text>Categories</Text>, 'categories', <UnorderedListOutlined />),
-    getItem(<Text >Customers</Text>, 'customers', <TeamOutlined />),
-    getItem(<Text >Orders</Text>, 'orders', <BarcodeOutlined />),
-    getItem(<Text >Promotions</Text>, 'promotions', <GiftOutlined />),
-    getItem(<Text >Our staff</Text>, 'our-staff', <UserSwitchOutlined />),
-    getItem(<Text >Settings</Text>, 'settings', <SettingOutlined />),
-];
 
 const menu = (
     <Menu
@@ -61,23 +42,11 @@ const menu = (
     />
   );
   
-function AdminLayouts({ childrenComponent, ...props }) {
+function LayoutAdmin({ childrenComponent, ...props }) {
     const [components, setComponents] = useState([]);
     const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(false);
-    const [keyTab, setKeyTab] = useState('dashboard');
 
-    useEffect(() => {
-        if (childrenComponent.length > 0) {
-            setComponents(childrenComponent);
-        }
-    }, [childrenComponent]);
-
-    function handleSelectedItemMenu({ item, key, keyPath, selectedKeys, domEvent }) {
-        props?.changeTab({
-            tabCurrent: key,
-        });
-    }
 
     return (
         <React.Fragment>
@@ -87,10 +56,10 @@ function AdminLayouts({ childrenComponent, ...props }) {
                         <Icon component={IconLogo} className="icon-logo"/>
                         <h4 className='text-logo'>TechStore</h4>
                     </div>
-                    <Menu theme="light" mode="inline" items={items} onSelect={handleSelectedItemMenu} />
+                    <Menu theme="light" mode="inline" items={routes} />
                 </Sider>
                 <Layout>
-                    <Header className='layout-admin_custom--header' style={{ position: 'fixed',zIndex: 999,width:'calc(100% - 256px)',}}>
+                    <Header className='layout-admin_custom--header' style={{ position: 'fixed',zIndex: 999,width:'calc(100% - 256px)'}}>
                         <div className='custom-header-admin'>
                             <Row gutter={16} align="middle" justify="space-around" className="" wrap={false}>
                                 <Col span={24}>
@@ -119,11 +88,7 @@ function AdminLayouts({ childrenComponent, ...props }) {
                     </Header>
                     <Content style={{backgroundColor: "rgba(249,250,251,1)", paddingTop:"87px"}} className="layout-admin_custom--content">
                         <div className="container-1280">
-                        {components && components.length > 0
-                            ? components.map(({ element: Element }, index) => {
-                                  return <Element key={index} />;
-                              })
-                            : null}
+                            <Outlet/>
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center', }} >
@@ -145,12 +110,12 @@ const mapStateToProps = state => ({
     action: state.router.action,
 });
 
-AdminLayouts.prototype = {
+LayoutAdmin.prototype = {
     childrenComponent: PropTypes.array,
 };
 
-AdminLayouts.defaultProps = {
+LayoutAdmin.defaultProps = {
     childrenComponent: [],
 };
 
-export default connect(mapStateToProps)(AdminLayouts);
+export default connect(mapStateToProps)(LayoutAdmin);

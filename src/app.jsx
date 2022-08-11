@@ -1,55 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router'; // react-router v5
-import { ConnectedRouter } from 'connected-react-router';
-import arrayRouters from '@pages/routes.js';
+import React, { lazy, Suspense, useMemo, useEffect } from 'react';
 import { Spin } from 'antd';
+import { Routes, Route, Navigate, useLocation, useRoutes } from 'react-router-dom'; // react-router-dom v6
+import { useAuthContext } from '@contexts/authContext';
+import { publicRoutes, privateRoutes } from '@routes/router';
 
-const ROUTER_MAP = arrayRouters;
+const LayoutCustomer = lazy(() => import('@containers/layoutCustomer'));
+const LayoutAdmin = lazy(() => import('@containers/layoutAdmin'));
 
-function App({ history, context }) {
-  const [arrayRouters, setArrayRouters] = useState([]);
+function App() {
+    const { isAuthenticated, isAdmin } = useAuthContext();
 
-  useEffect(() => {
-    if(process.env.NODE_ENV === 'development'){
-      console.log('ROUTER_MAP', ROUTER_MAP);
-    }
-    setArrayRouters(ROUTER_MAP.reverse());
-  }, [ROUTER_MAP]);
+    const middleware = useMemo(() => ({
+        isLoggedIn: isAuthenticated,
+        isAdmin: isAdmin,
+    }), [isAuthenticated,isAdmin]);
 
-  return (
-    <React.Fragment>
-      <ConnectedRouter history={history} context={context}>
-        <Switch>
-          {arrayRouters.length > 0 &&
-            arrayRouters.map(({ component: Component, ...rest }, index) => {
-              return (
-                <Route
-                  key={index}
-                  {...rest}
-                  render={props => (
-                    <React.Suspense
-                      fallback={
-                        <Spin
-                          style={{
-                            position: 'absolute',
-                            zIndex: '999',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                          }}
-                        />
-                      }
-                    >
-                      <Component {...props} />
-                    </React.Suspense>
-                  )}
-                />
-              );
-            })}
-        </Switch>
-      </ConnectedRouter>
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <Suspense fallback={<Spin style={{ position: 'absolute', zIndex: '999', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />}>
+                <Routes>
+                    <Route path="/" element={<LayoutCustomer />}>
+                        {publicRoutes.map(({ element: Element, path }, index) => (
+                            <Route
+                                key={index}
+                                path={path}
+                                element={
+                                    <Suspense fallback={<Spin style={{ position: 'absolute', zIndex: '999', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />}>
+                                        <Element />
+                                    </Suspense>
+                                }
+                            />
+                        ))}
+                    </Route>
+                    {middleware.isAdmin ? (
+                        <Route path="/admin/tab/*" element={<LayoutAdmin />}>
+                            {privateRoutes.map(({ element: Element, path }, index) => (
+                                <Route
+                                    key={index}
+                                    path={path}
+                                    element={
+                                        <Suspense fallback={<Spin style={{ position: 'absolute', zIndex: '999', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />}>
+                                            <Element />
+                                        </Suspense>
+                                    }
+                                />
+                            ))}
+                        </Route>
+                    ):(
+                        <Route path="/admin/tab/*" element={<Navigate to="/not-authorized" replace />} />
+                    )}
+
+                    <Route path="*" element={<Navigate to="/page-not-found" replace />} />
+                </Routes>
+            </Suspense>
+        </React.Fragment>
+    );
 }
 
 export default App;

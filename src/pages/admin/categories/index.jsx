@@ -1,25 +1,34 @@
 import React, { useEffect, useState,} from 'react';
-// import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-// import { Card, Col, Row, Statistic } from 'antd';
 import FilterAddTechStore from '@components/common/filterAddTechStore';
 import DrawerTechStore from '@components/common/drawerTechStore';
 import TableTechStore from '@components/common/tableTechStore';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchParameterCategoriesAction } from '@features/categories/categoriesActions';
+import { useFilterContext } from '@contexts/filterContext';
 
 function Categories(){
-    const [openDrawer, setOpenDrawer] = useState(false);
+    const dispatch = useDispatch();
+    const { handleFilter, filterValue } = useFilterContext();
+    const svCategories = useSelector(state => state.categories.fetchParameter);
+    
+    // useEffect(() => {
+    //     dispatch(fetchParameterCategoriesAction({parameter: 'all'}));
+    // } ,[dispatch]);
 
-    function handleOpenDrawer(value) {
-      setOpenDrawer(value);
-    }
+    useEffect(() => {
+      dispatch(fetchParameterCategoriesAction({parameter:filterValue}));
+  } ,[filterValue]);
 
-    function handleCloseDrawer(value) {
-      setOpenDrawer(value);
-    }
+
+    useEffect(() => {
+      svCategories?.data.length > 0 && console.log(svCategories?.data);
+  } ,[svCategories])
+
 
     return (
       <React.Fragment>
-        <DrawerTechStore visibleDrawer={openDrawer} closeDrawer={handleCloseDrawer}/>
-        <FilterAddTechStore title="Category" onOpenDrawer={handleOpenDrawer} />
+        <DrawerTechStore/>
+        <FilterAddTechStore title="Category" />
         <TableTechStore/>
       </React.Fragment>
     )
