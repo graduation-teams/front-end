@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Table } from 'antd';
+import { Table, Typography } from 'antd';
+import Highlighter from 'react-highlight-words';
 import PropTypes from 'prop-types';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
-
+import { hasKeyword, removeAccents } from '@utils/helpers';
+const { Text } = Typography;
 
 const columns = [
     {
@@ -11,12 +13,12 @@ const columns = [
       dataIndex: 'name',
     },
     {
-      title: 'Age',
-      dataIndex: 'age',
+      title: 'Slug',
+      dataIndex: 'slug',
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
+      title: 'Created at',
+      dataIndex: 'createdAt',
     },
   ];
   const data = [];
@@ -29,8 +31,31 @@ const columns = [
       address: `London, Park Lane no. ${i}`,
     });
   }
+const getColumnConfig = (filterValue, viewDetail, deleteCloth, updateCloth, roles) => [
+  {
+    title: (
+      <Text ellipsis strong>
+        Name
+      </Text>
+    ),
+    dataIndex: 'name',
+    filterMultiple: false,
+    width: 120,
+    filteredValue: [filterValue],
+    render: name => {
+      return (
+        <div className="table-item">
+          <Text ellipsis>
+            <Highlighter highlightClassName="highlighted-text" searchWords={[filterValue]} autoEscape={true} textToHighlight={name} sanitize={removeAccents} />
+          </Text>
+        </div>
+      );
+    },
+  },
+];
 
-function TableTechStore(props) {
+
+function TableTechStore({dataTable},...props) {
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 

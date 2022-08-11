@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
-import { Layout, Menu } from 'antd';
+import React from 'react';
+import { useDispatch, useSelector, connect } from 'react-redux';
+import { Layout } from 'antd';
+import { Helmet } from 'react-helmet';
 import FooterComponent from '../components/footer/footer';
 import HeaderComponent from '../components/header/header';
 import PropTypes from 'prop-types';
+import { Link, Outlet} from 'react-router-dom';
 
-function Layouts({ childrenComponent , ...props }) {
-    const [components, setComponents] = useState([]);
 
-    useEffect(() => {
-        if (childrenComponent.length > 0) {
-            setComponents(childrenComponent);
-        }
-    }, [childrenComponent]);
+function LayoutCustomer({ childrenComponent, ...props }) {
+   
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>TechStore</title>
+            </Helmet>
             <Layout style={typeof window === 'undefined' ? { display: 'none' } : { backgroundColor: '#ffffff' }}>
                 <HeaderComponent />
                 <Layout.Content>
-                    {components && components.length > 0
-                        ? components.map(({ element: Element }, index) => {
-                              return <Element key={index} />;
-                          })
-                        : null}
+                    <Outlet/>
                 </Layout.Content>
                 <FooterComponent />
             </Layout>
@@ -42,12 +37,12 @@ const mapStateToProps = state => ({
     action: state.router.action,
 });
 
-Layouts.prototype = {
+LayoutCustomer.prototype = {
     childrenComponent: PropTypes.array,
-}
-
-Layouts.defaultProps = {
-    childrenComponent: []
 };
 
-export default connect(mapStateToProps)(Layouts);
+LayoutCustomer.defaultProps = {
+    childrenComponent: [],
+};
+
+export default connect(mapStateToProps)(LayoutCustomer);

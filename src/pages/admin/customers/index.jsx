@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useMemo, lazy } from 'react';
 
 
-function ManageUsers(){
+function Customers(){
     return (
         <div>
-            <h1>ManageUsers</h1>
+            <h1>Customers</h1>
         </div>
     )
 }
 
-export default ManageUsers;
+export default Customers;
