@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet';
-import Layouts from '@layouts/client';
+import LayoutCustomer from '@containers/layoutCustomer';
 import { useDispatch } from 'react-redux';
 import { useViewport } from '@hooks';
 import { getLocalStorage } from '@utils/helpers';
@@ -20,7 +20,7 @@ function ProductDetailPage() {
             <Helmet>
                 <title>Product Detail</title>
             </Helmet>
-            <Layouts childrenComponent={Elements} />
+            <LayoutCustomer childrenComponent={Elements} />
         </React.Fragment>
     );
 }

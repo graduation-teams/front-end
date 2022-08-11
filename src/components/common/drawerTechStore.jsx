@@ -4,6 +4,7 @@ import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { CloseOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
+import { useDrawerContext } from '@contexts/drawerContext';
 
 function TitleDrawer({ title, subTitle }) {
     
@@ -45,20 +46,11 @@ function FooterDrawer() {
     );
 }
 
-function DrawerTechStore({ title, subTitle, overrideWidth, element: Element, visibleDrawer, closeDrawer }, ...props) {
-
-    const [visible, setVisible] = useState(false);
-
-    useEffect(() => {
-        if(visibleDrawer){
-            setVisible(visibleDrawer);
-        }
-    }, [visibleDrawer]);
+function DrawerTechStore({ title, subTitle, overrideWidth, element: Element, isCategories }, ...props) {
+    const { DrawerProduct, DrawerCategories } = useDrawerContext();
 
     function handleCloseDrawer(e) {
-        console.log('e', e);
-        setVisible(false);
-        closeDrawer(false);
+        isCategories ? DrawerCategories?.closeModalCategories() : DrawerProduct?.closeModalProduct();
     }
 
     return (
@@ -74,7 +66,7 @@ function DrawerTechStore({ title, subTitle, overrideWidth, element: Element, vis
                     minHeight: 'calc(148px - 24px*2)',
                 }}
                 width={overrideWidth}
-                visible={visible}
+                visible={isCategories? DrawerCategories?.isVisibleModalCategories: DrawerProduct?.isVisibleModalProduct}
                 getContainer={() => document.getElementById('root-drawer')}
                 onClose={handleCloseDrawer}
                 extra={
@@ -111,16 +103,13 @@ DrawerTechStore.propTypes = {
     subTitle: PropTypes.string,
     overrideWidth: PropTypes.number,
     element: PropTypes.element,
-    visibleDrawer: PropTypes.bool,
-    closeDrawer: PropTypes.func,
 };
 
 DrawerTechStore.defaultProps = {
     title: 'Add Category',
     subTitle: 'Add your Product category and necessary information from here',
     overrideWidth: 960,
-    // element: <div></div>,
-    visibleDrawer: false,
+    isCategories: true,
 };
 
 export default withErrorBoundary(DrawerTechStore, {

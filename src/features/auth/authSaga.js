@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import { push,goBack } from 'connected-react-router';
+import { push } from '@lagunovsky/redux-react-router';
 import API from './authAPI';
 import { authenticationConstants as AC_AUTH } from '@constants/auth';
 import { userConstants as AC_USER } from '@constants/user';

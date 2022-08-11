@@ -3,7 +3,7 @@ import { Typography } from 'antd';
 import { UserOutlined, UsergroupAddOutlined, HeartOutlined, LogoutOutlined, SkinOutlined, DashboardOutlined } from '@ant-design/icons';
 import UserModels from '@models/userModels';
 import { Link } from 'react-router-dom';
-import { push } from 'connected-react-router';
+import { push } from '@lagunovsky/redux-react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction, logoutAction } from '@features/auth/authActions';
 const { Title } = Typography;
@@ -28,11 +28,11 @@ function UserMenu({ user }){
         <div className="sub-menu__user">
           <div className="sub-menu__user--box">
             <h3>Personal</h3>
-            <Link to={`/user-profile/user-id/${user.id}/tab-current/info`} className="sub-menu__user--item">
+            <Link to={`/profile/user/${user.id}/tab/info`} className="sub-menu__user--item">
               <UserOutlined style={{ marginRight: '6px' }} />
               View Profile
             </Link>
-            <Link to={`/user-profile/user-id/${user.id}/tab-current/wishlist`} className="sub-menu__user--item">
+            <Link to={`/profile/user/${user.id}/tab/wishlist`} className="sub-menu__user--item">
               <HeartOutlined style={{ marginRight: '6px' }} />
               Whish List
             </Link>
@@ -40,15 +40,15 @@ function UserMenu({ user }){
           {new UserModels(user).isManager() && (
             <div className="sub-menu__user--box">
               <h3>Management</h3>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/dashboard`} className="sub-menu__user--item">
+              <Link to={`/admin/tab/dashboard`} className="sub-menu__user--item">
                 <DashboardOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 Dashboard
               </Link>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/customers`} className="sub-menu__user--item">
+              <Link to={`/admin/tab/customers`} className="sub-menu__user--item">
                 <UsergroupAddOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 All Customers
               </Link>
-              <Link to={`/admin-profile/manager-id/${user.id}/tab-current/products`} className="sub-menu__user--item">
+              <Link to={`/admin/tab/products`} className="sub-menu__user--item">
               <SkinOutlined style={{ marginRight: '6px' }} target="_blank"/>
                 All Products
               </Link>
