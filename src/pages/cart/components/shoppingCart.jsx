@@ -38,19 +38,19 @@ const columns = [
 const data = [
     {
         key: '1',
-        product: 'Iphone 12 pro max màu xanh mới mua hôm qua',
+        product: 'Iphone 12',
         image: 'https://xstore.8theme.com/elementor/demos/electron01/wp-content/uploads/sites/31/2018/09/2.2-4.jpg',
         price: 32000000,
     },
     {
         key: '2',
-        product: 'Canh khổ qua ngoại nấu chê đắng, ra ngoài đường ăn bún bò giò heo',
+        product: 'Iphone 12',
         image: 'https://xstore.8theme.com/elementor/demos/electron01/wp-content/uploads/sites/31/2018/09/3.1-7.jpg',
         price: 42,
     },
     {
         key: '3',
-        product: 'Cơm gà xối mỡ',
+        product: 'Iphone 12',
         image: 'https://xstore.8theme.com/elementor/demos/electron01/wp-content/uploads/sites/31/2018/09/1.1-1.jpg',
         price: 32,
     },
