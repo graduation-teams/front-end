@@ -15,15 +15,15 @@ const listInitialState = {
     data: [],
 }
 
-const fetchParameter = createReducer({ ...listInitialState }, (builder) => {
+const fetchAll = createReducer({ ...listInitialState }, (builder) => {
     builder
-    .addCase(createAction(AC_CATE.CATEGORIES_FETCH_PARAMETER_START),(state, action)=>{
+    .addCase(createAction(AC_CATE.CATEGORIES_FETCH_ALL_START),(state, action)=>{
         return { ...state, pending: true };
     })
-    .addCase(createAction(AC_CATE.CATEGORIES_FETCH_PARAMETER_SUCCESS),(state, action)=>{
+    .addCase(createAction(AC_CATE.CATEGORIES_FETCH_ALL_SUCCESS),(state, action)=>{
         return { ...state, pending: false, success: true, data : action.payload.responsive };
     })
-    .addCase(createAction(AC_CATE.CATEGORIES_FETCH_PARAMETER_FAILED),(state, action)=>{
+    .addCase(createAction(AC_CATE.CATEGORIES_FETCH_ALL_FAILED),(state, action)=>{
         return { ...state, failed: true, success: false, pending: false, data:[] };
     })
     .addDefaultCase((state, action) => {
@@ -48,7 +48,25 @@ const fetchById = createReducer({ ...listInitialState }, (builder) => {
 })
 
 
+const deleteById = createReducer({ ...actionInitialState }, (builder) => {
+    builder
+    .addCase(createAction(AC_CATE.CATEGORIES_DELETE_BY_ID_START),(state, action)=>{
+        return { ...state, pending: true };
+    })
+    .addCase(createAction(AC_CATE.CATEGORIES_DELETE_BY_ID_SUCCESS),(state, action)=>{
+        return { ...state, pending: false, success: true};
+    })
+    .addCase(createAction(AC_CATE.CATEGORIES_DELETE_BY_ID_FAILED),(state, action)=>{
+        return { ...state, failed: true, success: false, pending: false};
+    })
+    .addDefaultCase((state, action) => {
+        return { ...state };
+    })
+});
+
+
 export default combineReducers({
-    fetchParameter,
-    fetchById
+    fetchAll,
+    fetchById,
+    deleteById
 });

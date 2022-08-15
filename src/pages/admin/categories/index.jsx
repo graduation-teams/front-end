@@ -1,35 +1,35 @@
-import React, { useEffect, useState,} from 'react';
+import React, { useEffect, useState, useMemo} from 'react';
 import FilterAddTechStore from '@components/common/filterAddTechStore';
 import DrawerTechStore from '@components/common/drawerTechStore';
 import TableTechStore from '@components/common/tableTechStore';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchParameterCategoriesAction } from '@features/categories/categoriesActions';
+import { fetchAllCategoriesAction } from '@features/categories/categoriesActions';
 import { useFilterContext } from '@contexts/filterContext';
 
 function Categories(){
     const dispatch = useDispatch();
-    const { handleFilter, filterValue } = useFilterContext();
-    const svCategories = useSelector(state => state.categories.fetchParameter);
-    
-    // useEffect(() => {
-    //     dispatch(fetchParameterCategoriesAction({parameter: 'all'}));
-    // } ,[dispatch]);
+    const { filterValue } = useFilterContext();
+    const svCategories = useSelector(state => state.categories.fetchAll);
 
     useEffect(() => {
-      dispatch(fetchParameterCategoriesAction({parameter:filterValue}));
-  } ,[filterValue]);
+      dispatch(fetchAllCategoriesAction());
+    } ,[]);
 
-
-    useEffect(() => {
-      svCategories?.data.length > 0 && console.log(svCategories?.data);
+    const dataCategory = useMemo(() => {
+      if(svCategories?.failed) return [];
+      if(svCategories?.success && svCategories?.data.length >0){
+        return svCategories?.data
+      }else{
+        return [];
+      };
   } ,[svCategories])
 
 
     return (
       <React.Fragment>
-        <DrawerTechStore/>
-        <FilterAddTechStore title="Category" />
-        <TableTechStore/>
+        <DrawerTechStore isCategories={true}/>
+        <FilterAddTechStore title="Categories"  isCategories={true}/>
+        <TableTechStore dataAPI={dataCategory} callingAPI={svCategories?.pending} isCategories={true}/>
       </React.Fragment>
     )
 }

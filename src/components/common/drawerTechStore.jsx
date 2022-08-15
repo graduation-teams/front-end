@@ -17,7 +17,7 @@ function TitleDrawer({ title, subTitle }) {
     );
 }
 
-function FooterDrawer() {
+function FooterDrawer({handleCancel, textConfirm}) {
     return (
         <div className="custom--footer_drawer">
             <Space size="large" align="center" wrap={false} className='custom--space'>
@@ -28,6 +28,7 @@ function FooterDrawer() {
                     style={{
                         width: '435px',
                     }}
+                    onClick={() => handleCancel()}
                 >
                     Cancel
                 </Button>
@@ -39,14 +40,14 @@ function FooterDrawer() {
                         width: '435px',
                     }}
                 >
-                    Add Category
+                    {textConfirm}
                 </Button>
             </Space>
         </div>
     );
 }
 
-function DrawerTechStore({ title, subTitle, overrideWidth, element: Element, isCategories }, ...props) {
+function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories, updateItem, overrideTextButtonConfirm }, ...props) {
     const { DrawerProduct, DrawerCategories } = useDrawerContext();
 
     function handleCloseDrawer(e) {
@@ -59,7 +60,7 @@ function DrawerTechStore({ title, subTitle, overrideWidth, element: Element, isC
                 className="section__drawer--tech-store"
                 closable={false}
                 title={<TitleDrawer title={title} subTitle={subTitle} />}
-                footer={<FooterDrawer />}
+                footer={<FooterDrawer handleCancel={handleCloseDrawer} textConfirm={overrideTextButtonConfirm}/>}
                 headerStyle={{
                     backgroundColor: '#f9fafb',
                     padding: '24px',
@@ -103,13 +104,17 @@ DrawerTechStore.propTypes = {
     subTitle: PropTypes.string,
     overrideWidth: PropTypes.number,
     element: PropTypes.element,
+    updateItem: PropTypes.object,
+    overrideTextButtonConfirm: PropTypes.string,
 };
 
 DrawerTechStore.defaultProps = {
-    title: 'Add Category',
+    title: 'Add Categories',
     subTitle: 'Add your Product category and necessary information from here',
     overrideWidth: 960,
-    isCategories: true,
+    isCategories: false,
+    updateItem: {},
+    overrideTextButtonConfirm: 'Add Categories',
 };
 
 export default withErrorBoundary(DrawerTechStore, {
