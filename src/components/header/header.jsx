@@ -223,11 +223,11 @@ function Header(props) {
                                                             size={{ xs: 40, sm: 40, md: 40, lg: 40, xl: 40, xxl: 40 }}
                                                             gap={3}
                                                             icon={<UserOutlined />}
-                                                            src={infoUser?.avatar_url}
+                                                            src={infoUser?.avatarUrl}
                                                         />
                                                         <Button type="text" size="large">
                                                             <Text strong style={{ color: '#0D1D2E', fontFamily: "'Mulish', sans-serif", fontWeight: '700', fontStyle: 'normal', width: '100px' }} ellipsis={true}>
-                                                                {infoUser?.full_name ?? ''}
+                                                                {infoUser?.fullName ?? ''}
                                                             </Text>
                                                         </Button>
                                                     </Space>

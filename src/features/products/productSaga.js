@@ -9,7 +9,8 @@ import {handleHttpCode, extractErrorMsg} from '@api/httpCode';
 function* fetchAllProductsSaga(action) {
     try{
         yield put({ type: AC_PRODUCT. PRODUCTS_FETCH_ALL_START });
-        const { data } = yield call(API.fetchAllProductsAPI);
+        const isAdmin = action?.payload?.isAdmin;
+        const { data } = yield call(API.fetchAllProductsAPI, {isAdmin:isAdmin});
         yield put({ type: AC_PRODUCT. PRODUCTS_FETCH_ALL_SUCCESS, payload: {responsive:data} });
     }
     catch(e){

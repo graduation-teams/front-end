@@ -1,6 +1,6 @@
 import request from '@api/configureAPI';
 
-const fetchAllProductsAPI = () => request.get('/admin/products')
+const fetchAllProductsAPI = ({isAdmin}) => request.get(`${isAdmin ? '/admin/product' : '/product'}`)
 
 const fetchByIdProductsAPI = ({id}) => request.get(`/admin/categories/${id}`)
 

@@ -1,6 +1,6 @@
 import request from '@api/configureAPI';
 
-const fetchAllCategoriesAPI = () => request.get('/admin/categories/all')
+const fetchAllCategoriesAPI = () => request.get('/categories');
 
 const fetchByIdCategoriesAPI = ({id}) => request.get(`/admin/categories/${id}`)
 

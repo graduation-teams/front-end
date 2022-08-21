@@ -8,7 +8,7 @@
     "@babel/runtime-corejs2": "^7.18.9",
     "@lagunovsky/redux-react-router": "^4.0.0",
     "@reduxjs/toolkit": "^1.8.3",
-    "antd": "^4.22.4",
+    "antd": "^4.22.6",
     "antd-img-crop": "^4.2.3",
     "axios": "^0.27.2",
     "core-js": "^3.23.5",
