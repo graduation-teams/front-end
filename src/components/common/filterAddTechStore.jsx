@@ -4,17 +4,22 @@ import { ErrorComponent } from '@components/common';
 import { Col, Row, Typography, Space, Button, Input, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-const { Option } = Select;
+
 import { useDrawerContext } from '@contexts/drawerContext';
 import { useFilterContext } from '@contexts/filterContext';
+import { useKeywordContext } from '@contexts/keywordContext';
+
+const { Option } = Select;
+
 
 function FilterAddTechStore({ title, placeholderInput, isCategories }, ...props) {
     const { DrawerProduct, DrawerCategories } = useDrawerContext();
+    const { keywordValue, handleSetKeyword } = useKeywordContext();
     const { handleFilter, filterValue } = useFilterContext();
 
-    useEffect(() => {
-        console.log('filterValue', filterValue);
-    },[filterValue]);
+    function handleChange(e){
+        handleSetKeyword(e.target.value);
+    }
 
 
     return (
@@ -25,7 +30,7 @@ function FilterAddTechStore({ title, placeholderInput, isCategories }, ...props)
                     <Col span={24} className="section__filter-add-tech-store--col">
                         <div className="section__filter-add-tech-store--box">
                             <Space size="large" align="center" wrap={false} className="custom--space">
-                                <Input placeholder={placeholderInput} size="large" className="custom--input"/>
+                                <Input placeholder={placeholderInput} size="large" className="custom--input" onChange={handleChange}/>
                                 <Select size="large" className="custom--select" defaultValue="all" style={{
                                     width: isCategories ? '430px' : '205px',
                                 }} onChange={(value, option)=>handleFilter(value)}>
@@ -65,9 +70,9 @@ FilterAddTechStore.propTypes = {
 };
 
 FilterAddTechStore.defaultProps = {
-    title: 'Category',
+    title: 'Categories',
     placeholderInput: 'Search by category type',
-    isCategories: true,
+    isCategories: false,
 };
 
 export default withErrorBoundary(FilterAddTechStore, {

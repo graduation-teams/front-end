@@ -1,0 +1,39 @@
+.override-ant-modal{
+    .ant-modal-content{
+        border-radius: 0.5rem;
+        .ant-modal-body{
+            .custom-content-modal{
+                width:100%;
+                text-align: center;
+                padding-top: 1.5rem;
+                padding-bottom: 1rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                .custom-content-modal-icon{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .custom-content-modal-text{
+                    margin-bottom: 2.8rem;
+                    .ant-typography{
+                        display: block;
+                        strong{
+                            font-size: 2rem;
+                            font-weight: $weight-500;
+                            font-family: $mulish;
+                            color: #24262d;
+                            
+                        }
+                    }
+                    
+                }
+
+                .custom-content-modal-button{
+
+                }
+            }
+        }
+    }
+    
+}

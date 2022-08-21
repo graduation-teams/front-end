@@ -3,23 +3,24 @@ import { includes } from "lodash";
 class UserModels {
     constructor(data = {}) {
         this.id = data.id ||'';
-        this.full_name = data.full_name ||'';
+        this.fullName = data.fullName ||'';
         this.name = data.name ||'';
         this.email = data.email ||'';
-        this.phone_number = data.phone_number ||'';
-        this.role = data.role ||'';
+        this.phoneNumber = data.phoneNumber ||'';
+        this.roles = data.roles ||[];
         this.score = data.score ||0;
-        this.avatar_url = data.avatar_url ||'';
-        this.created_at = data.created_at ||'';
-        this.updated_at = data.updated_at ||'';
+        this.avatarUrl = data.avatarUrl ||'';
+        this.createdAt = data.createdAt ||'';
+        this.updatedAt = data.updatedAt ||'';
+        this.deletedAt = data.deletedAt ||'';
     }
     
     isManager(){
-        return includes(['admin','staff'],this.role);
+        return includes(this.roles, 'admin', 'staff');
     }
 
     isAdmin(){
-        return includes(['admin'],this.role);
+        return includes(this.roles, 'admin');
     }
 }
 
