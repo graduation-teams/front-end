@@ -338,8 +338,20 @@
             margin: 0;
             margin-bottom: 0;
             border-bottom: 1px solid #e1e1e1;
+            &.shrink {
+                position: fixed !important;
+                background-color: #fff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                top: 0;
+                left: 0;
+                right: 0;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+                @include animate-css(fadeIn);
+                z-index: 999;
+            }
             .header-tech-store__logo {
-                @include tablet{
+                @include tablet {
                     text-align: center;
                 }
                 .override-ant-space {
