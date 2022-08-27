@@ -6,6 +6,8 @@ import { Col, Row, Table, Space, Button, message, Upload, Divider, Input, Select
 import { InboxOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
 
+const { TextArea } = Input;
+
 const { Dragger } = Upload;
 const props = {
     name: 'file',
@@ -43,12 +45,14 @@ const onFinishFailed = () => {
 };
 
 function FromProducts(param) {
-    const [items, setItems] = useState(['jack', 'lucy']);
+    const [parentCategories, setParentCategories] = useState(['jack', 'lucy', 'mikey', 'draken']);
+    const [childCategories, setChildCategories] = useState(['jack', 'lucy', 'mikey', 'draken']);
+    const [productType, setProductType] = useState(['jack', 'lucy', 'mikey', 'draken']);
 
     return (
         <React.Fragment>
             <Form name="basic" wrapperCol={{ span: 24 }} initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
-                <Row>
+                <Row style={{ marginBottom: '25px' }}>
                     <Col span={6}>Category Icon</Col>
                     <Col span={18}>
                         <Dragger {...props}>
@@ -60,8 +64,73 @@ function FromProducts(param) {
                         </Dragger>
                     </Col>
                 </Row>
-                <br />
                 <Row>
+                    <Col span={6}>Product SKU</Col>
+                    <Col span={18}>
+                        <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
+                            <Input size="large" placeholder="Product SKU" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>Product Title/Name</Col>
+                    <Col span={18}>
+                        <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
+                            <Input size="large" placeholder="Product Title/Name" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>Product Slug</Col>
+                    <Col span={18}>
+                        <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
+                            <Input size="large" placeholder="Product Slug" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>Product Description</Col>
+                    <Col span={18}>
+                        <Form.Item>
+                            <TextArea rows={4} placeholder="Product Description" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row style={{ marginBottom: '25px' }}>
+                    <Col span={6}>Parent Category</Col>
+                    <Col span={18}>
+                        <Select
+                            style={{
+                                width: '100%',
+                            }}
+                            size="large"
+                            placeholder="Parent Category"
+                            dropdownRender={menu => <>{menu}</>}
+                        >
+                            {parentCategories.map(item => (
+                                <Option key={item}>{item}</Option>
+                            ))}
+                        </Select>
+                    </Col>
+                </Row>
+                <Row style={{ marginBottom: '25px' }}>
+                    <Col span={6}>Child Category</Col>
+                    <Col span={18}>
+                        <Select
+                            style={{
+                                width: '100%',
+                            }}
+                            size="large"
+                            placeholder="Child Category"
+                            dropdownRender={menu => <>{menu}</>}
+                        >
+                            {childCategories.map(item => (
+                                <Option key={item}>{item}</Option>
+                            ))}
+                        </Select>
+                    </Col>
+                </Row>
+                <Row style={{ marginBottom: '25px' }}>
                     <Col span={6}>Product Type</Col>
                     <Col span={18}>
                         <Select
@@ -69,29 +138,52 @@ function FromProducts(param) {
                                 width: '100%',
                             }}
                             size="large"
-                            placeholder="Select Items"
+                            placeholder="Product Type"
                             dropdownRender={menu => <>{menu}</>}
                         >
-                            {items.map(item => (
+                            {productType.map(item => (
                                 <Option key={item}>{item}</Option>
                             ))}
                         </Select>
                     </Col>
                 </Row>
-                <br />
                 <Row>
-                    <Col span={6}>Parent Category</Col>
+                    <Col span={6}>Unit (kg/pc/lb/ml/g...etc)</Col>
                     <Col span={18}>
                         <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
-                            <Input size="large" placeholder="Category Title" />
+                            <Input size="large" placeholder="Unit" />
                         </Form.Item>
                     </Col>
                 </Row>
                 <Row>
-                    <Col span={6}>Child Category</Col>
+                    <Col span={6}>Product Quantity</Col>
                     <Col span={18}>
                         <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
-                            <Input size="large" placeholder="Child Category (Write then press enter to add new child category)" />
+                            <Input size="large" placeholder="Quantity" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>Product Price</Col>
+                    <Col span={18}>
+                        <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
+                            <Input size="large" placeholder="Price" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>Sale Price</Col>
+                    <Col span={18}>
+                        <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
+                            <Input size="large" placeholder="Sale Price" />
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={6}>Product Tag</Col>
+                    <Col span={18}>
+                        <Form.Item style={{ width: '100%' }} rules={[{ required: true, message: "Don't leave it blank" }]}>
+                            <Input size="large" placeholder="Product Tag" />
                         </Form.Item>
                     </Col>
                 </Row>

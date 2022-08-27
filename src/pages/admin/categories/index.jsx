@@ -83,7 +83,7 @@ function Categories() {
             <DrawerTechStore isCategories={true} childrenForm={<FromCategories />} />
 
             <TypeCategories dataAPI={dataType} callingAPI={svTypes?.pending} columConfigs={colConfigsTypes} />
-            <FilterAddTechStore title="Categories" isCategories={true} dataAPI={dataType} />
+            <FilterAddTechStore title="Add Product" overrideTextButtonConfirm="Add Product" isCategories={true} dataAPI={dataType} />
             <TableTechStore dataAPI={dataCategory} callingAPI={svCategories?.pending} columConfigs={colConfigsCategories} />
         </React.Fragment>
     );
