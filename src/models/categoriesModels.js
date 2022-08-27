@@ -22,11 +22,9 @@ class CategoriesModels {
             console.log('categoriesParent', categoriesParent);
             console.log('categoriesChildren', categoriesChildren);
 
-            const filterChildren = (idParent) => ({
-                children:[
-                    
-                ]
-            })
+            const filterChildren = (objectItem) => {
+                
+            }
 
             const cat=  categoriesParent.map(item => ({
                 key: item?.id,
@@ -39,12 +37,21 @@ class CategoriesModels {
                     idItem: item?.id,
                 },
                 type: item?.type?.name,
-                [item?.id !== 1 ? "children":"child"]: categoriesChildren.filter(itemChild => itemChild?.idParent === item?.id).map(item=>({
+                [item?.id !== 1 ? 'children':'child']:categoriesChildren.filter(items =>  items?.idParent === item?.id ).map(item => ({
                     key: item?.id,
                     name: item?.name,
                     slug: item?.slug,
                     icon: item?.thumbnailUrl,
                     author : item?.byAuthor?.id && includes(item?.byAuthor?.roles, 'admin') ? item?.byAuthor?.fullName : '-',
+                    published: {
+                        value: item?.published,
+                        idItem: item?.id,
+                    },
+                    type: item?.type?.name,
+                    options: {
+                        ...item,
+                        hiddenButton:hiddenButton
+                    },
                 })),
                 options: {
                     ...item,
