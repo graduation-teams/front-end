@@ -4,22 +4,26 @@ import { ErrorComponent } from '@components/common';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Modal, Space, Typography } from 'antd';
 import { deleteByIdCategoriesAction } from '@features/categories/categoriesActions';
+import { deleteByIdTypeCategoriesAction } from '@features/type/typeActions';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 const { Text } = Typography;
 
-function ModalConfirmTechStore({ dataModal, title, subTitle, isCategory, icon, textConfirm, textCancel }) {
+function ModalConfirmTechStore({ dataModal, title, subTitle, isCategory, icon, textConfirm, textCancel , confirmIs}) {
     const dispatch = useDispatch();
     const [modalVisible, setModalVisible] = useState(false);
 
     function handleConfirmDelete() {
-        isCategory
-            ? dispatch(
-                  deleteByIdCategoriesAction({
-                      idCategory: dataModal?.idItem,
-                  })
-              )
-            : null;
+            switch (dataModal?.confirmIs) {
+                case 'categories':
+                    dispatch(deleteByIdCategoriesAction({idCategory: dataModal?.idItem }))
+                    break;
+                case 'type':
+                    dispatch(deleteByIdTypeCategoriesAction({idTypeCategory: dataModal?.idItem }))
+                    break;
+                default:
+                    break;
+            }
         setModalVisible(false);
     }
 
@@ -80,6 +84,7 @@ ModalConfirmTechStore.propTypes = {
     icon: PropTypes.any,
     textConfirm: PropTypes.string,
     textCancel: PropTypes.string,
+    confirmIs: PropTypes.string,
 };
 
 ModalConfirmTechStore.defaultProps = {
@@ -90,6 +95,7 @@ ModalConfirmTechStore.defaultProps = {
     icon: <DeleteOutlined style={{ color: '#f05252', marginBottom: '1.5rem', fontSize: ' 3rem' }} />,
     textConfirm: 'Yes, Delete It',
     textCancel: 'No, Keep It',
+    confirmIs: 'category',
 };
 
 export default withErrorBoundary(ModalConfirmTechStore, {

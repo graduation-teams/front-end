@@ -70,6 +70,7 @@ function Categories() {
         console.log('viewDetail: ', record);
         setModalProps({
             idItem: record?.id,
+            confirmIs: typeof record?.type !== "undefined"? "categories" : "type",
         });
     }
 
@@ -81,7 +82,6 @@ function Categories() {
         <React.Fragment>
             <ModalConfirmTechStore dataModal={modalProps} isCategory={true} />
             <DrawerTechStore isCategories={true} childrenForm={<FromCategories />} />
-
             <TypeCategories dataAPI={dataType} callingAPI={svTypes?.pending} columConfigs={colConfigsTypes} />
             <FilterAddTechStore title="Categories" isCategories={true} dataAPI={dataType} />
             <TableTechStore dataAPI={dataCategory} callingAPI={svCategories?.pending} columConfigs={colConfigsCategories} />

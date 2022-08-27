@@ -1,69 +1,89 @@
-import {includes} from 'lodash';
+import { includes } from 'lodash';
 class CategoriesModels {
     constructor(data = {}) {
-        this.id = data.id ||null;
-        this.name = data.name ||null;
-        this.thumbnailUrl = data.thumbnailUrl ||null;
-        this.slug = data.slug ||null;
-        this.published= data.published ||0;
-        this.idAuthor = data.idAuthor ||null;
-        this.byAuthor = data.byAuthor ||null;
-        this.idParent = data.idParent ||null;
-        this.type = data.type ||null;
-        this.createdAt = data.createdAt ||null;
-        this.updatedAt = data.updatedAt ||null;
-        this.deletedAt = data.deletedAt ||null;
+        this.id = data.id || null;
+        this.name = data.name || null;
+        this.thumbnailUrl = data.thumbnailUrl || null;
+        this.slug = data.slug || null;
+        this.published = data.published || 0;
+        this.idAuthor = data.idAuthor || null;
+        this.byAuthor = data.byAuthor || null;
+        this.idParent = data.idParent || null;
+        this.type = data.type || null;
+        this.createdAt = data.createdAt || null;
+        this.updatedAt = data.updatedAt || null;
+        this.deletedAt = data.deletedAt || null;
     }
 
-    handleDataApiCategories(data,hiddenButton){
-        if(data?.length >0){
-            let categoriesParent = data.filter(item => item?.id && item?.idParent === null);
-            let categoriesChildren = data.filter(item => item?.id && typeof item?.idParent === "number");
-            console.log('categoriesParent', categoriesParent);
-            console.log('categoriesChildren', categoriesChildren);
+    handleDataApiCategories(data, hiddenButton) {
+        if (data?.length > 0) {
+            let categoryParent = data.filter(item => item?.idParent === null);
+            let categoryChild = data.filter(item => item?.idParent !== null && typeof item?.idParent === 'number');
 
-            const filterChildren = (objectItem) => {
-                
-            }
-
-            const cat=  categoriesParent.map(item => ({
-                key: item?.id,
-                name: item?.name,
-                slug: item?.slug,
-                icon: item?.thumbnailUrl,
-                author : item?.byAuthor?.id && includes(item?.byAuthor?.roles, 'admin') ? item?.byAuthor?.fullName : '-',
-                published: {
-                    value: item?.published,
-                    idItem: item?.id,
-                },
-                type: item?.type?.name,
-                [item?.id !== 1 ? 'children':'child']:categoriesChildren.filter(items =>  items?.idParent === item?.id ).map(item => ({
-                    key: item?.id,
-                    name: item?.name,
-                    slug: item?.slug,
-                    icon: item?.thumbnailUrl,
-                    author : item?.byAuthor?.id && includes(item?.byAuthor?.roles, 'admin') ? item?.byAuthor?.fullName : '-',
+            const dataCategory = categoryParent?.map(itemCate => (
+                {
+                    key: itemCate?.id,
+                    name: itemCate?.name,
+                    icon: itemCate?.thumbnailUrl,
+                    slug: itemCate?.slug,
                     published: {
-                        value: item?.published,
-                        idItem: item?.id,
+                        value: itemCate?.published,
+                        idItem: itemCate?.id,
                     },
-                    type: item?.type?.name,
+                    cateChild: categoryChild?.filter(item => item?.idParent === itemCate?.id),
+                    author: itemCate?.byAuthor?.id && includes(itemCate?.byAuthor?.roles, 'admin') ? itemCate?.byAuthor?.fullName : '-',
+                    type: itemCate?.type?.name,
                     options: {
-                        ...item,
-                        hiddenButton:hiddenButton
+                            ...itemCate,
+                            hiddenButton: hiddenButton,
                     },
-                })),
-                options: {
-                    ...item,
-                    hiddenButton:hiddenButton
-                },
-            }
+                    
+                }
             ));
-            // cat.map(item => delete item.child);
-            console.log('cat', cat);
-            return cat
+
+            console.log('dataCategory: ', dataCategory);
+
+            return dataCategory;
         }
     }
 }
 
 export default CategoriesModels;
+
+
+// [itemCate?.id !== 1? "children": "child"]: categoryChild?.filter(item => item?.idParent === itemCate?.id)?.map(itemChild => (
+//     {
+//         key: itemChild?.id,
+//         name: itemChild?.name,
+//         icon: itemChild?.thumbnailUrl,
+//         slug: itemChild?.slug,
+//         published: {
+//             value: itemChild?.published,
+//             idItem: itemChild?.id,
+//         },
+//         author: itemChild?.byAuthor?.id && includes(itemChild?.byAuthor?.roles, 'admin') ? itemChild?.byAuthor?.fullName : '-',
+//         type: itemChild?.type?.name,
+//         [itemChild?.idParent !== null?"children":"child"]: categoryChild?.filter(item => item?.idParent === itemChild?.id)?.map(itemChild2 => (
+//             {
+//                 key: itemChild2?.id,
+//                 name: itemChild2?.name,
+//                 icon: itemChild2?.thumbnailUrl,
+//                 slug: itemChild2?.slug,
+//                 published: {
+//                     value: itemChild2?.published,
+//                     idItem: itemChild2?.id,
+//                 },
+//                 type: itemChild2?.type?.name,
+//                 author: itemChild2?.byAuthor?.id && includes(itemChild2?.byAuthor?.roles, 'admin') ? itemChild2?.byAuthor?.fullName : '-',
+//                 options: {
+//                     ...itemChild2,
+//                     hiddenButton: hiddenButton,
+//                 }
+//             }
+//         )),
+//         options: {
+//             ...itemChild,
+//             hiddenButton: hiddenButton,
+//         }
+//     }
+// ))

@@ -14,6 +14,9 @@ class TypeModels {
                 key: item?.id,
                 name: item?.name,
                 slug: item?.slug,
+                options:{
+                    ...item,
+                }
             }));
         }
     }

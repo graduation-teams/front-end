@@ -85,6 +85,32 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
     {
         title: (
             <Text ellipsis strong>
+                CHILDREN
+            </Text>
+        ),
+        dataIndex: 'cateChild',
+        width: 350,
+        filterMultiple: false,
+        filteredValue: [filterValue],
+        render: cateChild => {
+            return (
+                <div className="table-item">
+                   {
+                        cateChild?.length >0 && cateChild.map((item,index)=>{
+                            return (
+                                <Tag color="magenta" key={index}>
+                                    {item.name}
+                                </Tag>
+                            )
+                        })
+                   }
+                </div>
+            );
+        },
+    },
+    {
+        title: (
+            <Text ellipsis strong>
                 Author
             </Text>
         ),
