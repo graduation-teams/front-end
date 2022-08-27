@@ -48,7 +48,7 @@ function FromCategories(param) {
     return (
         <React.Fragment>
             <Form name="basic" wrapperCol={{ span: 24 }} initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
-                <Row>
+                <Row style={{ marginBottom: '25px' }}>
                     <Col span={6}>Category Icon</Col>
                     <Col span={18}>
                         <Dragger {...props}>
@@ -60,8 +60,7 @@ function FromCategories(param) {
                         </Dragger>
                     </Col>
                 </Row>
-                <br />
-                <Row>
+                <Row style={{ marginBottom: '25px' }}>
                     <Col span={6}>Product Type</Col>
                     <Col span={18}>
                         <Select
@@ -78,7 +77,6 @@ function FromCategories(param) {
                         </Select>
                     </Col>
                 </Row>
-                <br />
                 <Row>
                     <Col span={6}>Parent Category</Col>
                     <Col span={18}>
