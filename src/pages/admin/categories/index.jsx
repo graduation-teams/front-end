@@ -7,13 +7,14 @@ import { fetchAllCategoriesAction } from '@features/categories/categoriesActions
 import { fetchAllTypeCategoriesAction } from '@features/type/typeActions';
 import { useFilterContext } from '@contexts/filterContext';
 import { getColumnConfig } from './components/configColumCategories';
-import {getColumnConfigType } from './components/configColumType';
+import { getColumnConfigType } from './components/configColumType';
 import UserModels from '@models/userModels';
 import TypeModels from '@models/typeModels';
 import CategoriesModels from '@models/categoriesModels';
 import { ModalConfirmTechStore } from '@components/common';
 import { useKeywordContext } from '@contexts/keywordContext';
 import TypeCategories from './components/typeCategories';
+import FromCategories from './components/fromCategories';
 
 function Categories() {
     const dispatch = useDispatch();
@@ -35,7 +36,6 @@ function Categories() {
         }
     }, [svCategories]);
 
-
     const dataType = useMemo(() => {
         if (svTypes?.failed) return [];
         if (svTypes?.success && svTypes?.data.length > 0) {
@@ -43,7 +43,7 @@ function Categories() {
         } else {
             return [];
         }
-    },[svTypes]);
+    }, [svTypes]);
 
     const dataUser = useMemo(() => {
         return new UserModels(svUser);
@@ -58,9 +58,9 @@ function Categories() {
         setColConfigsCategories(getColumnConfig(keywordValue, viewDetailItem, deleteItem, updateItem, dataUser));
     }, [dataCategory, dataUser]);
 
-    useEffect(()=>{
-        setColConfigsTypes(getColumnConfigType(keywordValue, viewDetailItem, deleteItem, updateItem, dataUser))
-    },[dataType]);
+    useEffect(() => {
+        setColConfigsTypes(getColumnConfigType(keywordValue, viewDetailItem, deleteItem, updateItem, dataUser));
+    }, [dataType]);
 
     function viewDetailItem(record) {
         console.log('viewDetail: ', record);
@@ -72,18 +72,19 @@ function Categories() {
             idItem: record?.id,
         });
     }
-    
+
     function updateItem(record) {
-      console.log('viewDetail: ', record);
+        console.log('viewDetail: ', record);
     }
 
     return (
         <React.Fragment>
             <ModalConfirmTechStore dataModal={modalProps} isCategory={true} />
-            <DrawerTechStore isCategories={true} />
-            <TypeCategories dataAPI={dataType} callingAPI={svTypes?.pending} columConfigs={colConfigsTypes}/>
+            <DrawerTechStore isCategories={true} childrenForm={<FromCategories />} />
+
+            <TypeCategories dataAPI={dataType} callingAPI={svTypes?.pending} columConfigs={colConfigsTypes} />
             <FilterAddTechStore title="Categories" isCategories={true} dataAPI={dataType} />
-            <TableTechStore dataAPI={dataCategory} callingAPI={svCategories?.pending} columConfigs={colConfigsCategories}/>
+            <TableTechStore dataAPI={dataCategory} callingAPI={svCategories?.pending} columConfigs={colConfigsCategories} />
         </React.Fragment>
     );
 }

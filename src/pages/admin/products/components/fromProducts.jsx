@@ -42,7 +42,7 @@ const onFinishFailed = () => {
     console.log('Failed:', errorInfo);
 };
 
-function FromCategories(param) {
+function FromProducts(param) {
     const [items, setItems] = useState(['jack', 'lucy']);
 
     return (
@@ -100,6 +100,6 @@ function FromCategories(param) {
     );
 }
 
-export default withErrorBoundary(FromCategories, {
+export default withErrorBoundary(FromProducts, {
     FallbackComponent: ErrorComponent,
 });

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Drawer, Space } from 'antd';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
@@ -7,8 +7,6 @@ import PropTypes from 'prop-types';
 import { useDrawerContext } from '@contexts/drawerContext';
 
 function TitleDrawer({ title, subTitle }) {
-    
-
     return (
         <div className="custom--title_drawer">
             <h4>{title}</h4>
@@ -17,12 +15,12 @@ function TitleDrawer({ title, subTitle }) {
     );
 }
 
-function FooterDrawer({handleCancel, textConfirm}) {
+function FooterDrawer({ handleCancel, textConfirm }) {
     return (
         <div className="custom--footer_drawer">
-            <Space size="large" align="center" wrap={false} className='custom--space'>
+            <Space size="large" align="center" wrap={false} className="custom--space">
                 <Button
-                    className='custom--button_drawer button--cancel'
+                    className="custom--button_drawer button--cancel"
                     type="primary"
                     size="large"
                     style={{
@@ -33,7 +31,7 @@ function FooterDrawer({handleCancel, textConfirm}) {
                     Cancel
                 </Button>
                 <Button
-                    className='custom--button_drawer button--save'
+                    className="custom--button_drawer button--save"
                     type="primary"
                     size="large"
                     style={{
@@ -47,7 +45,7 @@ function FooterDrawer({handleCancel, textConfirm}) {
     );
 }
 
-function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories, updateItem, overrideTextButtonConfirm }, ...props) {
+function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories, updateItem, overrideTextButtonConfirm, childrenForm }, ...props) {
     const { DrawerProduct, DrawerCategories } = useDrawerContext();
 
     function handleCloseDrawer(e) {
@@ -60,14 +58,14 @@ function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories
                 className="section__drawer--tech-store"
                 closable={false}
                 title={<TitleDrawer title={title} subTitle={subTitle} />}
-                footer={<FooterDrawer handleCancel={handleCloseDrawer} textConfirm={overrideTextButtonConfirm}/>}
+                footer={<FooterDrawer handleCancel={handleCloseDrawer} textConfirm={overrideTextButtonConfirm} />}
                 headerStyle={{
                     backgroundColor: '#f9fafb',
                     padding: '24px',
                     minHeight: 'calc(148px - 24px*2)',
                 }}
                 width={overrideWidth}
-                visible={isCategories? DrawerCategories?.isVisibleModalCategories: DrawerProduct?.isVisibleModalProduct}
+                visible={isCategories ? DrawerCategories?.isVisibleModalCategories : DrawerProduct?.isVisibleModalProduct}
                 getContainer={() => document.getElementById('root-drawer')}
                 onClose={handleCloseDrawer}
                 extra={
@@ -81,8 +79,8 @@ function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories
                             justifyContent: 'center',
                             alignItems: 'center',
                             cursor: 'pointer',
-                            boxShadow:'0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%)',
-                            color: '#f05252'
+                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%)',
+                            color: '#f05252',
                         }}
                         onClick={handleCloseDrawer}
                     >
@@ -90,10 +88,7 @@ function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories
                     </div>
                 }
             >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                {/* <Element/> */}
+                {childrenForm}
             </Drawer>
         </React.Fragment>
     );
