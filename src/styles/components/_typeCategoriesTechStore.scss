@@ -1,0 +1,29 @@
+.layout-admin_custom--content {
+    .container-1280 {
+        .section__type-categories-tech-store {
+            padding-top: 24px;
+            padding-bottom: 24px;
+            .section__type-categories-tech-store--title {
+                margin-top: 24px;
+                margin-bottom: 24px;
+                font-size: 1.8rem;
+                font-family: $mulish;
+                font-style: normal;
+                font-weight: $weight-700;
+            }
+            .section__type-categories-store--row{
+                .section__type-categories-tech-store--col{
+                    .section__type-categories-tech-store--box{
+                        padding: 16px;
+                        border: 0 solid #d5d6d7;
+                        background-color: #fff;
+                        border-radius: 0.5rem;
+                        margin-bottom: 1.25rem;
+                        overflow: hidden;
+                        box-shadow: 0 0 0 1px rgb(0 0 0 / 5%);
+                    }
+                }
+            }
+        }
+    }
+}

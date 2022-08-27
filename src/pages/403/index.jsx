@@ -9,7 +9,7 @@ const NotAuthorized = () => {
                 title="403"
                 subTitle="Sorry, You do not have permission to access this page!"
                 extra={
-                    <Button href={'/'} type="primary">
+                    <Button href={'/'} type="primary"  style={{backgroundColor:'#C0202B',borderColor:'#C0202B'}} size="large">
                         Back to home page
                     </Button>
                 }

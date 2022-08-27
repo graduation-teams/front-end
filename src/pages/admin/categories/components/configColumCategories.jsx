@@ -6,33 +6,33 @@ import { Typography, Avatar, Switch, Tooltip, Button, Tag } from 'antd';
 
 const { Text } = Typography;
 export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateItem, isLogged) => [
+    // {
+    //     title: (
+    //         <Text ellipsis strong>
+    //             ID
+    //         </Text>
+    //     ),
+    //     dataIndex: 'key',
+    //     filterMultiple: false,
+    //     width: 60,
+    //     filteredValue: [filterValue],
+    //     render: key => {
+    //         return (
+    //             <div className="table-item">
+    //                 <Text ellipsis>{key}</Text>
+    //             </div>
+    //         );
+    //     },
+    // },
     {
         title: (
             <Text ellipsis strong>
-                ID
-            </Text>
-        ),
-        dataIndex: 'key',
-        filterMultiple: false,
-        width: 30,
-        filteredValue: [filterValue],
-        render: key => {
-            return (
-                <div className="table-item">
-                    <Text ellipsis>{key}</Text>
-                </div>
-            );
-        },
-    },
-    {
-        title: (
-            <Text ellipsis strong>
-                PARENT
+                NAME
             </Text>
         ),
         dataIndex: 'name',
         filterMultiple: false,
-        width: 60,
+        width: 120,
         filteredValue: [filterValue],
         render: name => {
             return (
@@ -51,7 +51,7 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
             </Text>
         ),
         dataIndex: 'icon',
-        width: 45,
+        width: 60,
         filterMultiple: false,
         filteredValue: [filterValue],
         render: icon => {
@@ -69,7 +69,7 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
             </Text>
         ),
         dataIndex: 'slug',
-        width: 80,
+        width: 120,
         filterMultiple: false,
         filteredValue: [filterValue],
         render: slug => {
@@ -89,13 +89,13 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
             </Text>
         ),
         dataIndex: 'author',
-        width: 80,
+        width: 120,
         filterMultiple: false,
         filteredValue: [filterValue],
         render: author => {
             return (
                 <div className="table-item">
-                    {author !== '-'?(<Tag color="magenta">
+                    {author !== '-'?(<Tag color="processing">
                         <Highlighter highlightClassName="highlighted-text" searchWords={[filterValue]} autoEscape={true} textToHighlight={author} sanitize={removeAccents} />
                     </Tag>):author}
                 </div>
@@ -110,12 +110,12 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
         ),
         dataIndex: 'type',
         filterMultiple: false,
-        width: 45,
+        width: 120,
         filteredValue: [filterValue],
         render: type => {
             return (
                 <div className="table-item">
-                    {type === 1 ? (<Tag color='#2db7f5'>Blog</Tag>) : (<Tag color='#87d068'>Product</Tag>)}
+                    {typeof type !== "undefined"?(<Tag color="purple">{type}</Tag>):'-'}
                 </div>
             );
         },
@@ -128,12 +128,12 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
         ),
         dataIndex: 'published',
         filterMultiple: false,
-        width: 45,
+        width: 90,
         filteredValue: [filterValue],
         render: published => {
             return (
                 <div className="table-item">
-                    <Switch size="small" checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked={published===1?true:false} />
+                    <Switch size="small" checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} defaultChecked={published?.value===1?true:false} disabled={published?.idItem===1}/>
                 </div>
             );
         },
@@ -145,7 +145,7 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
           </Text>
         ),
         dataIndex: 'options',
-        width: 60,
+        width: 120,
         filterMultiple: false,
         render: options => {
           return (
@@ -154,7 +154,7 @@ export const getColumnConfig = (filterValue, viewDetailItem, deleteItem, updateI
                 {
                     !options?.hiddenButton && (<Button onClick={() => viewDetailItem(options)} className="override-ant-button-actions" icon={<ZoomInOutlined />} />)
                 }
-                {isLogged?.isAdmin() && (
+                {isLogged?.isAdmin() && options?.id !==1 &&(
                   <React.Fragment>
                     <Tooltip placement="top" destroyTooltipOnHide={true} color='cyan' title={'Edit'} zIndex={500}><Button onClick={() => updateItem(options)} className="override-ant-button-actions" icon={<EditOutlined />} /></Tooltip>
                     <Tooltip placement="top" destroyTooltipOnHide={true} color='#f50' title={'Delete'} zIndex={500}><Button onClick={() => deleteItem(options)} className="override-ant-button-actions" icon={<DeleteOutlined />} /></Tooltip>

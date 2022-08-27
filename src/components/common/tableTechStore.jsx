@@ -8,10 +8,22 @@ import { useKeywordContext } from '@contexts/keywordContext';
 function TableTechStore({ dataAPI, callingAPI, columConfigs }, ...props) {
     const {  isPending } = useKeywordContext();
 
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelect: (record, selected, selectedRows) => {
+          console.log(record, selected, selectedRows);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+          console.log(selected, selectedRows, changeRows);
+        },
+      };
+
     return (
         <React.Fragment>
             <Table
-                rowSelection={{}}
+                rowSelection={{ ...rowSelection}}
                 columns={columConfigs}
                 loading={callingAPI || isPending}
                 dataSource={dataAPI}
@@ -24,7 +36,7 @@ function TableTechStore({ dataAPI, callingAPI, columConfigs }, ...props) {
                     pageSizeOptions: [10, 20, 50, 100, 200, 500],
                     className: 'override-ant-pagination',
                 }}
-                scroll={{ x: 560, y: 450 }}
+                scroll={{ x: 1500, y: 450 }}
             />
         </React.Fragment>
     );

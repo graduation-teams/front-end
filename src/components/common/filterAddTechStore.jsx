@@ -1,21 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { Col, Row, Typography, Space, Button, Input, Select } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-
 import { useDrawerContext } from '@contexts/drawerContext';
 import { useFilterContext } from '@contexts/filterContext';
 import { useKeywordContext } from '@contexts/keywordContext';
-
 const { Option } = Select;
 
 
-function FilterAddTechStore({ title, placeholderInput, isCategories }, ...props) {
+function FilterAddTechStore({ title, placeholderInput, isCategories, dataAPI}, ...props) {
     const { DrawerProduct, DrawerCategories } = useDrawerContext();
     const { keywordValue, handleSetKeyword } = useKeywordContext();
     const { handleFilter, filterValue } = useFilterContext();
+
 
     function handleChange(e){
         handleSetKeyword(e.target.value);
@@ -24,7 +23,7 @@ function FilterAddTechStore({ title, placeholderInput, isCategories }, ...props)
 
     return (
         <React.Fragment>
-            <div className="section__filter-add-tech-store">
+            <section className="section__filter-add-tech-store">
                 <h4 className="section__filter-add-tech-store--title">{title}</h4>
                 <Row gutter={[24, 48]} align="middle" justify="space-around" className="section__filter-add-tech-store--row">
                     <Col span={24} className="section__filter-add-tech-store--col">
@@ -35,8 +34,9 @@ function FilterAddTechStore({ title, placeholderInput, isCategories }, ...props)
                                     width: isCategories ? '430px' : '205px',
                                 }} onChange={(value, option)=>handleFilter(value)}>
                                     <Option value="all" key="all">All</Option>
-                                    <Option value="blog" key="blog">Blogs</Option>
-                                    <Option value="product" key="product">Products</Option>
+                                    {dataAPI?.length >0 && dataAPI.map((item, index)=>(
+                                        <Option key={index} value={item?.slug}>{item?.name}</Option>
+                                    ))}
                                 </Select>
                                 {
                                     !isCategories && (
@@ -58,7 +58,7 @@ function FilterAddTechStore({ title, placeholderInput, isCategories }, ...props)
                         </div>
                     </Col>
                 </Row>
-            </div>
+            </section>
         </React.Fragment>
     );
 }
@@ -67,12 +67,14 @@ FilterAddTechStore.propTypes = {
     title: PropTypes.string,
     placeholderInput: PropTypes.string,
     isCategories: PropTypes.bool,
+    dataAPI: PropTypes.array,
 };
 
 FilterAddTechStore.defaultProps = {
     title: 'Categories',
     placeholderInput: 'Search by category type',
     isCategories: false,
+    dataAPI: [],
 };
 
 export default withErrorBoundary(FilterAddTechStore, {

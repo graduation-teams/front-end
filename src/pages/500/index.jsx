@@ -9,7 +9,7 @@ const ServerDied = () => {
                 title="500"
                 subTitle="Sorry, There was an error at the server, please try again later!"
                 extra={
-                    <Button href={'/'} type="primary">
+                    <Button href={'/'} type="primary"  style={{backgroundColor:'#C0202B',borderColor:'#C0202B'}} size="large">
                         Back to home page
                     </Button>
                 }

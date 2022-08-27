@@ -1,40 +1,60 @@
 import {includes} from 'lodash';
 class CategoriesModels {
     constructor(data = {}) {
-        this.id = data.id ||'';
-        this.name = data.name ||'';
-        this.thumbnailUrl = data.thumbnailUrl ||'';
-        this.active = data.active ||0;
-        this.slug = data.slug ||'';
+        this.id = data.id ||null;
+        this.name = data.name ||null;
+        this.thumbnailUrl = data.thumbnailUrl ||null;
+        this.slug = data.slug ||null;
         this.published= data.published ||0;
         this.idAuthor = data.idAuthor ||null;
         this.byAuthor = data.byAuthor ||null;
         this.idParent = data.idParent ||null;
-        this.typeCategory = data.typeCategory ||null;
-        this.createdAt = data.createdAt ||'';
-        this.updatedAt = data.updatedAt ||'';
+        this.type = data.type ||null;
+        this.createdAt = data.createdAt ||null;
+        this.updatedAt = data.updatedAt ||null;
         this.deletedAt = data.deletedAt ||null;
     }
 
     handleDataApiCategories(data,hiddenButton){
         if(data?.length >0){
-            return data.filter(item => item.id).map((item, index) => {
-                return{
+            let categoriesParent = data.filter(item => item?.id && item?.idParent === null);
+            let categoriesChildren = data.filter(item => item?.id && typeof item?.idParent === "number");
+            console.log('categoriesParent', categoriesParent);
+            console.log('categoriesChildren', categoriesChildren);
+
+            const filterChildren = (idParent) => ({
+                children:[
+                    
+                ]
+            })
+
+            const cat=  categoriesParent.map(item => ({
+                key: item?.id,
+                name: item?.name,
+                slug: item?.slug,
+                icon: item?.thumbnailUrl,
+                author : item?.byAuthor?.id && includes(item?.byAuthor?.roles, 'admin') ? item?.byAuthor?.fullName : '-',
+                published: {
+                    value: item?.published,
+                    idItem: item?.id,
+                },
+                type: item?.type?.name,
+                [item?.id !== 1 ? "children":"child"]: categoriesChildren.filter(itemChild => itemChild?.idParent === item?.id).map(item=>({
                     key: item?.id,
                     name: item?.name,
                     slug: item?.slug,
                     icon: item?.thumbnailUrl,
                     author : item?.byAuthor?.id && includes(item?.byAuthor?.roles, 'admin') ? item?.byAuthor?.fullName : '-',
-                    active: item?.active,
-                    published: item?.published,
-                    type: item?.typeCategory,
-                    children: item?.idParent,
-                    options: {
-                        item,
-                        hiddenButton:hiddenButton
-                    },
-                }
-            });
+                })),
+                options: {
+                    ...item,
+                    hiddenButton:hiddenButton
+                },
+            }
+            ));
+            // cat.map(item => delete item.child);
+            console.log('cat', cat);
+            return cat
         }
     }
 }
