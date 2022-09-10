@@ -20,36 +20,44 @@ class CategoriesModels {
             let categoryParent = data.filter(item => item?.idParent === null);
             let categoryChild = data.filter(item => item?.idParent !== null && typeof item?.idParent === 'number');
 
-            const dataCategory = categoryParent?.map(itemCate => (
-                {
-                    key: itemCate?.id,
-                    name: itemCate?.name,
-                    icon: itemCate?.thumbnailUrl,
-                    slug: itemCate?.slug,
-                    published: {
-                        value: itemCate?.published,
-                        idItem: itemCate?.id,
-                    },
-                    cateChild: categoryChild?.filter(item => item?.idParent === itemCate?.id),
-                    author: itemCate?.byAuthor?.id && includes(itemCate?.byAuthor?.roles, 'admin') ? itemCate?.byAuthor?.fullName : '-',
-                    type: itemCate?.type?.name,
-                    options: {
-                            ...itemCate,
-                            hiddenButton: hiddenButton,
-                    },
-                    
-                }
-            ));
+            const dataCategory = categoryParent?.map(itemCate => ({
+                key: itemCate?.id,
+                name: itemCate?.name,
+                icon: itemCate?.thumbnailUrl,
+                slug: itemCate?.slug,
+                published: {
+                    value: itemCate?.published,
+                    idItem: itemCate?.id,
+                },
+                cateChild: categoryChild?.filter(item => item?.idParent === itemCate?.id),
+                author: itemCate?.byAuthor?.id && includes(itemCate?.byAuthor?.roles, 'admin') ? itemCate?.byAuthor?.fullName : '-',
+                type: itemCate?.type?.name,
+                options: {
+                    ...itemCate,
+                    hiddenButton: hiddenButton,
+                },
+            }));
 
             console.log('dataCategory: ', dataCategory);
 
             return dataCategory;
         }
     }
+
+    // handle call api for home page
+    handleDataHomePage(data) {
+        if (data?.length === 0) return [];
+        return data
+            .filter(item => item?.idParent === null && item?.id !== 1)
+            .map((itemCate, index) => ({
+                key: itemCate?.id,
+                name: itemCate?.name,
+                value: itemCate?.slug,
+            }));
+    }
 }
 
 export default CategoriesModels;
-
 
 // [itemCate?.id !== 1? "children": "child"]: categoryChild?.filter(item => item?.idParent === itemCate?.id)?.map(itemChild => (
 //     {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { DownOutlined, UserOutlined, HeartOutlined, ShoppingCartOutlined, MenuOutlined } from '@ant-design/icons';
 import { Layout, Row, Col, Button, Dropdown, Menu, Space, message, Tooltip, AutoComplete, Input, Badge, Typography, Divider, Select, Avatar } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
@@ -8,28 +8,11 @@ import UserMenu from '@components/userMenu/userMenu';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { useViewport } from '@hooks';
+import { fetchAllCategoriesAction } from '@features/categories/categoriesActions';
+import CategoriesModels from '@models/categoriesModels';
+
 const { Text } = Typography;
 const { Option } = Select;
-
-const items = [
-    {
-        label: <Text strong>item 1</Text>,
-        key: '1',
-        icon: <UserOutlined />,
-    },
-    {
-        label: <Text strong>item 2</Text>,
-        key: '2',
-        icon: <UserOutlined />,
-    },
-    {
-        label: <Text strong>item 3</Text>,
-        key: '3',
-        icon: <UserOutlined />,
-    },
-];
-
-const menu = <Menu items={items} />;
 
 export const menuSecond = [
     {
@@ -116,12 +99,28 @@ function Header(props) {
     const dispatch = useDispatch();
     const svLogin = useSelector(state => state?.auth?.login);
     const svUser = useSelector(state => state?.user?.info);
+    const svCategories = useSelector(state => state.categories.fetchAll);
     const [options, setOptions] = useState([]);
     const [isLogged, setIsLogged] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [infoUser, setInfoUser] = useState({});
     const [visibleSubMenuUser, setVisibleSubMenuUser] = useState(false);
     const headerRef = useRef(null);
+
+    const dataCategory = useMemo(() => {
+        if (svCategories?.failed) return [];
+        if (svCategories?.success && svCategories?.data?.length > 0) {
+            return new CategoriesModels()?.handleDataHomePage(svCategories?.data);
+        }
+    }, [svCategories]);
+
+    useEffect(() => {
+        console.log('dataCategory', dataCategory);
+    }, [dataCategory]);
+
+    useEffect(() => {
+        dispatch(fetchAllCategoriesAction());
+    }, []);
 
     useEffect(() => {
         if (svUser?.id) {
@@ -198,8 +197,11 @@ function Header(props) {
                                                     maxHeight: '40px',
                                                 }}
                                             >
-                                                <Select.Option value="Sign Up">Sign Up</Select.Option>
-                                                <Select.Option value="Sign In">Sign In</Select.Option>
+                                                {dataCategory?.map(item => (
+                                                    <Select.Option key={item?.key} value={item?.slug}>
+                                                        {item?.name}
+                                                    </Select.Option>
+                                                ))}
                                             </Select>
                                             <AutoComplete
                                                 style={{
@@ -295,7 +297,17 @@ function Header(props) {
                                                 boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px !important',
                                             }}
                                             // visible={true}
-                                            overlay={menu}
+                                            overlay={
+                                                <Menu
+                                                    items={dataCategory?.map(item => {
+                                                        delete item?.slug;
+                                                        return {
+                                                            ...item,
+                                                            label: item?.name,
+                                                        };
+                                                    })}
+                                                />
+                                            }
                                             trigger={['click']}
                                         >
                                             <button className="header-tech-store__category_left-button">
