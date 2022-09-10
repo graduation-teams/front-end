@@ -31,6 +31,7 @@ const ItemSlider = [
                     <InnerImageZoom
                         src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
                         zoomSrc="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
+                        zoomType="hover"
                     />
                 </div>
             );
@@ -43,6 +44,7 @@ const ItemSlider = [
                     <InnerImageZoom
                         src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
                         zoomSrc="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
+                        zoomType="hover"
                     />
                 </div>
             );
@@ -55,6 +57,7 @@ const ItemSlider = [
                     <InnerImageZoom
                         src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
                         zoomSrc="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
+                        zoomType="hover"
                     />
                 </div>
             );
@@ -67,6 +70,7 @@ const ItemSlider = [
                     <InnerImageZoom
                         src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
                         zoomSrc="https://cdn2.cellphones.com.vn/358x/media/catalog/product/_/0/_0003_60852_laptop_lenovo_legion_7_16a_2.jpg"
+                        zoomType="hover"
                     />
                 </div>
             );
