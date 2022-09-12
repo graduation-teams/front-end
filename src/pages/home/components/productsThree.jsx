@@ -5,6 +5,7 @@ import { ReactComponent as IconLogo2 } from '@assets/icons/Copy_light.svg';
 import { ReactComponent as IconLogo3 } from '@assets/icons/Pin_light.svg';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent, SlideTechStore } from '@components/common';
+import { Link } from 'react-router-dom';
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -61,7 +62,7 @@ const ItemSlider = datas => {
                   element: () => {
                       return (
                           <>
-                              <a href="#" className="product-item">
+                              <Link to={`/product-detail/product-id=${data?.slug}`} key={data?.key} className="product-item">
                                   <div className="product-item--img">
                                       <img src={data?.thumbnailUrl} alt="" />
                                   </div>
@@ -79,7 +80,7 @@ const ItemSlider = datas => {
                                           <del>{data?.unitPrice} vnđ</del> {data?.discountPrice} vnđ
                                       </p>
                                   </div>
-                              </a>
+                              </Link>
                           </>
                       );
                   },
