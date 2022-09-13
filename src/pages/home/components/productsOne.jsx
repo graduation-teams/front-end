@@ -7,9 +7,15 @@ import { ReactComponent as IconLogo3 } from '@assets/icons/Pin_light.svg';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { Link, useLocation } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 
 function ProductsOne({ dataAPI }, ...props) {
+    const [visible, setVisible] = useState(6);
+
+    const showMoreItems = () => {
+        setVisible(prevValue => prevValue + 3);
+    };
+
     return (
         <section className="products-one mb-5">
             <div className="container-1200">
@@ -41,7 +47,7 @@ function ProductsOne({ dataAPI }, ...props) {
                     <Col xs={24} sm={24} md={13} lg={17} xl={17}>
                         <div className="products-box ml-10">
                             <Row>
-                                {dataAPI?.map(item => (
+                                {dataAPI?.slice(0, visible)?.map(item => (
                                     <Col key={item?.key} xs={12} sm={12} md={12} lg={8} xl={8} className="p-2 mb20">
                                         <Link to={`/product-detail/product-id=${item?.slug}`} className="product-item">
                                             <Card
@@ -70,6 +76,9 @@ function ProductsOne({ dataAPI }, ...props) {
                                     </Col>
                                 ))}
                             </Row>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            <Btn onClick={showMoreItems}>Xem thêm</Btn>
                         </div>
                     </Col>
                 </Row>
