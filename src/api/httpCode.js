@@ -8,41 +8,14 @@ const extractErrorMsg = (messageError) => {
         const { response } = messageError;
         console.log('data', response?.data)    
         if(typeof response?.data?.message === 'string'){
-            return toast.error(response?.data?.message,{
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                limit:1
-            });
+            return toast.error(response?.data?.message);
         }else if(response?.data?.message?.length>=1){
-            return response?.data?.message?.forEach((item)=>toast.error(item,{
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                limit:1
-            }));
+            return response?.data?.message?.forEach((item)=>toast.error(item));
         }
         
     }catch(error){
         console.error(error);
-        return toast.error('API Error!',{
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            limit:1
-        });
+        return toast.error('API Error!');
     }
 }
 

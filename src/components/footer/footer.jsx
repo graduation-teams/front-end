@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, BackTop } from 'antd';
-import {withErrorBoundary} from 'react-error-boundary'
+import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import Icon from '@ant-design/icons';
 import { ReactComponent as IconLogo1 } from '@assets/icons/footer-1.svg';
@@ -12,8 +12,7 @@ import IconFooter2 from '@assets/images/icon-message.png';
 import IconFooter3 from '@assets/images/icon-contact.png';
 // import Ytb from '@assets/images/YouTube.svg';
 
-
-function FooterComponent (){
+function FooterComponent() {
     return (
         <Layout.Footer style={{ padding: 0, minHeight: '200px', backgroundColor: '#fff' }}>
             <section className="footer">
@@ -83,70 +82,94 @@ function FooterComponent (){
                             <hr />
                             <ul>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Company Information</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Conditions of Sales</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Privacy policy</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
-                                </li>
-                            </ul>
-                        </Col>
-                        <Col xs={24} md={12} xl={6} className="footer__bot--columns">
-                            <h1 className="text">ELECTRON 01</h1>
-                            <hr />
-                            <ul>
-                                <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Returns and refunds</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Dispute Resolution</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
-                                </li>
-                                <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Returns and refunds</a>
                                 </li>
                             </ul>
                         </Col>
                         <Col xs={24} md={12} xl={6} className="footer__bot--columns">
-                            <h1 className="text">ELECTRON 01</h1>
+                            <h1 className="text">CUSTOMER SERVICE</h1>
                             <hr />
                             <ul>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Help Center</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Returns</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Product Recalls</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Feedback</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Contact Us</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Store Pickup</a>
                                 </li>
                             </ul>
                         </Col>
                         <Col xs={24} md={12} xl={6} className="footer__bot--columns">
-                            <h1 className="text">ELECTRON 01</h1>
+                            <h1 className="text">USEFUL LINKS</h1>
                             <hr />
                             <ul>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Fast Shipping</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">PayPal/Secure Payment</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">30 Days Return Policy</a>
                                 </li>
                                 <li className="item">
-                                    <a href="#">Nguyen Tinh Quan</a>
+                                    <a href="#">Business Development</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Terms of Us</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Returns and refunds</a>
+                                </li>
+                            </ul>
+                        </Col>
+                        <Col xs={24} md={12} xl={6} className="footer__bot--columns">
+                            <h1 className="text">LET US HELP YOU</h1>
+                            <hr />
+                            <ul>
+                                <li className="item">
+                                    <a href="#">Feedback</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">30 Days Return Policy</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Returns and refunds</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Dispute Resolution</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Returns and refunds</a>
+                                </li>
+                                <li className="item">
+                                    <a href="#">Conditions of Sales</a>
                                 </li>
                             </ul>
                         </Col>
@@ -160,8 +183,8 @@ function FooterComponent (){
             </div>
         </Layout.Footer>
     );
-};
+}
 
-export default withErrorBoundary(FooterComponent,{
-    FallbackComponent: ErrorComponent
+export default withErrorBoundary(FooterComponent, {
+    FallbackComponent: ErrorComponent,
 });

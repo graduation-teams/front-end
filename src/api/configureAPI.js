@@ -50,14 +50,14 @@ axiosInstance.interceptors.response.use(
         const {
             response: { status },
         } = error;
-        // if (status === 401) {
-        //     removeLocalStorage('access_token');
-        //     removeLocalStorage('token_type');
-        //     removeLocalStorage('user');
-        //     if (typeof window !== 'undefined') {
-        //         window.location.replace('/login');
-        //     }
-        // }
+        if (status === 401) {
+            removeLocalStorage('access_token');
+            removeLocalStorage('token_type');
+            removeLocalStorage('user');
+            if (typeof window !== 'undefined') {
+                window.location.replace('/login');
+            }
+        }
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         // Do something with response error
         return Promise.reject(error);

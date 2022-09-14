@@ -10,6 +10,7 @@ import { getColumnConfig } from './components/configColumProduct';
 import UserModels from '@models/userModels';
 import ProductModels from '@models/productModels';
 import { useKeywordContext } from '@contexts/keywordContext';
+import FromProducts from './components/fromProducts';
 
 function Products() {
     const dispatch = useDispatch();
@@ -21,18 +22,18 @@ function Products() {
     const [colConfigs, setColConfigs] = useState([]);
 
     const dataProducts = useMemo(() => {
-      if (svProducts?.failed) return [];
-      if (svProducts?.success && svProducts?.data.length > 0) {
-          return new ProductModels()?.handleDataApiProduct(svProducts?.data, true);
-      } else {
-          return [];
-      }
-  }, [svProducts]);
+        if (svProducts?.failed) return [];
+        if (svProducts?.success && svProducts?.data.length > 0) {
+            return new ProductModels()?.handleDataApiProduct(svProducts?.data, true);
+        } else {
+            return [];
+        }
+    }, [svProducts]);
 
-  const dataUser = useMemo(() => {
-      return new UserModels(svUser);
-  }, [svUser]);
-  
+    const dataUser = useMemo(() => {
+        return new UserModels(svUser);
+    }, [svUser]);
+
     useEffect(() => {
         dispatch(fetchAllProductAction({ isAdmin: true }));
     }, []);
@@ -40,8 +41,6 @@ function Products() {
     useEffect(() => {
         setColConfigs(getColumnConfig(keywordValue, viewDetailItem, deleteItem, updateItem, dataUser));
     }, [dataProducts, dataUser]);
-
-   
 
     function viewDetailItem(record) {
         console.log('viewDetail: ', record);
@@ -61,7 +60,7 @@ function Products() {
     return (
         <React.Fragment>
             <ModalConfirmTechStore dataModal={modalProps} />
-            <DrawerTechStore title="Add Product" overrideTextButtonConfirm="Add Product" />
+            <DrawerTechStore title="Add Product" overrideTextButtonConfirm="Add Product" childrenForm={<FromProducts />} />
             <FilterAddTechStore title="Product" />
             <TableTechStore dataAPI={dataProducts} callingAPI={svProducts?.pending} columConfigs={colConfigs} />
         </React.Fragment>

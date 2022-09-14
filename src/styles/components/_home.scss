@@ -245,7 +245,7 @@
             background-color: $main-color;
             padding: 0.5rem 2rem;
             position: absolute;
-            top: 1px;
+            top: 10px;
             left: 11px;
         }
 
@@ -259,6 +259,14 @@
                 font-size: 1.5rem;
                 font-weight: 500;
                 color: #333;
+                word-break: break-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: break-word;
+                height: 50px;
             }
             .branch {
                 font-size: 1.4rem;
@@ -475,4 +483,7 @@
 
 .p3 {
     padding: 0 3rem;
+}
+.mb20 {
+    margin-bottom: 20px;
 }

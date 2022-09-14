@@ -54,7 +54,7 @@ function SlideTechStore({ items, settings, isOverride }, ...props) {
         if (items.length > 0) {
             setArrayItems(items);
         }
-    }, []);
+    }, [items.length]);
 
     useEffect(() => {
         if (settings && !isOverride) {
@@ -65,6 +65,7 @@ function SlideTechStore({ items, settings, isOverride }, ...props) {
         }
     }, [settings]);
 
+    console.log(arrayItems);
     return (
         <React.Fragment>
             <Slider {...config} {...props}>
