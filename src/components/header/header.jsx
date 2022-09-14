@@ -129,19 +129,19 @@ function Header(props) {
         }
     }, [svUser, svLogin]);
 
-    // useEffect(() => {
-    //     const shrinkHeader = () => {
-    //       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    //         headerRef.current.classList.add('shrink');
-    //       } else {
-    //         headerRef.current.classList.remove('shrink');
-    //       }
-    //     }
-    //     window.addEventListener('scroll', shrinkHeader)
-    //     return () => {
-    //       window.removeEventListener('scroll', shrinkHeader)
-    //     };
-    //   }, []);
+    useEffect(() => {
+        const shrinkHeader = () => {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                headerRef.current.classList.add('shrink');
+            } else {
+                headerRef.current.classList.remove('shrink');
+            }
+        };
+        window.addEventListener('scroll', shrinkHeader);
+        return () => {
+            window.removeEventListener('scroll', shrinkHeader);
+        };
+    }, []);
 
     useEffect(() => {
         if (viewPort?.width <= 480) {
@@ -163,7 +163,7 @@ function Header(props) {
     }
 
     return (
-        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '64px', height: 'auto', padding: 0 }} ref={headerRef}>
+        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '64px', height: 'auto', padding: 0 }}>
             <div className="header__mobi">
                 <HeaderMobile />
             </div>
@@ -286,7 +286,7 @@ function Header(props) {
                         </div>
                     </Col>
                 </Row>
-                <Row gutter={16} align="middle" justify="space-around" className="header-row-top" wrap={false}>
+                <Row gutter={16} align="middle" justify="space-around" className="header-row-top" ref={headerRef} wrap={false}>
                     <Col span={24}>
                         <div className="container-1200">
                             <Row align="middle" justify="space-around" gutter={16}>

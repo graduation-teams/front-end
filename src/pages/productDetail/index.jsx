@@ -12,7 +12,7 @@ import ItemSlideShow from './components/itemSlideShow';
 function ProductDetailPage() {
     // const viewPort = useViewport();
     // const Elements = React.useMemo(() => {
-    //     let arrayElements = [{ element: ProductDetail }, { element: ProductDescription }, { element: RelatedProducts }];
+    //     let arrayElements = [{ element: ItemSlideShow }, { element: ProductDetail }, { element: ProductDescription }, { element: RelatedProducts }];
     //     return arrayElements;
     // }, [viewPort.width]);
 
@@ -22,6 +22,7 @@ function ProductDetailPage() {
                 <title>Product Detail</title>
             </Helmet>
             {/* <LayoutCustomer childrenComponent={Elements} /> */}
+            <ProductDetail />
         </React.Fragment>
     );
 }

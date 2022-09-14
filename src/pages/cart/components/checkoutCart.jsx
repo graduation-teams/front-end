@@ -1,10 +1,13 @@
 import { Col, Row } from 'antd';
-import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
+import React, { useState } from 'react';
+import { Button, Checkbox, Form, Input, Space } from 'antd';
 import Btn from '@components/common/button';
 import TextArea from 'antd/lib/input/TextArea';
 
 function CheckoutCart(props) {
+    const { Search } = Input;
+    const onSearch = value => console.log(value);
+
     const onFinish = values => {
         console.log('Success:', values);
     };
@@ -13,13 +16,32 @@ function CheckoutCart(props) {
         console.log('Failed:', errorInfo);
     };
 
+    const [coupon, setCoupon] = useState(false);
+    function handleClickCoupon() {
+        setCoupon(!coupon);
+    }
+
     return (
         <div className="container-1200">
             <div className="check-out">
                 <Row>
                     <Col xs={24} md={24} lg={12}>
                         <div className="have-cuppon">
-                            Have a coupon? <a href="#">Click here to enter your code</a>
+                            Have a coupon?{' '}
+                            <span className="have-cuppon_span" onClick={handleClickCoupon}>
+                                Click here to enter your code
+                            </span>
+                            <Search
+                                placeholder="Enter discount code"
+                                allowClear
+                                enterButton="Check"
+                                size="large"
+                                onSearch={onSearch}
+                                style={{
+                                    width: 400,
+                                }}
+                                className={`coupon ${coupon ? 'showCoupon' : ''}`}
+                            />
                         </div>
                         <h3>BILLING DETAILS</h3>
                         <hr style={{ marginBottom: '30px' }} />

@@ -169,3 +169,22 @@
         }
     }
 }
+
+.showCoupon {
+    display: block !important;
+}
+.have-cuppon span {
+    color: #fff;
+}
+.have-cuppon .coupon {
+    display: none;
+}
+.have-cuppon_span {
+    color: #888 !important;
+    cursor: pointer;
+}
+.have-cuppon {
+    .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child .ant-input-search-button {
+        background-color: $main-color !important;
+    }
+}
