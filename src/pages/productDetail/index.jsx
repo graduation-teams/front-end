@@ -45,12 +45,14 @@ function ProductDetailPage() {
         return arrayElements;
     }, [viewPort.width]);
 
+
     return (
         <React.Fragment>
             <Helmet>
                 <title>Product Detail</title>
             </Helmet>
             {/* <LayoutCustomer childrenComponent={Elements} /> */}
+            <ProductDetail />
         </React.Fragment>
     );
 }

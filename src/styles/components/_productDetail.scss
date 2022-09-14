@@ -24,7 +24,7 @@
                 }
             }
             .item__small__image {
-                background-color: $bgColorButton;
+                // background-color: $bgColorButton;
                 max-width: 400px;
                 height: auto;
                 margin: 0 auto;
@@ -32,6 +32,9 @@
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                }
+                .iiz {
+                    display: block !important;
                 }
             }
         }
@@ -95,7 +98,7 @@
         .content-header {
             margin-left: 50%;
             transform: translateX(-50%);
-            @include tablet{
+            @include tablet {
                 margin-left: 0;
                 transform: translateX(0);
             }
