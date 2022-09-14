@@ -2,7 +2,7 @@ import request from '@api/configureAPI';
 
 const fetchAllProductsAPI = () => request.get('/products');
 
-const fetchByIdProductsAPI = ({ id }) => request.get(`/admin/categories/${id}`);
+const fetchBySlugProductsAPI = ({ slug }) => request.get(`/products/${slug}`);
 
 const deleteByIdProductsAPI = ({ id }) => request.delete(`/admin/products/${id}`);
 
@@ -12,7 +12,7 @@ const updateByIdProductsAPI = ({ id, dataRequest }) => request.put(`/admin/produ
 
 export default {
     fetchAllProductsAPI,
-    fetchByIdProductsAPI,
+    fetchBySlugProductsAPI,
     deleteByIdProductsAPI,
     createProductsAPI,
     updateByIdProductsAPI,

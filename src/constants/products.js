@@ -5,11 +5,11 @@ export const productsConstants = {
     PRODUCTS_FETCH_ALL_SUCCESS: 'products/fetch-all:success',
     PRODUCTS_FETCH_ALL_FAILED: 'products/fetch-all:failed',
 
-    /**============= FETCH PRODUCTS BY ID ============== */
-    PRODUCTS_FETCH_BY_ID: 'products/fetch-by-id',
-    PRODUCTS_FETCH_BY_ID_START: 'products/fetch-by-id:start',
-    PRODUCTS_FETCH_BY_ID_SUCCESS: 'products/fetch-by-id:success',
-    PRODUCTS_FETCH_BY_ID_FAILED: 'products/fetch-by-id:failed',
+    /**============= FETCH PRODUCTS BY SLUG ============== */
+    PRODUCTS_FETCH_BY_SLUG: 'products/fetch-by-slug',
+    PRODUCTS_FETCH_BY_SLUG_START: 'products/fetch-by-slug:start',
+    PRODUCTS_FETCH_BY_SLUG_SUCCESS: 'products/fetch-by-slug:success',
+    PRODUCTS_FETCH_BY_SLUG_FAILED: 'products/fetch-by-slug:failed',
 
     /**============= CREATE PRODUCTS ============== */
     PRODUCTS_CREATE: 'products/create',
@@ -28,5 +28,4 @@ export const productsConstants = {
     PRODUCTS_DELETE_BY_ID_START: 'products/delete-by-id:start',
     PRODUCTS_DELETE_BY_ID_SUCCESS: 'products/delete-by-id:success',
     PRODUCTS_DELETE_BY_ID_FAILED: 'products/delete-by-id:failed',
-
-}
+};

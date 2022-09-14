@@ -11,14 +11,13 @@ export const fetchAllProductAction = dataPayload => {
     };
 };
 
-
-export const fetchByIdProductsAction = dataPayload => {
+export const fetchBySlugProductsAction = dataPayload => {
     if (typeof dataPayload === 'undefined')
         return {
-            type: AC_PRODUCT.PRODUCTS_FETCH_BY_ID,
+            type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG,
         };
     return {
-        type: AC_PRODUCT.PRODUCTS_FETCH_BY_ID,
+        type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG,
         payload: dataPayload,
     };
 };
