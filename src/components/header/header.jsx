@@ -115,7 +115,7 @@ function Header(props) {
     }, [svCategories]);
 
     useEffect(() => {
-        console.log('dataCategory', dataCategory);
+        // console.log('dataCategory', dataCategory);
     }, [dataCategory]);
 
     useEffect(() => {

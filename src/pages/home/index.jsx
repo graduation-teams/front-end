@@ -26,7 +26,7 @@ function HomePage() {
     useEffect(() => {
         dispatch(fetchAllProductAction());
     }, []);
-    console.log('dataProduct: ', dataProduct);
+    // console.log('dataProduct: ', dataProduct);
     return (
         <React.Fragment>
             <SlideShow />

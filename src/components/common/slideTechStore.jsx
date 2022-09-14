@@ -65,7 +65,7 @@ function SlideTechStore({ items, settings, isOverride }, ...props) {
         }
     }, [settings]);
 
-    console.log(arrayItems);
+    // console.log(arrayItems);
     return (
         <React.Fragment>
             <Slider {...config} {...props}>

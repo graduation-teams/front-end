@@ -37,14 +37,13 @@ function ProductDetailPage() {
     }, [urlCurrent]);
 
     useEffect(() => {
-        console.log('detail', svProductDetail);
+        // console.log('detail', svProductDetail);
     }, [svProductDetail]);
 
     const Elements = React.useMemo(() => {
         let arrayElements = [{ element: ProductDetail }, { element: ProductDescription }, { element: RelatedProducts }];
         return arrayElements;
     }, [viewPort.width]);
-
 
     return (
         <React.Fragment>

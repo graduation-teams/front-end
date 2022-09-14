@@ -19,7 +19,7 @@ function* fetchAllProductsSaga(action) {
 function* fetchBySlugProductSaga(action) {
     try {
         yield put({ type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG_START });
-        const { data } = yield call(API.fetchBySlugProductsAPI, action?.payload?.slugCurrent);
+        const { data } = yield call(API.fetchBySlugProductsAPI, { slug: action?.payload?.slugCurrent });
         yield put({ type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG_SUCCESS, payload: { responsive: data } });
     } catch (e) {
         extractErrorMsg(e);
