@@ -16,6 +16,17 @@ function* fetchAllProductsSaga(action) {
     }
 }
 
+function* fetchBySlugProductSaga(action) {
+    try {
+        yield put({ type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG_START });
+        const { data } = yield call(API.fetchBySlugProductsAPI, action?.payload?.slugCurrent);
+        yield put({ type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG_SUCCESS, payload: { responsive: data } });
+    } catch (e) {
+        extractErrorMsg(e);
+        yield put({ type: AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG_FAILED });
+    }
+}
+
 function* deleteByIdProductsSaga(action) {
     try {
         yield put({ type: AC_PRODUCT.PRODUCTS_DELETE_BY_ID_START });
@@ -31,4 +42,4 @@ function* deleteByIdProductsSaga(action) {
     }
 }
 
-export const productsSaga = [takeLatest(AC_PRODUCT.PRODUCTS_FETCH_ALL, fetchAllProductsSaga), takeLatest(AC_PRODUCT.PRODUCTS_DELETE_BY_ID, deleteByIdProductsSaga)];
+export const productsSaga = [takeLatest(AC_PRODUCT.PRODUCTS_FETCH_ALL, fetchAllProductsSaga), takeLatest(AC_PRODUCT.PRODUCTS_DELETE_BY_ID, deleteByIdProductsSaga), takeLatest(AC_PRODUCT.PRODUCTS_FETCH_BY_SLUG, fetchBySlugProductSaga)];

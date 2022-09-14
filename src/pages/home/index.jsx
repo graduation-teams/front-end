@@ -16,7 +16,6 @@ import ProductModels from '@models/productModels';
 function HomePage() {
     const dispatch = useDispatch();
     const svProducts = useSelector(state => state.products.fetchAll);
-
     const dataProduct = useMemo(() => {
         if (svProducts?.failed) return [];
         if (svProducts?.success && svProducts?.data?.length > 0) {
