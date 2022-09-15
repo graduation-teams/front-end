@@ -44,7 +44,7 @@ function ProductDetailPage() {
             </Helmet>
             <ProductDetail dataAPI={dataProductDetail} />
             <ProductDescription />
-            <RelatedProducts dataAPI={dataProductDetail} />
+            <RelatedProducts />
         </React.Fragment>
     );
 }
