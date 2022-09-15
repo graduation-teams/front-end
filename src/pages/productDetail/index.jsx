@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import ProductDetail from './components/productDetail';
 import ProductDescription from './components/productDescription';
 import RelatedProducts from './components/relatedProducts';
+import ProductsThree from '../home/components/productsThree';
 import ItemSlideShow from './components/itemSlideShow';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,7 +18,7 @@ function ProductDetailPage() {
 
     const dataProductDetail = useMemo(() => {
         if (svProductDetail?.failed) return {};
-        if (svProductDetail?.success && typeof svProductDetail?.data === "object") {
+        if (svProductDetail?.success && typeof svProductDetail?.data === 'object') {
             return new ProductModels(svProductDetail?.data);
         }
         return {};
@@ -30,21 +31,20 @@ function ProductDetailPage() {
     }, [slug]);
 
     useEffect(() => {
-        if(urlCurrent !== null){
+        if (urlCurrent !== null) {
             console.log('urlCurrent', urlCurrent);
             dispatch(fetchBySlugProductsAction({ slugCurrent: urlCurrent }));
         }
     }, [urlCurrent]);
-    
+
     return (
         <React.Fragment>
             <Helmet>
-                <title>Product Detail{urlCurrent!==null?` - ${urlCurrent}`:''}</title>
+                <title>Product Detail{urlCurrent !== null ? ` - ${urlCurrent}` : ''}</title>
             </Helmet>
-            <ProductDetail dataAPI={dataProductDetail}/>
-            <ProductDescription/>
-            <RelatedProducts/>
-            <ItemSlideShow/>
+            <ProductDetail dataAPI={dataProductDetail} />
+            <ProductDescription />
+            <RelatedProducts dataAPI={dataProductDetail} />
         </React.Fragment>
     );
 }
