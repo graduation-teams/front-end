@@ -4,12 +4,13 @@ import { Btn } from '@components/common';
 import ItemSlideShow from './itemSlideShow';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
+import PropTypes from 'prop-types';
 
 const onChange = value => {
     console.log('changed', value);
 };
 
-function ProductDetail(props) {
+function ProductDetail({dataAPI},...props) {
     return (
         <div className="product-detail">
             <section className="detail-item">
@@ -22,36 +23,33 @@ function ProductDetail(props) {
                         </Col>
                         <Col sm={24} md={14} xl={14}>
                             <div className="detail-item__content">
-                                <h1 className="detail-item__content--title">Native Union SMART 4 Charger 1</h1>
+                                <h1 className="detail-item__content--title">{dataAPI?.name}</h1>
                                 <p className="detail-item__content--price">
-                                    <strike>$90.00</strike>$70.00
+                                    {dataAPI?.discountPrice > 0 ? <React.Fragment>
+                                        <strike>${dataAPI?.unitPrice}</strike>
+                                        <span>${dataAPI?.discountPrice}</span>
+                                    </React.Fragment> : <span>${dataAPI?.unitPrice}</span>}
                                 </p>
-                                <p className="detail-item__content--desc">
-                                    Dimensions (WxDxH) 44.6 x 81.8 x 55 cm <br />
-                                    Capacity – the number of sets of 9 sets.
-                                    <br />
-                                    Water consumption in the cycle of 9.9 liters
-                                    <br />
-                                    Annual energy consumption 222 kWh = 122.10 rubles per year
-                                    <br />
-                                    Noise level (washing) 51 dB
-                                </p>
-                                <div className="detail-item__content--quatity">
+                                <div className="detail-item__content--desc" dangerouslySetInnerHTML={{__html: dataAPI?.description}}/>
+                                <div className="detail-item__content--quatity" style={{marginTop:'25px'}}>
                                     <InputNumber min={1} max={10} defaultValue={3} onChange={onChange} />
                                     <Btn className="btn-black">Add to card</Btn>
                                 </div>
                                 <div className="detail-item__content--different">
                                     <p>
-                                        <span>Brand: </span> <img src="https://xstore.8theme.com/elementor/demos/electron01/wp-content/uploads/sites/31/2018/10/electron-logo-5.png" alt="" />
+                                        <span>BRAND: </span> <img src="https://xstore.8theme.com/elementor/demos/electron01/wp-content/uploads/sites/31/2018/10/electron-logo-5.png" alt="" />
                                     </p>
                                     <p>
-                                        <span>SKU: </span>32564
+                                        <span>QUANTITY: </span>{dataAPI?.quantity}
                                     </p>
                                     <p>
-                                        <span>Category: </span>Electro
+                                        <span>SKU: </span>{dataAPI?.sku}
                                     </p>
                                     <p>
-                                        <span>Tags: </span>bootstrap, collections, color, responsive
+                                        <span>CATEGORY: </span>Electro
+                                    </p>
+                                    <p>
+                                        <span>TAGS: </span>bootstrap, collections, color, responsive
                                     </p>
                                 </div>
                             </div>
@@ -62,7 +60,13 @@ function ProductDetail(props) {
         </div>
     );
 }
+ProductDetail.propTypes = {
+    dataAPI: PropTypes.object,
+};
 
+ProductDetail.defaultProps = {
+    dataAPI: {},
+}
 export default withErrorBoundary(ProductDetail, {
     FallbackComponent: ErrorComponent,
 });

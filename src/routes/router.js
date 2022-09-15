@@ -33,7 +33,7 @@ export const publicRoutes = [
         element: lazy(() => import('@pages/resetPassword')),
     },
     {
-        path: '/product-detail/product-id=:productSlug',
+        path: '/product-detail/:slug',
         element: lazy(() => import('@pages/productDetail')),
     },
     {

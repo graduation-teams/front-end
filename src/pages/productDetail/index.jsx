@@ -1,8 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import LayoutCustomer from '@containers/layoutCustomer';
-import { useViewport } from '@hooks';
-import { getLocalStorage } from '@utils/helpers';
 import ProductDetail from './components/productDetail';
 import ProductDescription from './components/productDescription';
 import RelatedProducts from './components/relatedProducts';
@@ -13,45 +10,41 @@ import { fetchBySlugProductsAction } from '@features/products/productActions';
 import ProductModels from '@models/productModels';
 
 function ProductDetailPage() {
-    const viewPort = useViewport();
     const dispatch = useDispatch();
-    const { productSlug } = useParams();
-    const [urlCurrent, setUrlCurrent] = useState('');
+    const { slug } = useParams();
+    const svProductDetail = useSelector(state => state.products.fetchBySlug);
+    const [urlCurrent, setUrlCurrent] = useState(null);
+
+    const dataProductDetail = useMemo(() => {
+        if (svProductDetail?.failed) return {};
+        if (svProductDetail?.success && typeof svProductDetail?.data === "object") {
+            return new ProductModels(svProductDetail?.data);
+        }
+        return {};
+    }, [svProductDetail]);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            setUrlCurrent(setUrlCurrent);
+            setUrlCurrent(slug);
         }
-    }, [productSlug]);
-
-    const svProductDetail = useSelector(state => state.products.fetchBySlug);
-    // const dataProductDetail = useMemo(() => {
-    //     if (svProductDetail?.failed) return [];
-    //     if (svProductDetail?.success && svProductDetail?.data?.length > 0) {
-    //         return new ProductModels()?.handleDataApiProductSale(svProductDetail?.data);
-    //     }
-    // }, [svProductDetail]);
+    }, [slug]);
 
     useEffect(() => {
-        dispatch(fetchBySlugProductsAction({ slugCurrent: urlCurrent }));
+        if(urlCurrent !== null){
+            console.log('urlCurrent', urlCurrent);
+            dispatch(fetchBySlugProductsAction({ slugCurrent: urlCurrent }));
+        }
     }, [urlCurrent]);
-
-    useEffect(() => {
-        // console.log('detail', svProductDetail);
-    }, [svProductDetail]);
-
-    const Elements = React.useMemo(() => {
-        let arrayElements = [{ element: ProductDetail }, { element: ProductDescription }, { element: RelatedProducts }];
-        return arrayElements;
-    }, [viewPort.width]);
-
+    
     return (
         <React.Fragment>
             <Helmet>
-                <title>Product Detail</title>
+                <title>Product Detail{urlCurrent!==null?` - ${urlCurrent}`:''}</title>
             </Helmet>
-            {/* <LayoutCustomer childrenComponent={Elements} /> */}
-            <ProductDetail />
+            <ProductDetail dataAPI={dataProductDetail}/>
+            <ProductDescription/>
+            <RelatedProducts/>
+            <ItemSlideShow/>
         </React.Fragment>
     );
 }

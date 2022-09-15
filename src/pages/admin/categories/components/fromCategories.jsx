@@ -5,15 +5,24 @@ import { ErrorComponent } from '@components/common';
 import { Col, Row, Table, Space, Button, message, Upload, Divider, Input, Select, Checkbox, Form } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { PlusOutlined } from '@ant-design/icons';
-
+import { getLocalStorage } from '@utils/helpers';
 const { Dragger } = Upload;
 const props = {
-    name: 'file',
+    name: 'file_upload',
     multiple: true,
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+    headers:{
+        // 'Content-Type': 'application/json',
+        // 'X-Requested-With': 'XMLHttpRequest',
+        // 'Accept': 'application/json',
+        'Authorization': `${ getLocalStorage('token_type')} ${getLocalStorage('access_token')}`
+    },
+    // body:{
+    //     {JSON.stringify({pathStorage:'product'})}
+    // },
+    action: process.env.REACT_APP_BASE_URL_API+'/media/upload',
 
     onChange(info) {
-        const { status } = info.file;
+        const { status, data } = info.file;
 
         if (status !== 'uploading') {
             console.log(info.file, info.fileList);

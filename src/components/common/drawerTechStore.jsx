@@ -65,7 +65,7 @@ function DrawerTechStore({ title, subTitle, overrideWidth, element, isCategories
                     minHeight: 'calc(148px - 24px*2)',
                 }}
                 width={overrideWidth}
-                visible={isCategories ? DrawerCategories?.isVisibleModalCategories : DrawerProduct?.isVisibleModalProduct}
+                open={isCategories ? DrawerCategories?.isVisibleModalCategories : DrawerProduct?.isVisibleModalProduct}
                 getContainer={() => document.getElementById('root-drawer')}
                 onClose={handleCloseDrawer}
                 extra={

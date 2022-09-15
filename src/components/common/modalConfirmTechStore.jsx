@@ -40,7 +40,7 @@ function ModalConfirmTechStore({ dataModal, title, subTitle, isCategory, icon, t
     return (
         <React.Fragment>
             <Modal
-                visible={modalVisible}
+                open={modalVisible}
                 closable={false}
                 centered={true}
                 width={'576px'}

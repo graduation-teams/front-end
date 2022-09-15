@@ -2,15 +2,20 @@ class ProductModels {
     constructor(data = {}) {
         this.id = data.id || '';
         this.name = data.name || '';
-        this.thumbnail_url = data.thumbnail_url || '';
-        this.active = data.active || 0;
-        this.public_site = data.public_site || 0;
-        this.id_author = data.id_author || null;
-        this.id_parent = data.id_parent || null;
-        this.type_category = data.type_category || null;
-        this.created_at = data.created_at || '';
-        this.updated_at = data.updated_at || '';
-        this.deleted_at = data.deleted_at || null;
+        this.sku = data.sku ||'';
+        this.slug = data.slug || '';
+        this.unitPrice = data.unitPrice || 0;
+        this.discountPrice = data.discountPrice || 0;
+        this.quantity = data.quantity || 0;
+        this.description = data.description || '';
+        this.content = data.content || '';
+        this.hot = data.hot || 0;
+        this.sale = data.sale || 0;
+        this.thumbnailUrl = data.thumbnailUrl || '';
+        this.published = data.published || 0;
+        this.createdAt = data.createdAt || '';
+        this.updatedAt = data.updatedAt || '';
+        this.deletedAt = data.deletedAt || null;
     }
 
     handleDataApiProduct(data, hiddenButton) {

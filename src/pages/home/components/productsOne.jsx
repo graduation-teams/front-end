@@ -49,7 +49,7 @@ function ProductsOne({ dataAPI }, ...props) {
                             <Row>
                                 {dataAPI?.slice(0, visible)?.map(item => (
                                     <Col key={item?.key} xs={12} sm={12} md={12} lg={8} xl={8} className="p-2 mb20">
-                                        <Link to={`/product-detail/product-id=${item?.slug}`} className="product-item">
+                                        <Link to={`/product-detail/${item?.slug}`} className="product-item">
                                             <Card
                                                 hoverable
                                                 style={{

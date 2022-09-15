@@ -42,7 +42,7 @@ function HeaderMobile(props) {
                         <Icon component={IconHeaderMobile} />
                     </Button>
                 </Space>
-                <Drawer placement={placement} width={300} onClose={onClose} visible={visible}>
+                <Drawer placement={placement} width={300} onClose={onClose} open={visible}>
                     <div className="mobi-header__body">
                         <a href="#" className="logo">
                             <Icon component={logo} />

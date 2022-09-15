@@ -29,6 +29,9 @@ function HomePage() {
     // console.log('dataProduct: ', dataProduct);
     return (
         <React.Fragment>
+            <Helmet>
+                <title>Home</title>
+            </Helmet>
             <SlideShow />
             <Service />
             <ProductsOne dataAPI={dataProduct} />
