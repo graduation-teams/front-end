@@ -8,7 +8,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider, ReactReduxContext } from 'react-redux';
 import { ConfigProvider } from 'antd';
-import vi_VN from 'antd/lib/locale/vi_VN';
+import en_US from 'antd/lib/locale/en_US';
 import configureAppStore from './app/store';
 import 'moment/locale/vi';
 import { history } from '@utils/index';
@@ -25,6 +25,7 @@ import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from '@contexts/authContext';
 import { DrawerProvider } from '@contexts/drawerContext';
 import { FilterProvider } from '@contexts/filterContext';
+import { KeywordProvider } from '@contexts/keywordContext';
 import { ReduxRouter } from '@lagunovsky/redux-react-router';
 
 const container = document.getElementById('root-app');
@@ -34,15 +35,17 @@ const root = createRoot(container);
 function AppWithCallbackAfterRender() {
     return (
         <React.Fragment>
-            <ConfigProvider locale={vi_VN}>
+            <ConfigProvider locale={en_US}>
                 <Provider store={store} context={ReactReduxContext}>
                     <AuthProvider>
                         <DrawerProvider>
                             <FilterProvider>
-                                <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-                                <ReduxRouter history={history}>
-                                    <App />
-                                </ReduxRouter>
+                                <KeywordProvider>
+                                    <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                                    <ReduxRouter history={history}>
+                                        <App />
+                                    </ReduxRouter>
+                                </KeywordProvider>
                             </FilterProvider>
                         </DrawerProvider>
                     </AuthProvider>

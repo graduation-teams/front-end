@@ -1,13 +1,19 @@
 import request from '@api/configureAPI';
 
-const fetchParameterCategoriesAPI = ({parameter}) => request.get(`/admin/categories/${parameter??'all'}`)
+const fetchAllCategoriesAPI = () => request.get('/categories');
 
-const fetchByIdCategoriesAPI = ({id}) => request.get(`/admin/categories/${id}`)
+const fetchByIdCategoriesAPI = ({id}) => request.get(`/categories/${id}`)
 
+const deleteByIdCategoriesAPI = ({id}) => request.delete(`/categories/${id}`)
 
+const createCategoriesAPI = ({dataRequest}) => request.post('/categories', {dataRequest})
 
+const updateByIdCategoriesAPI = ({id, dataRequest}) => request.path(`/categories/${id}`, {dataRequest})
 
 export default {
-    fetchParameterCategoriesAPI,
-    fetchByIdCategoriesAPI
+    fetchAllCategoriesAPI,
+    fetchByIdCategoriesAPI,
+    deleteByIdCategoriesAPI,
+    createCategoriesAPI,
+    updateByIdCategoriesAPI
 };

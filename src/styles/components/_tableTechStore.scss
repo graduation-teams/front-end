@@ -1,0 +1,90 @@
+.override-ant-table-wrapper{
+    .ant-table-body{
+        .table-item{
+            .row-actions{
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .override-ant-button-actions{
+                    margin: 0px 3px;
+                    box-shadow: none !important;
+                    border: none !important;
+                    background: none !important;
+                    .anticon{
+                        svg{
+                            fill: #9e9e9e;
+                            font-size: 16px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .override-ant-pagination{
+        .ant-pagination-prev{
+            .ant-pagination-item-link{
+                background-color: #F5F5F5 !important;
+                border:  none !important;
+                border-radius: 4px !important;
+                .anticon{
+                    svg{
+                        fill: #004543;
+                        font-size: 14px !important;
+                    }
+                }
+            }
+        }
+        .ant-pagination-next{
+            .ant-pagination-item-link{
+                background-color: #F5F5F5 !important;
+                border:  none !important;
+                border-radius: 4px !important;
+                .anticon{
+                    svg{
+                        fill: #004543;
+                        font-size: 14px !important;
+                    }
+                }
+            }
+        }
+        .ant-pagination-total-text{
+            font-weight: $weight-500;
+            font-family: $mulish;
+
+        }
+        .ant-pagination-item{
+            background-color: #F5F5F5 !important;
+            border:  none !important;
+            border-radius: 4px !important;
+            a{
+                font-weight: $weight-700;
+                font-family: $mulish;
+                font-size: 14px;
+                font-style: normal;
+                color: #004543!important;
+            }
+        }
+        .ant-pagination-options{
+            .ant-select{
+                .ant-select-selector{
+                    border-radius: 4px !important;
+                    background-color: #F5F5F5 !important;
+                    border:  none !important;
+                    .ant-select-selection-search{
+                        .ant-select-selection-search-input{
+
+                        }
+                    }
+                    .ant-select-selection-item{
+                        font-weight: $weight-700;
+                        font-family: $mulish;
+                        font-size: 14px;
+                        font-style: normal;
+                        color: #004543!important;
+                    }
+                }
+            }
+        }
+    }
+}

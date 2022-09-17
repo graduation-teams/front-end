@@ -13,7 +13,7 @@ import { lazy } from 'react';
 
 export const publicRoutes = [
     {
-        path:'/',
+        path: '/',
         element: lazy(() => import('@pages/home')),
     },
     {
@@ -33,7 +33,7 @@ export const publicRoutes = [
         element: lazy(() => import('@pages/resetPassword')),
     },
     {
-        path: '/product-detail/product-id=:productId',
+        path: '/product-detail/:slug',
         element: lazy(() => import('@pages/productDetail')),
     },
     {
@@ -55,40 +55,40 @@ export const publicRoutes = [
     {
         path: '/page-not-found',
         element: lazy(() => import('@pages/404')),
-    }
-]
+    },
+];
 
 export const privateRoutes = [
     {
-        path:'dashboard',
+        path: 'dashboard',
         element: lazy(() => import('@pages/admin/dashboard')),
     },
     {
-        path:'categories',
+        path: 'categories',
         element: lazy(() => import('@pages/admin/categories')),
     },
     {
-        path:'products',
+        path: 'products',
         element: lazy(() => import('@pages/admin/products')),
     },
     {
-        path:'customers',
+        path: 'customers',
         element: lazy(() => import('@pages/admin/customers')),
     },
     {
-        path:'orders',
+        path: 'orders',
         element: lazy(() => import('@pages/admin/orders')),
     },
     {
-        path:'promotions',
+        path: 'promotions',
         element: lazy(() => import('@pages/admin/promotions')),
     },
     {
-        path:'our-staff',
+        path: 'our-staff',
         element: lazy(() => import('@pages/admin/ourStaff')),
     },
     {
-        path:'settings',
+        path: 'settings',
         element: lazy(() => import('@pages/admin/settings')),
-    }
+    },
 ];

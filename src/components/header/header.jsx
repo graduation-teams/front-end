@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { DownOutlined, UserOutlined, HeartOutlined, ShoppingCartOutlined, MenuOutlined } from '@ant-design/icons';
 import { Layout, Row, Col, Button, Dropdown, Menu, Space, message, Tooltip, AutoComplete, Input, Badge, Typography, Divider, Select, Avatar } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
@@ -8,28 +8,11 @@ import UserMenu from '@components/userMenu/userMenu';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { useViewport } from '@hooks';
+import { fetchAllCategoriesAction } from '@features/categories/categoriesActions';
+import CategoriesModels from '@models/categoriesModels';
+
 const { Text } = Typography;
 const { Option } = Select;
-
-const items = [
-    {
-        label: <Text strong>item 1</Text>,
-        key: '1',
-        icon: <UserOutlined />,
-    },
-    {
-        label: <Text strong>item 2</Text>,
-        key: '2',
-        icon: <UserOutlined />,
-    },
-    {
-        label: <Text strong>item 3</Text>,
-        key: '3',
-        icon: <UserOutlined />,
-    },
-];
-
-const menu = <Menu items={items} />;
 
 export const menuSecond = [
     {
@@ -116,12 +99,28 @@ function Header(props) {
     const dispatch = useDispatch();
     const svLogin = useSelector(state => state?.auth?.login);
     const svUser = useSelector(state => state?.user?.info);
+    const svCategories = useSelector(state => state.categories.fetchAll);
     const [options, setOptions] = useState([]);
     const [isLogged, setIsLogged] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [infoUser, setInfoUser] = useState({});
     const [visibleSubMenuUser, setVisibleSubMenuUser] = useState(false);
     const headerRef = useRef(null);
+
+    const dataCategory = useMemo(() => {
+        if (svCategories?.failed) return [];
+        if (svCategories?.success && svCategories?.data?.length > 0) {
+            return new CategoriesModels()?.handleDataHomePage(svCategories?.data);
+        }
+    }, [svCategories]);
+
+    useEffect(() => {
+        // console.log('dataCategory', dataCategory);
+    }, [dataCategory]);
+
+    useEffect(() => {
+        dispatch(fetchAllCategoriesAction());
+    }, []);
 
     useEffect(() => {
         if (svUser?.id) {
@@ -130,19 +129,19 @@ function Header(props) {
         }
     }, [svUser, svLogin]);
 
-    // useEffect(() => {
-    //     const shrinkHeader = () => {
-    //       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    //         headerRef.current.classList.add('shrink');
-    //       } else {
-    //         headerRef.current.classList.remove('shrink');
-    //       }
-    //     }
-    //     window.addEventListener('scroll', shrinkHeader)
-    //     return () => {
-    //       window.removeEventListener('scroll', shrinkHeader)
-    //     };
-    //   }, []);
+    useEffect(() => {
+        const shrinkHeader = () => {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                headerRef.current.classList.add('shrink');
+            } else {
+                headerRef.current.classList.remove('shrink');
+            }
+        };
+        window.addEventListener('scroll', shrinkHeader);
+        return () => {
+            window.removeEventListener('scroll', shrinkHeader);
+        };
+    }, []);
 
     useEffect(() => {
         if (viewPort?.width <= 480) {
@@ -164,7 +163,7 @@ function Header(props) {
     }
 
     return (
-        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '64px', height: 'auto', padding: 0 }} ref={headerRef}>
+        <Layout.Header style={{ backgroundColor: '#fff', minHeight: '64px', height: 'auto', padding: 0 }}>
             <div className="header__mobi">
                 <HeaderMobile />
             </div>
@@ -198,8 +197,11 @@ function Header(props) {
                                                     maxHeight: '40px',
                                                 }}
                                             >
-                                                <Select.Option value="Sign Up">Sign Up</Select.Option>
-                                                <Select.Option value="Sign In">Sign In</Select.Option>
+                                                {dataCategory?.map(item => (
+                                                    <Select.Option key={item?.key} value={item?.slug}>
+                                                        {item?.name}
+                                                    </Select.Option>
+                                                ))}
                                             </Select>
                                             <AutoComplete
                                                 style={{
@@ -223,11 +225,11 @@ function Header(props) {
                                                             size={{ xs: 40, sm: 40, md: 40, lg: 40, xl: 40, xxl: 40 }}
                                                             gap={3}
                                                             icon={<UserOutlined />}
-                                                            src={infoUser?.avatar_url}
+                                                            src={infoUser?.avatarUrl}
                                                         />
                                                         <Button type="text" size="large">
                                                             <Text strong style={{ color: '#0D1D2E', fontFamily: "'Mulish', sans-serif", fontWeight: '700', fontStyle: 'normal', width: '100px' }} ellipsis={true}>
-                                                                {infoUser?.full_name ?? ''}
+                                                                {infoUser?.fullName ?? ''}
                                                             </Text>
                                                         </Button>
                                                     </Space>
@@ -284,7 +286,7 @@ function Header(props) {
                         </div>
                     </Col>
                 </Row>
-                <Row gutter={16} align="middle" justify="space-around" className="header-row-top" wrap={false}>
+                <Row gutter={16} align="middle" justify="space-around" className="header-row-top" ref={headerRef} wrap={false}>
                     <Col span={24}>
                         <div className="container-1200">
                             <Row align="middle" justify="space-around" gutter={16}>
@@ -295,7 +297,17 @@ function Header(props) {
                                                 boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px !important',
                                             }}
                                             // visible={true}
-                                            overlay={menu}
+                                            overlay={
+                                                <Menu
+                                                    items={dataCategory?.map(item => {
+                                                        delete item?.slug;
+                                                        return {
+                                                            ...item,
+                                                            label: item?.name,
+                                                        };
+                                                    })}
+                                                />
+                                            }
                                             trigger={['click']}
                                         >
                                             <button className="header-tech-store__category_left-button">

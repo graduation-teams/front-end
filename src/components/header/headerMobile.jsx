@@ -5,7 +5,7 @@ import { menuSecond } from './header';
 import Icon from '@ant-design/icons';
 import { ReactComponent as logo } from '@assets/icons/ts.svg';
 import { ReactComponent as IconHeaderMobile } from '@assets/icons/ts.svg';
-import {withErrorBoundary} from 'react-error-boundary'
+import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 
 import { Input } from 'antd';
@@ -42,7 +42,7 @@ function HeaderMobile(props) {
                         <Icon component={IconHeaderMobile} />
                     </Button>
                 </Space>
-                <Drawer placement={placement} width={300} onClose={onClose} visible={visible}>
+                <Drawer placement={placement} width={300} onClose={onClose} open={visible}>
                     <div className="mobi-header__body">
                         <a href="#" className="logo">
                             <Icon component={logo} />
@@ -84,6 +84,6 @@ function HeaderMobile(props) {
     );
 }
 
-export default withErrorBoundary(HeaderMobile,{
-    FallbackComponent: ErrorComponent
+export default withErrorBoundary(HeaderMobile, {
+    FallbackComponent: ErrorComponent,
 });
