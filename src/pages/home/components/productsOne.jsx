@@ -8,6 +8,7 @@ import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
+import { formatCurrency } from '@utils/helpers';
 
 function ProductsOne({ dataAPI }, ...props) {
     const [visible, setVisible] = useState(6);
@@ -68,7 +69,7 @@ function ProductsOne({ dataAPI }, ...props) {
                                                 <div className="desc">
                                                     <p className="title">{item?.name}</p>
                                                     <p className="price">
-                                                        <del>{item?.unitPrice} vnđ</del> {item?.discountPrice} vnđ
+                                                        <del>{formatCurrency(item?.unitPrice, 'vnđ')}</del> {formatCurrency(item?.discountPrice, 'vnđ')}
                                                     </p>
                                                 </div>
                                             </Card>

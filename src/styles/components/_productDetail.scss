@@ -51,6 +51,10 @@
             strike {
                 color: #888;
                 margin-right: 2rem;
+                text-transform: lowercase;
+            }
+            span {
+                text-transform: lowercase;
             }
         }
         &--desc {
