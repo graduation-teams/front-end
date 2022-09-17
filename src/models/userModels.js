@@ -13,8 +13,13 @@ class UserModels {
         this.created_at = data.created_at ||'';
         this.updated_at = data.updated_at ||'';
     }
+    
     isManager(){
         return includes(['admin','staff'],this.role);
+    }
+
+    isAdmin(){
+        return includes(['admin'],this.role);
     }
 }
 

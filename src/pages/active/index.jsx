@@ -3,12 +3,12 @@ import {useQuery} from '@hooks'
 import { Helmet } from 'react-helmet';
 import { useDispatch } from 'react-redux';
 import { Result, Button } from 'antd';
-import { push } from 'connected-react-router';
+import { push } from '@lagunovsky/redux-react-router';
 import request from '@api/configureAPI';
 import { setInfoUserAction } from '@features/user/userActions';
 import {setLocalStorage } from '@utils/helpers';
 import { toast } from 'react-toastify';
-import Layouts from '@layouts/client';
+import LayoutCustomer from '@containers/layoutCustomer';
 
 function ActivePage() {
     const query = useQuery();
@@ -60,7 +60,7 @@ function ActivePage() {
             <Helmet>
                 <title>Active Account - TechStore</title>
             </Helmet>
-            <Layouts childrenComponent={Elements} />
+            <LayoutCustomer childrenComponent={Elements} />
         </React.Fragment>
     )
 }
