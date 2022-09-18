@@ -26,6 +26,7 @@ import { AuthProvider } from '@contexts/authContext';
 import { DrawerProvider } from '@contexts/drawerContext';
 import { FilterProvider } from '@contexts/filterContext';
 import { KeywordProvider } from '@contexts/keywordContext';
+import { CartProvider } from '@contexts/cartContext';
 import { ReduxRouter } from '@lagunovsky/redux-react-router';
 
 const container = document.getElementById('root-app');
@@ -38,16 +39,18 @@ function AppWithCallbackAfterRender() {
             <ConfigProvider locale={en_US}>
                 <Provider store={store} context={ReactReduxContext}>
                     <AuthProvider>
-                        <DrawerProvider>
-                            <FilterProvider>
-                                <KeywordProvider>
-                                    <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-                                    <ReduxRouter history={history}>
-                                        <App />
-                                    </ReduxRouter>
-                                </KeywordProvider>
-                            </FilterProvider>
-                        </DrawerProvider>
+                        <CartProvider>
+                            <DrawerProvider>
+                                <FilterProvider>
+                                    <KeywordProvider>
+                                        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                                        <ReduxRouter history={history}>
+                                            <App />
+                                        </ReduxRouter>
+                                    </KeywordProvider>
+                                </FilterProvider>
+                            </DrawerProvider>
+                        </CartProvider>
                     </AuthProvider>
                 </Provider>
             </ConfigProvider>

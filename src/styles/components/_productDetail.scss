@@ -51,6 +51,10 @@
             strike {
                 color: #888;
                 margin-right: 2rem;
+                text-transform: lowercase;
+            }
+            span {
+                text-transform: lowercase;
             }
         }
         &--desc {
@@ -61,6 +65,7 @@
             margin-bottom: 2rem;
             .btn-black {
                 background-color: #333;
+                border: 1px solid #333;
                 margin-left: 2rem;
                 &:hover {
                     opacity: 0.9;

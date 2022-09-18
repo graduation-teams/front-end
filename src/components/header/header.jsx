@@ -10,7 +10,7 @@ import { ErrorComponent } from '@components/common';
 import { useViewport } from '@hooks';
 import { fetchAllCategoriesAction } from '@features/categories/categoriesActions';
 import CategoriesModels from '@models/categoriesModels';
-
+import { useCartContext } from '@contexts/cartContext';
 const { Text } = Typography;
 const { Option } = Select;
 
@@ -97,6 +97,7 @@ const searchResult = query =>
 function Header(props) {
     const viewPort = useViewport();
     const dispatch = useDispatch();
+    const {  totalProduct } = useCartContext();
     const svLogin = useSelector(state => state?.auth?.login);
     const svUser = useSelector(state => state?.user?.info);
     const svCategories = useSelector(state => state.categories.fetchAll);
@@ -270,7 +271,7 @@ function Header(props) {
                                                     justifyContent: 'center',
                                                 }}
                                             >
-                                                <Badge count={0} size="small">
+                                                <Badge count={totalProduct} size="small">
                                                     <ShoppingCartOutlined
                                                         style={{
                                                             fontSize: '24px',
