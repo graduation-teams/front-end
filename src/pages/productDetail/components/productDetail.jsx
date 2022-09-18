@@ -1,27 +1,24 @@
-import { Row, Col, InputNumber } from 'antd';
+import { Row, Col, InputNumber, Space, Divider } from 'antd';
 import React, { useState } from 'react';
 import { Btn } from '@components/common';
 import ItemSlideShow from './itemSlideShow';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent } from '@components/common';
 import PropTypes from 'prop-types';
-import { addToCart, formatCurrency } from '@utils/helpers';
+import { formatCurrency } from '@utils/helpers';
+import { useCartContext } from '@contexts/cartContext';
 
 function ProductDetail({ dataAPI }, ...props) {
     const [quantityProduct, setQuantityPoduct] = useState(1);
+    const { isItem, addToCart,loadingAdd } = useCartContext();
+
     const onChange = value => {
-        console.log('changed', value);
+        // console.log('changed', value);
         setQuantityPoduct(value);
     };
 
     const handleAddToCart = () => {
-        // console.log('Product Detail', dataAPI);
-        addToCart({
-            id: dataAPI?.id,
-            name: dataAPI?.name,
-            quantity: quantityProduct,
-            price: dataAPI?.discountPrice > 0 ? dataAPI?.discountPrice : dataAPI?.unitPrice,
-        });
+        addToCart({ item: { id: dataAPI?.id, name: dataAPI?.name, quantity: quantityProduct, price: dataAPI?.discountPrice > 0 ? dataAPI?.discountPrice : dataAPI?.unitPrice } });
     };
 
     return (
@@ -49,10 +46,13 @@ function ProductDetail({ dataAPI }, ...props) {
                                 </p>
                                 <div className="detail-item__content--desc" dangerouslySetInnerHTML={{ __html: dataAPI?.description }} />
                                 <div className="detail-item__content--quatity" style={{ marginTop: '25px' }}>
-                                    <InputNumber min={1} max={10} defaultValue={1} onChange={onChange} />
-                                    <Btn className="btn-black" onClick={handleAddToCart}>
+                                    <Space size='middle' wrap align="center">
+                                    <InputNumber size='large' min={1} max={10} defaultValue={1} onChange={onChange} />
+                                    <Btn loading={loadingAdd} className="btn-black" onClick={handleAddToCart}>
                                         Add to cart
                                     </Btn>
+                                    </Space>
+                                   
                                 </div>
                                 <div className="detail-item__content--different">
                                     <p>

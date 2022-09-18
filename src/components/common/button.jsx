@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'antd';
 import PropTypes from 'prop-types';
 
 Btn.propTypes = {
@@ -7,15 +8,15 @@ Btn.propTypes = {
 
 function Btn(props) {
     return (
-        <button className={`btn ${props.className}`} onClick={props.onClick ? () => props.onClick() : null}>
+        <Button type='primary' size='large' className={`btn ${props.className}`} onClick={props.onClick ? () => props.onClick() : null} {...props}>
             {props.children}
-        </button>
+        </Button>
     );
 }
 
 export function BtnHover(props) {
     return (
-        <Btn className={`btn-hover ${props.className}`} onClick={props.onClick ? () => props.onClick() : null}>
+        <Btn className={`btn-hover ${props.className}`} onClick={props.onClick ? () => props.onClick() : null} {...props}>
             {props.children}
         </Btn>
     );

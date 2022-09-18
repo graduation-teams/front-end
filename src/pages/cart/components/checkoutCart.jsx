@@ -3,9 +3,13 @@ import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input, Space } from 'antd';
 import Btn from '@components/common/button';
 import TextArea from 'antd/lib/input/TextArea';
+import { useCartContext } from '@contexts/cartContext';
+import { formatCurrency } from '@utils/helpers';
+const { Search } = Input;
 
 function CheckoutCart(props) {
-    const { Search } = Input;
+    const { dataCart, totalProduct, totalPrice, removeAllCartItem } = useCartContext();
+    
     const onSearch = value => console.log(value);
 
     const onFinish = values => {
@@ -150,20 +154,27 @@ function CheckoutCart(props) {
                     <Col xs={24} md={24} lg={12}>
                         <div className="shopping-card_bill">
                             <div className="shopping-card_bill_box">
-                                <h3>YOUR ORDER</h3>
+                                <Space size={[222, 16]} wrap align="baseline" onClick={()=>removeAllCartItem()}><h3>YOUR ORDER / TOTAL: {totalProduct}</h3><Button type="dashed" danger>Remove all cart</Button></Space>
                                 <hr />
-                                <p className="subtotal">
-                                    <span>Native Union SMART 4 Charger 1 × 1</span>
-                                    <span>$70.00</span>
-                                </p>
+                                {dataCart.map((item, index) => (
+                                    <React.Fragment key={index}>
+                                        <div className="shopping-card_bill_box_item" key={index}>
+                                            <p className="subtotal">
+                                                <span>{item?.name} * quantity: {item?.quantity}</span>
+                                                <span>{formatCurrency(item?.price * item?.quantity,'vnđ')}</span>
+                                            </p>
+                                        </div>
+                                    </React.Fragment>
+                                ))}
+                                
                                 <hr />
                                 <p className="subtotal">
                                     <span>Subtotal</span>
-                                    <span>$70.00</span>
+                                    <span>{formatCurrency(totalPrice,'vnđ')}</span>
                                 </p>
                                 <p className="total">
                                     <span>TOTAL</span>
-                                    <span>$70.00</span>
+                                    <span><strong>{formatCurrency(totalPrice,'vnđ')}</strong></span>
                                 </p>
                                 <div className="warnning-checkout">
                                     <p>Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.</p>
