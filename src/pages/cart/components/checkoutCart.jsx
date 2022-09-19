@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import React, { useState } from 'react';
-import { Button, Checkbox, Form, Input, Space } from 'antd';
+import { Button, Checkbox, Form, Input, Space, InputNumber } from 'antd';
 import Btn from '@components/common/button';
 import TextArea from 'antd/lib/input/TextArea';
 import { useCartContext } from '@contexts/cartContext';
@@ -9,11 +9,15 @@ const { Search } = Input;
 
 function CheckoutCart(props) {
     const { dataCart, totalProduct, totalPrice, removeAllCartItem } = useCartContext();
-    
+    const [quantityProduct, setQuantityPoduct] = useState(1);
     const onSearch = value => console.log(value);
 
     const onFinish = values => {
         console.log('Success:', values);
+    };
+
+    const onChange = value => {
+        setQuantityPoduct(value);
     };
 
     const onFinishFailed = errorInfo => {
@@ -29,7 +33,7 @@ function CheckoutCart(props) {
         <div className="container-1200">
             <div className="check-out">
                 <Row>
-                    <Col xs={24} md={24} lg={12}>
+                    <Col xs={24} md={24} lg={8}>
                         <div className="have-cuppon">
                             Have a coupon?{' '}
                             <span className="have-cuppon_span" onClick={handleClickCoupon}>
@@ -113,7 +117,7 @@ function CheckoutCart(props) {
                                 <Input />
                             </Form.Item>
                             <Form.Item
-                                label="Phone number"
+                                label="Phone"
                                 name="phonenumber"
                                 rules={[
                                     {
@@ -128,7 +132,7 @@ function CheckoutCart(props) {
                                 <TextArea rows={4} />
                             </Form.Item>
 
-                            <Form.Item
+                            {/* <Form.Item
                                 name="remember"
                                 valuePropName="checked"
                                 wrapperCol={{
@@ -148,33 +152,51 @@ function CheckoutCart(props) {
                                 <Button type="primary" htmlType="submit">
                                     Submit
                                 </Button>
-                            </Form.Item>
+                            </Form.Item> */}
                         </Form>
                     </Col>
-                    <Col xs={24} md={24} lg={12}>
+                    <Col xs={24} md={24} lg={16}>
                         <div className="shopping-card_bill">
                             <div className="shopping-card_bill_box">
-                                <Space size={[222, 16]} wrap align="baseline" onClick={()=>removeAllCartItem()}><h3>YOUR ORDER / TOTAL: {totalProduct}</h3><Button type="dashed" danger>Remove all cart</Button></Space>
+                                <div className="shopping-card_bill_box--remove">
+                                    <h3>YOUR ORDER / TOTAL: {totalProduct}</h3>
+                                    <Space size={[222, 16]} wrap align="baseline" onClick={() => removeAllCartItem()}>
+                                        <Button type="dashed" danger>
+                                            Remove all cart
+                                        </Button>
+                                    </Space>
+                                </div>
                                 <hr />
                                 {dataCart.map((item, index) => (
                                     <React.Fragment key={index}>
-                                        <div className="shopping-card_bill_box_item" key={index}>
-                                            <p className="subtotal">
-                                                <span>{item?.name} * quantity: {item?.quantity}</span>
-                                                <span>{formatCurrency(item?.price * item?.quantity,'vnđ')}</span>
-                                            </p>
+                                        <div className="cart-items">
+                                            <div className="cart-img">
+                                                <img src={item?.thumbnail} alt="" />
+                                                <div className="shopping-card_bill_box_item" key={index}>
+                                                    <p className="subtotal">
+                                                        <span>{item?.name}</span>
+                                                    </p>
+                                                    {/* <span>* quantity: {item?.quantity}</span> */}
+                                                    <div className="quantity-number"></div>
+                                                    <span style={{ marginRight: '10px' }}>* quantity: </span>
+                                                    <InputNumber size="large" min={1} max={10} defaultValue={1} onChange={onChange} />
+                                                </div>
+                                            </div>
+                                            <span>{formatCurrency(item?.price * item?.quantity, 'vnđ')}</span>
                                         </div>
                                     </React.Fragment>
                                 ))}
-                                
+
                                 <hr />
                                 <p className="subtotal">
                                     <span>Subtotal</span>
-                                    <span>{formatCurrency(totalPrice,'vnđ')}</span>
+                                    <span>{formatCurrency(totalPrice, 'vnđ')}</span>
                                 </p>
                                 <p className="total">
                                     <span>TOTAL</span>
-                                    <span><strong>{formatCurrency(totalPrice,'vnđ')}</strong></span>
+                                    <span>
+                                        <strong>{formatCurrency(totalPrice, 'vnđ')}</strong>
+                                    </span>
                                 </p>
                                 <div className="warnning-checkout">
                                     <p>Sorry, it seems that there are no available payment methods for your state. Please contact us if you require assistance or wish to make alternate arrangements.</p>

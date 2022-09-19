@@ -9,7 +9,7 @@ import { ErrorComponent } from '@components/common';
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
 import { formatCurrency } from '@utils/helpers';
-
+import ItemsOne from '@assets/images/laptop.png';
 function ProductsOne({ dataAPI }, ...props) {
     const [visible, setVisible] = useState(6);
 
@@ -24,7 +24,7 @@ function ProductsOne({ dataAPI }, ...props) {
                     <Col xs={24} sm={24} md={11} lg={7} xl={7} className="products-one__left">
                         <a href="#" className="products-one__left--box">
                             <div className="products-one__left--img">
-                                <img src="https://xstore.8theme.com/elementor/demos/electron01/wp-content/uploads/sites/31/2018/09/30.jpg" alt="" />
+                                <img src={ItemsOne} alt="" width={'50%'} />
                             </div>
                             <div className="products-one__left--inner">
                                 <p className="title">DJI Phantom 4 Pro</p>
@@ -40,7 +40,7 @@ function ProductsOne({ dataAPI }, ...props) {
                                     </span>
                                 </div>
                                 <div className="products-one__left--btn">
-                                    <BtnHover>Add to cart</BtnHover>
+                                    <button className="slideshow__home__inner--btn">Add to cart</button>
                                 </div>
                             </div>
                         </a>
@@ -65,12 +65,24 @@ function ProductsOne({ dataAPI }, ...props) {
                                                         <Icon component={IconLogo3} />
                                                     </div>
                                                 </div>
-                                                <span className="sale">SALE</span>
+                                                {item?.discountPrice > 0 ? (
+                                                    <React.Fragment>
+                                                        <span className="sale">SALE</span>
+                                                    </React.Fragment>
+                                                ) : (
+                                                    <span></span>
+                                                )}
                                                 <div className="desc">
                                                     <p className="title">{item?.name}</p>
-                                                    <p className="price">
-                                                        <del>{formatCurrency(item?.unitPrice, 'vnđ')}</del> {formatCurrency(item?.discountPrice, 'vnđ')}
-                                                    </p>
+                                                    {item?.discountPrice > 0 ? (
+                                                        <React.Fragment>
+                                                            <p className="price">
+                                                                <del>{formatCurrency(item?.unitPrice, 'vnđ')}</del> -{formatCurrency(item?.discountPrice, 'vnđ')}
+                                                            </p>
+                                                        </React.Fragment>
+                                                    ) : (
+                                                        <span>${item?.unitPrice}</span>
+                                                    )}
                                                 </div>
                                             </Card>
                                         </Link>

@@ -191,3 +191,34 @@
         background-color: $main-color !important;
     }
 }
+.check-out {
+    .ant-form-item-control-input {
+        width: 300px;
+        margin-left: 10px;
+    }
+
+    .cart-items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .cart-img {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+    }
+}
+.check-out .shopping-card_bill_box .subtotal span {
+    max-width: 400px;
+}
+.shopping-card_bill_box--remove {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
