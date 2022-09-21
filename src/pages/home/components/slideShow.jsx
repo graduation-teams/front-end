@@ -1,5 +1,5 @@
 import React from 'react';
-import { Btn } from '@components/common';
+import Btn from '@components/common/button';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent, SlideTechStore } from '@components/common';
 
@@ -11,7 +11,7 @@ const ItemSlider = [
                     <div className="slideshow__home__inner slideshow__home__inner-active">
                         <h1>Matrice 200 series</h1>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse necessitatibus vero illum alias a eveniet ab rerum enim saepe optio dolores cupiditate ex modi omnis, sequi quaerat voluptatem minima est.</p>
-                        <Btn className="slideshow__home__inner--btn">BUY NOW</Btn>
+                        <button className="slideshow__home__inner--btn">BUY NOW</button>
                     </div>
                 </div>
             );

@@ -6,6 +6,7 @@ import { ReactComponent as IconLogo3 } from '@assets/icons/Pin_light.svg';
 import { withErrorBoundary } from 'react-error-boundary';
 import { ErrorComponent, SlideTechStore } from '@components/common';
 import { Link } from 'react-router-dom';
+import { formatCurrency } from '@utils/helpers';
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -77,7 +78,15 @@ const ItemSlider = datas => {
                                       <p className="title">{data?.name}</p>
                                       <p className="branch">LG</p>
                                       <p className="price">
-                                          <del>{data?.unitPrice} vnđ</del> {data?.discountPrice} vnđ
+                                          {data?.discountPrice > 0 ? (
+                                              <React.Fragment>
+                                                  <p className="price">
+                                                      <del>{formatCurrency(data?.unitPrice, 'vnđ')}</del> -{formatCurrency(data?.discountPrice, 'vnđ')}
+                                                  </p>
+                                              </React.Fragment>
+                                          ) : (
+                                              <span>${data?.unitPrice}</span>
+                                          )}
                                       </p>
                                   </div>
                               </Link>

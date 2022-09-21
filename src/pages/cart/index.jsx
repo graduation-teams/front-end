@@ -5,10 +5,9 @@ import { getLocalStorage } from '@utils/helpers';
 import StepsCart from './components/stepsCart';
 
 function ProductDetailPage() {
-
     return (
         <React.Fragment>
-            <StepsCart/>
+            <StepsCart />
         </React.Fragment>
     );
 }

@@ -10,7 +10,7 @@ import { useCartContext } from '@contexts/cartContext';
 
 function ProductDetail({ dataAPI }, ...props) {
     const [quantityProduct, setQuantityPoduct] = useState(1);
-    const { isItem, addToCart,loadingAdd } = useCartContext();
+    const { isItem, addToCart, loadingAdd } = useCartContext();
 
     const onChange = value => {
         // console.log('changed', value);
@@ -18,7 +18,7 @@ function ProductDetail({ dataAPI }, ...props) {
     };
 
     const handleAddToCart = () => {
-        addToCart({ item: { id: dataAPI?.id, name: dataAPI?.name, quantity: quantityProduct, price: dataAPI?.discountPrice > 0 ? dataAPI?.discountPrice : dataAPI?.unitPrice } });
+        addToCart({ item: { id: dataAPI?.id, name: dataAPI?.name, quantity: quantityProduct, price: dataAPI?.discountPrice > 0 ? dataAPI?.discountPrice : dataAPI?.unitPrice, thumbnail: dataAPI?.thumbnailUrl } });
     };
 
     return (
@@ -46,13 +46,12 @@ function ProductDetail({ dataAPI }, ...props) {
                                 </p>
                                 <div className="detail-item__content--desc" dangerouslySetInnerHTML={{ __html: dataAPI?.description }} />
                                 <div className="detail-item__content--quatity" style={{ marginTop: '25px' }}>
-                                    <Space size='middle' wrap align="center">
-                                    <InputNumber size='large' min={1} max={10} defaultValue={1} onChange={onChange} />
-                                    <Btn loading={loadingAdd} className="btn-black" onClick={handleAddToCart}>
-                                        Add to cart
-                                    </Btn>
+                                    <Space size="middle" wrap align="center">
+                                        <InputNumber size="large" min={1} max={10} defaultValue={1} onChange={onChange} />
+                                        <Btn loading={loadingAdd} className="btn-black" onClick={handleAddToCart}>
+                                            Add to cart
+                                        </Btn>
                                     </Space>
-                                   
                                 </div>
                                 <div className="detail-item__content--different">
                                     <p>

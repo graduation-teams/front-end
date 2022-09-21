@@ -102,7 +102,6 @@
             transform: translate(-50%, -50%);
             text-align: center;
             font-family: $font-family;
-
             @include mobile {
                 width: 100%;
             }
@@ -176,8 +175,10 @@
 
     .products-one__left--img {
         width: 300px;
-        height: 300px;
+        height: auto;
         margin: 0 auto;
+        padding-bottom: 70px;
+        padding-top: 70px;
 
         img {
             width: 100%;
@@ -488,3 +489,21 @@
 .mb20 {
     margin-bottom: 20px;
 }
+.slideshow__home__inner--btn {
+    background-color: $main-color;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    color: #fff;
+    &:hover {
+        background-color: $main-color !important;
+        opacity: 0.9;
+    }
+}
+
+// .products-one__left--img {
+//     img {
+//         width: 150px !important;
+//         height: auto !important;
+//     }
+// }
