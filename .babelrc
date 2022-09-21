@@ -26,8 +26,8 @@
         [
             "@babel/plugin-transform-react-jsx",
             {
-              // "pragma": "React.createElement",
-              // "pragmaFrag": "React.Fragment",
+              "pragma": "React.createElement",
+              "pragmaFrag": "React.Fragment",
               "throwIfNamespace": false, // defaults to true
               "runtime": "automatic"
             }
@@ -40,7 +40,7 @@
         ["file-loader"],
         ["css-modules-transform"],
         ["import", { "libraryName": "antd", "libraryDirectory": "es",  "style": true },"antd"],
-        ["import", {"libraryName": "lodash", "libraryDirectory": "", "camel2DashComponentName": false}]
+        ["import", {"libraryName": "lodash", "libraryDirectory": "", "camel2DashComponentName": false},"lodash"]
     ],
     "env": {
         "production": {

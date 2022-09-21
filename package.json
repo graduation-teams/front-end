@@ -6,6 +6,8 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@babel/runtime-corejs2": "^7.19.2",
+    "@ckeditor/ckeditor5-build-classic": "^35.1.0",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@lagunovsky/redux-react-router": "^4.0.0",
     "@reduxjs/toolkit": "^1.8.5",
     "antd": "^4.23.1",
