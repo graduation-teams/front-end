@@ -15,16 +15,18 @@ export const CartProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        if(arrayCart.length>0){
+        if (arrayCart.length > 0) {
             setIsAddToCarted(true);
         }
         setTotal(arrayCart.reduce((a, b) => a + b.price * b.quantity, 0));
-        const timeLoading = setTimeout(() => {setLoading(false);}, 2000);
+        const timeLoading = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
         setIsAddToCarted(true);
         setLocalStorage('cart', JSON.stringify(arrayCart));
         return () => {
             clearTimeout(timeLoading);
-        }
+        };
     }, [arrayCart]);
 
     function addToCart({ item }) {
@@ -43,6 +45,16 @@ export const CartProvider = ({ children }) => {
         }
     }
 
+    function updateQuantity(id, quantity) {
+        const newArray = arrayCart.map(item => {
+            if (item.id === id) {
+                return { ...item, quantity };
+            }
+            return item;
+        });
+        setArrayCart(newArray);
+    }
+
     function removeCartItem(params) {
         const newArray = arrayCart.filter(item => item.id !== params.id);
         setArrayCart(newArray);
@@ -53,7 +65,6 @@ export const CartProvider = ({ children }) => {
         removeLocalStorage('cart');
     }
 
-
     const cartContextValue = useMemo(
         () => ({
             isItem: isAddToCarted,
@@ -61,9 +72,10 @@ export const CartProvider = ({ children }) => {
             totalPrice: total,
             dataCart: arrayCart,
             addToCart,
+            updateQuantity,
             removeCartItem,
             removeAllCartItem,
-            loadingAdd:loading,
+            loadingAdd: loading,
         }),
         [arrayCart, loading, total]
     );

@@ -8,7 +8,7 @@ import { formatCurrency } from '@utils/helpers';
 const { Search } = Input;
 
 function CheckoutCart(props) {
-    const { dataCart, totalProduct, totalPrice, removeAllCartItem } = useCartContext();
+    const { dataCart, totalProduct, totalPrice, removeAllCartItem, updateQuantity } = useCartContext();
     const [quantityProduct, setQuantityPoduct] = useState(1);
     const onSearch = value => console.log(value);
 
@@ -16,7 +16,7 @@ function CheckoutCart(props) {
         console.log('Success:', values);
     };
 
-    const onChange = value => {
+    const handleChangeQuatity = value => {
         setQuantityPoduct(value);
     };
 
@@ -28,6 +28,11 @@ function CheckoutCart(props) {
     function handleClickCoupon() {
         setCoupon(!coupon);
     }
+
+    // const handleChangeQuatity = (value, item) => {
+    //     // console.log('changed', idProduct);
+    //     setQuantityPoduct(value);
+    // };
 
     return (
         <div className="container-1200">
@@ -178,8 +183,8 @@ function CheckoutCart(props) {
                                                     </p>
                                                     {/* <span>* quantity: {item?.quantity}</span> */}
                                                     <div className="quantity-number"></div>
-                                                    <span style={{ marginRight: '10px' }}>* quantity: </span>
-                                                    <InputNumber size="large" min={1} max={10} defaultValue={1} onChange={onChange} />
+                                                    <span style={{ marginRight: '10px' }}>* Quantity: </span>
+                                                    <InputNumber value={item?.quantity} size="large" min={1} max={10} defaultValue={1} onChange={e => updateQuantity(item.id, e)} />
                                                 </div>
                                             </div>
                                             <span>{formatCurrency(item?.price * item?.quantity, 'vnđ')}</span>
