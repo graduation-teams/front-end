@@ -184,7 +184,7 @@ function CheckoutCart(props) {
                                                     {/* <span>* quantity: {item?.quantity}</span> */}
                                                     <div className="quantity-number"></div>
                                                     <span style={{ marginRight: '10px' }}>* Quantity: </span>
-                                                    <InputNumber value={item?.quantity} size="large" min={1} max={10} defaultValue={1} onChange={e => updateQuantity(item.id, e)} />
+                                                    <InputNumber value={item?.quantity} size="large" min={1} max={item?.totalQuatity} defaultValue={1} onChange={e => updateQuantity(item.id, e)} />
                                                 </div>
                                             </div>
                                             <span>{formatCurrency(item?.price * item?.quantity, 'vnđ')}</span>
