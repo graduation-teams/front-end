@@ -18,7 +18,9 @@ function ProductDetail({ dataAPI }, ...props) {
     };
 
     const handleAddToCart = () => {
-        addToCart({ item: { id: dataAPI?.id, name: dataAPI?.name, quantity: quantityProduct, price: dataAPI?.discountPrice > 0 ? dataAPI?.discountPrice : dataAPI?.unitPrice, thumbnail: dataAPI?.thumbnailUrl } });
+        addToCart({
+            item: { id: dataAPI?.id, name: dataAPI?.name, quantity: quantityProduct, price: dataAPI?.discountPrice > 0 ? dataAPI?.discountPrice : dataAPI?.unitPrice, thumbnail: dataAPI?.thumbnailUrl, totalQuatity: dataAPI?.quantity },
+        });
     };
 
     return (
