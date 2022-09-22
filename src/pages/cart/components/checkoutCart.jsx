@@ -5,6 +5,7 @@ import Btn from '@components/common/button';
 import TextArea from 'antd/lib/input/TextArea';
 import { useCartContext } from '@contexts/cartContext';
 import { formatCurrency } from '@utils/helpers';
+import EmtyCart from './emtyCart';
 const { Search } = Input;
 
 function CheckoutCart(props) {
@@ -172,6 +173,7 @@ function CheckoutCart(props) {
                                     </Space>
                                 </div>
                                 <hr />
+                                {dataCart.length === 0 && <EmtyCart />}
                                 {dataCart.map((item, index) => (
                                     <React.Fragment key={index}>
                                         <div className="cart-items">
