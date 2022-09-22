@@ -51,6 +51,7 @@ function ProductsOne({ dataAPI }, ...props) {
                                 {dataAPI?.slice(0, visible)?.map(item => (
                                     <Col key={item?.key} xs={12} sm={12} md={12} lg={8} xl={8} className="p-2 mb20">
                                         <Link to={`/product-detail/${item?.slug}`} className="product-item">
+                                            {console.log('slug', item?.slug)}
                                             <Card
                                                 hoverable
                                                 style={{
@@ -81,7 +82,7 @@ function ProductsOne({ dataAPI }, ...props) {
                                                             </p>
                                                         </React.Fragment>
                                                     ) : (
-                                                        <span>${item?.unitPrice}</span>
+                                                        <span>{formatCurrency(item?.unitPrice, 'vnđ')}</span>
                                                     )}
                                                 </div>
                                             </Card>

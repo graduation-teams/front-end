@@ -13,7 +13,7 @@ function EmtyCart(props) {
             />
             <h3>YOUR SHOPPING CART IS EMPTY</h3>
             <p>We invite you to get acquainted with an assortment of our shop.Surely you can find something for yourself!</p>
-            <Btn className="bg-black">RETURN TO SHOP</Btn>
+            {/* <Btn className="bg-black">RETURN TO SHOP</Btn> */}
         </div>
     );
 }

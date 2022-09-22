@@ -43,7 +43,7 @@ function ProductDetail({ dataAPI }, ...props) {
                                             <span>{formatCurrency(dataAPI?.discountPrice, 'vnđ')}</span>
                                         </React.Fragment>
                                     ) : (
-                                        <span>${dataAPI?.unitPrice}</span>
+                                        <span>{formatCurrency(dataAPI?.unitPrice, 'vnđ')}</span>
                                     )}
                                 </p>
                                 <div className="detail-item__content--desc" dangerouslySetInnerHTML={{ __html: dataAPI?.description }} />
