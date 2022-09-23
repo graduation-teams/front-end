@@ -5,7 +5,7 @@ import Btn from '@components/common/button';
 import TextArea from 'antd/lib/input/TextArea';
 import { useCartContext } from '@contexts/cartContext';
 import { formatCurrency } from '@utils/helpers';
-import EmtyCart from './emtyCart';
+import EmtyCart from './emptyCart';
 const { Search } = Input;
 
 function CheckoutCart(props) {

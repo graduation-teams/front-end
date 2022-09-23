@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as Ytb } from '@assets/icons/YouTube.svg';
 import Btn from '@components/common/button';
 import Icon, { ShoppingCartOutlined } from '@ant-design/icons';
-function EmtyCart(props) {
+function EmptyCart(props) {
     return (
         <div className="cart__steps--emty">
             <ShoppingCartOutlined
@@ -18,4 +18,4 @@ function EmtyCart(props) {
     );
 }
 
-export default EmtyCart;
+export default EmptyCart;

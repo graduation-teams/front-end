@@ -51,7 +51,6 @@ function ProductsOne({ dataAPI }, ...props) {
                                 {dataAPI?.slice(0, visible)?.map(item => (
                                     <Col key={item?.key} xs={12} sm={12} md={12} lg={8} xl={8} className="p-2 mb20">
                                         <Link to={`/product-detail/${item?.slug}`} className="product-item">
-                                            {console.log('slug', item?.slug)}
                                             <Card
                                                 hoverable
                                                 style={{
@@ -77,9 +76,9 @@ function ProductsOne({ dataAPI }, ...props) {
                                                     <p className="title">{item?.name}</p>
                                                     {item?.discountPrice > 0 ? (
                                                         <React.Fragment>
-                                                            <p className="price">
+                                                            <span className="price">
                                                                 <del>{formatCurrency(item?.unitPrice, 'vnđ')}</del> -{formatCurrency(item?.discountPrice, 'vnđ')}
-                                                            </p>
+                                                            </span>
                                                         </React.Fragment>
                                                     ) : (
                                                         <span>{formatCurrency(item?.unitPrice, 'vnđ')}</span>

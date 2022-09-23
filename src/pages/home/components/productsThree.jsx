@@ -56,13 +56,13 @@ const settings = {
     ],
 };
 
-const ItemSlider = datas => {
-    return datas
-        ? datas.map(data => {
+const ItemSlider = dataAPI => {
+    return dataAPI
+        ? dataAPI.map(data => {
               return {
                   element: () => {
                       return (
-                          <>
+                          <React.Fragment>
                               <Link to={`/product-detail/product-id=${data?.slug}`} key={data?.key} className="product-item">
                                   <div className="product-item--img">
                                       <img src={data?.thumbnailUrl} alt="" />
@@ -80,9 +80,9 @@ const ItemSlider = datas => {
                                       <p className="price">
                                           {data?.discountPrice > 0 ? (
                                               <React.Fragment>
-                                                  <p className="price">
+                                                  <span className="price">
                                                       <del>{formatCurrency(data?.unitPrice, 'vnđ')}</del> -{formatCurrency(data?.discountPrice, 'vnđ')}
-                                                  </p>
+                                                  </span>
                                               </React.Fragment>
                                           ) : (
                                               <span>${data?.unitPrice}</span>
@@ -90,7 +90,7 @@ const ItemSlider = datas => {
                                       </p>
                                   </div>
                               </Link>
-                          </>
+                          </React.Fragment>
                       );
                   },
               };

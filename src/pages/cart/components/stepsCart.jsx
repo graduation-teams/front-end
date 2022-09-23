@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row, Steps } from 'antd';
 const { Step } = Steps;
 import Icon, { ShoppingCartOutlined } from '@ant-design/icons';
-import EmtyCart from './emtyCart';
+import EmptyCart from './emptyCart';
 import ShoppingCart from './shoppingCart';
 import CheckoutCart from './checkoutCart';
 
@@ -11,13 +11,13 @@ function StepsCart(props) {
         <div className="container-1200">
             <div className="cart__steps">
                 <Steps current={0}>
-                    <Step title="SHOPPING CART" />
+                    <Step title="SHOPPING CART" status='wait'/>
                     <Step title="CHECKOUT" />
                     <Step title="ORDER STATUS" />
                 </Steps>
             </div>
-            {/* <EmtyCart /> */}
-            {/* <ShoppingCart /> */}
+            <EmptyCart />
+            <ShoppingCart />
             <CheckoutCart />
         </div>
     );
