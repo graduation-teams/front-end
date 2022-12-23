@@ -71,7 +71,7 @@ function LayoutAdmin({ childrenComponent, ...props }) {
                                             <Col span={12} offset={12}>
                                                 <div className="header-admin-right">
                                                     <Dropdown
-                                                        overlay={menu}
+                                                        menu={menu}
                                                         placement="bottomRight"
                                                         arrow={{
                                                             pointAtCenter: true,

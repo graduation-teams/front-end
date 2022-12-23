@@ -298,7 +298,7 @@ function Header(props) {
                                                 boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px !important',
                                             }}
                                             // visible={true}
-                                            overlay={
+                                            menu={
                                                 <Menu
                                                     items={dataCategory?.map(item => {
                                                         delete item?.slug;
